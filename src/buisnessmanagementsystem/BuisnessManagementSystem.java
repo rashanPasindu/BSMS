@@ -18,7 +18,7 @@ public class BuisnessManagementSystem {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         new login().setVisible(true);
+         new login().setVisible(true);//works
     }
     
 }
