@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -156,36 +155,6 @@ public class calcDep {
         }
         
     }
- 
-     private String getDate(){
-        String date1;
-        
-        Date date = new Date();
-        
-       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        date1 = formatter.format(date);
-        
-        System.out.println(date1);
-        
-        return date1;
-    }
-     
-     private String getCurrentMonth(){
-         
-        char m1 = getDate().charAt(5);
-        char m2 = getDate().charAt(6);
-       
-        StringBuilder month = new StringBuilder("");
-        
-        month.insert(0, m1);
-        month.insert(1, m2);
-        
-        System.out.println(month.toString());
-        
-        String currentMonth = month.toString();
-        
-        return currentMonth;
-     }
      //done
 }
 
