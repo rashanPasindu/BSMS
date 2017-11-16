@@ -202,7 +202,7 @@ public class ExpenseInput extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 505, 180, 49));
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Office Supplies", "Insurance", "Tax", "Wages", "Depreciation", "Special Expenses" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Office Supplies", "Insurance", "Tax", "Wages", "Special Expenses" }));
         jComboBox2.setMaximumSize(new java.awt.Dimension(203, 49));
         jComboBox2.setMinimumSize(new java.awt.Dimension(203, 49));
         jComboBox2.setPreferredSize(new java.awt.Dimension(203, 49));
@@ -650,7 +650,7 @@ public class ExpenseInput extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
-        setSize(new java.awt.Dimension(1384, 815));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

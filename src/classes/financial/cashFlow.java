@@ -29,21 +29,31 @@ public class cashFlow {
     float gain = 0; // coded
     float increase_In_Receivables = 0; // coded
     float decrease_In_prepaid_Expenses = 0;  //coded
-    float decrease_In_account_Payable = 0;
-    float decrease_In_accrued_Expenses = 0;
-    float Net_Cash_Flow_from_Operating_Expenses = 0;
+    float decrease_In_account_Payable = 0; 
+    float decrease_In_accrued_Expenses = 0; //coded
+    float net_Cash_Flow_from_Operating_Expenses = 0;
     
     float sale_Of_Equipment = 0;
     float sale_Of_Land = 0;
+    float sale_Of_MV = 0;
     float purchase_Of_Equipment = 0;
     float net_Cash_Flows_of_Investing = 0;
     
+    float stock_purchased = 0.00f;
+    float other = 0.00f;
+    float long_term_liab_paid = 0.00f;
     float net_Cash_Flows_from_Financing_Activites = 0;
     
     float net_Change_in_Cash = 0;
     float begining_Cash_Balance = 0;
     float s_cash_Balance = 0;
     
+    
+    private void netValues(){
+        net_Cash_Flow_from_Operating_Expenses = (operatingIncome+depreciationExpense+loss+decrease_In_prepaid_Expenses+decrease_In_account_Payable+decrease_In_accrued_Expenses)-(gain+increase_In_Receivables);
+        net_Cash_Flows_of_Investing = (sale_Of_Equipment+sale_Of_Land+sale_Of_MV)-(purchase_Of_Equipment);
+        net_Cash_Flows_from_Financing_Activites = -(stock_purchased+long_term_liab_paid+other);
+    }
     void getOperatingIncome(float value){
         
         operatingIncome = value;
@@ -451,4 +461,21 @@ public class cashFlow {
                return false;  
            }
     }
+    
+  private void accruedPay(String start, String end){
+      
+      acrruedpay acc = new acrruedpay();
+      
+      decrease_In_accrued_Expenses =  acc.trackAccruedExpenses(start, end);
+  }
+  
+  private void getSaleValue(){
+      
+    sale_Of_Equipment = 0;
+    sale_Of_Land = 0;
+    sale_Of_MV = 0;
+    
+    
+    
+  }
 }
