@@ -31,27 +31,33 @@ public class cashFlow {
     float decrease_In_prepaid_Expenses = 0;  //coded
     float decrease_In_account_Payable = 0; 
     float decrease_In_accrued_Expenses = 0; //coded
-    float net_Cash_Flow_from_Operating_Expenses = 0;
+    float net_Cash_Flow_from_Operating_Expenses = 0; // coded
     
-    float sale_Of_Equipment = 0;
-    float sale_Of_Land = 0;
-    float sale_Of_MV = 0;
-    float purchase_Of_Equipment = 0;
-    float net_Cash_Flows_of_Investing = 0;
+    float sale_Of_Equipment = 0; //coded
+    float sale_Of_Land = 0; //coded
+    float sale_Of_MV = 0; //coded
+    float purchase_Of_Resources = 0; // codded
+    float net_Cash_Flows_of_Investing = 0; //coded
     
-    float stock_purchased = 0.00f;
-    float other = 0.00f;
-    float long_term_liab_paid = 0.00f;
-    float net_Cash_Flows_from_Financing_Activites = 0;
+    float stock_purchased = 0.00f; //coded
+    float other = 0.00f; //disregarded
+    float long_term_liab_paid = 0.00f; 
+    float net_Cash_Flows_from_Financing_Activites = 0; //coded
     
-    float net_Change_in_Cash = 0;
-    float begining_Cash_Balance = 0;
-    float s_cash_Balance = 0;
+    float net_Change_in_Cash = 0; //coded
+    float begining_Cash_Balance = 0; //conflict
+    float cash_Balance_at_End = 0; //coded
     
+    private void cashFinal(){
+        
+    net_Change_in_Cash = (net_Cash_Flow_from_Operating_Expenses + net_Cash_Flows_of_Investing + net_Cash_Flows_from_Financing_Activites);
+    begining_Cash_Balance = 0;
+    cash_Balance_at_End = (begining_Cash_Balance - net_Change_in_Cash);;
     
+    }
     private void netValues(){
         net_Cash_Flow_from_Operating_Expenses = (operatingIncome+depreciationExpense+loss+decrease_In_prepaid_Expenses+decrease_In_account_Payable+decrease_In_accrued_Expenses)-(gain+increase_In_Receivables);
-        net_Cash_Flows_of_Investing = (sale_Of_Equipment+sale_Of_Land+sale_Of_MV)-(purchase_Of_Equipment);
+        net_Cash_Flows_of_Investing = (sale_Of_Equipment+sale_Of_Land+sale_Of_MV)-(purchase_Of_Resources);
         net_Cash_Flows_from_Financing_Activites = -(stock_purchased+long_term_liab_paid+other);
     }
     void getOperatingIncome(float value){
@@ -469,13 +475,131 @@ public class cashFlow {
       decrease_In_accrued_Expenses =  acc.trackAccruedExpenses(start, end);
   }
   
-  private void getSaleValue(){
+  private void getSaleValue(String start, String end){
       
-    sale_Of_Equipment = 0;
-    sale_Of_Land = 0;
-    sale_Of_MV = 0;
-    
-    
-    
+    getResourceSale gRS = new getResourceSale();  
+      
+    sale_Of_Equipment = gRS.getValueSaleofEquipment(start, end);
+    sale_Of_Land = gRS.getValueSaleofLand(start, end);
+    sale_Of_MV = gRS.getValueSaleofMV(start, end);  
   }
+  
+  private void trackPurchaseOfResources(String start, String end){
+      
+      float val1 =0.00f,val2 =0.00f,val3 =0.00f;
+      
+      try {
+          String sql="SELECT SUM(`Value`) FROM `equipment` WHERE `Date` >= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` <= '"+end+"')";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            val1 = Float.parseFloat(rs.getString(sql.toString()));
+      }
+      catch (Exception e){
+          System.out.println(e);
+      }
+      
+      try {
+          String sql="SELECT SUM(`value`) FROM `other_resources` WHERE `Aquired_Date` >= any (SELECT `Aquired_Date` FROM `adminexpenses` WHERE `Aquired_Date` >= '"+start+"') AND `Aquired_Date` <= any (SELECT `Aquired_Date` FROM `adminexpenses` WHERE `Aquired_Date` <= '"+end+"')";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            val2 = Float.parseFloat(rs.getString(sql.toString()));
+      }
+      catch (Exception e){
+          System.out.println(e);
+      }
+      
+      try {
+          String sql="SELECT SUM(`vehicle_cost`) FROM `vehicle` WHERE `Date` >= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` <= '"+end+"')";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            val3 = Float.parseFloat(rs.getString(sql.toString()));
+      }
+      catch (Exception e){
+          System.out.println(e);
+      }
+      
+       purchase_Of_Resources = val1+val2+val3;
+  }
+  
+  private void totalStockPurchased(String start, String end){
+      float val = 0.00f;
+      
+       try {
+          String sql="SELECT SUM(`payment`) FROM `rorders` WHERE `rdate` >= any (SELECT `rdate` FROM `adminexpenses` WHERE `rdate` >= '"+start+"') AND `rdate` <= any (SELECT `rdate` FROM `adminexpenses` WHERE `rdate` <= '"+end+"')";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            val = Float.parseFloat(rs.getString(sql.toString()));
+      }
+      catch (Exception e){
+          System.out.println(e);
+      }
+      
+      stock_purchased = val;
+  }
+  
+  private boolean sendtoDBF(int q,float opcash,float investcash,float financecash,float net_change_cash,float beginning_cash_bal,float end_cash_bal,int Year,String date){
+      con = DBconnect.connect();
+       
+       try{
+           String sql = "INSERT INTO `cashflofinal` (`quarter`,`Net_Cash_Flows_From_Operating_Activities`,`Net_Cash_Flows_From_Investing_Activities`,`Net_Cash_Flows_From_Financing_Activities`,`Net_Change_in_Cash`,`Cash_in_Begining_of_Quater`,`Cash_in_End_of_Quater`,`Year`,`Date`)VALUES ('"+q+"','"+opcash+"','"+investcash+"','"+financecash+"','"+net_change_cash+"','"+beginning_cash_bal+"','"+end_cash_bal+"','"+Year+"','"+date+"');";
+           pst = con.prepareStatement(sql);
+           pst.execute();
+           System.out.println("Successful");
+           return true;
+       }
+       catch(Exception e){
+           System.out.println(e);
+           return false;
+       }
+}
+   private boolean sendtoDBOP(int q,float opInc,float depE,float loss,float gain,float inc_in_Rec,float pre_Exp,float acc_Pay,float accrE,int Year,String date){
+      con = DBconnect.connect();
+       
+       try{
+           String sql = "INSERT INTO `cashflooperating` (`quater`,`Operating_Income`,`Depreciation_Expense`,`Loss`,`Gain`,`Increase_in_Receivables`,`Prepaid_Expenses`,`Accounts_Payable`,`Accrued_Expenses`,`Year`,`Date`)VALUES ('"+q+"','"+opInc+"','"+depE+"','"+loss+"','"+gain+"','"+inc_in_Rec+"','"+pre_Exp+"','"+acc_Pay+"','"+accrE+"','"+Year+"','"+date+"');";
+           pst = con.prepareStatement(sql);
+           pst.execute();
+           System.out.println("Successful");
+           return true;
+       }
+       catch(Exception e){
+           System.out.println(e);
+           return false;
+       }
+}
+   private boolean sendtoDBOI(int q,float salEq,float salLand,float salMV,float purcR,int Year,String date){
+      con = DBconnect.connect();
+       
+       try{
+           String sql = "INSERT INTO `cashfloinvesting` (`quater`,`Sale_of_Equipment`,`Sale_of_Land`,`Sale_of_Motor_Vehicles`,`Purchase_Resources`,`Year`,`Date`)VALUES ('"+q+"','"+salEq+"','"+salLand+"','"+salMV+"','"+purcR+"','"+Year+"','"+date+"');";
+           pst = con.prepareStatement(sql);
+           pst.execute();
+           System.out.println("Successful");
+           return true;
+       }
+       catch(Exception e){
+           System.out.println(e);
+           return false;
+       }
+}
+   private boolean sendtoDBFIN(int q,float lt_liabPaid,float stockPurchase,int Year,String date){
+      con = DBconnect.connect();
+       
+       try{
+           String sql = "INSERT INTO `cashflofinal` (`quater`,`Long_Term_Liabilities_Paid`,`Stock_Purchase`,`Year`,`Date`)VALUES ('"+q+"','"+lt_liabPaid+"','"+stockPurchase+"','"+Year+"','"+date+"');";
+           pst = con.prepareStatement(sql);
+           pst.execute();
+           System.out.println("Successful");
+           return true;
+       }
+       catch(Exception e){
+           System.out.println(e);
+           return false;
+       }
+}
+   
 }

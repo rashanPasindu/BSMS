@@ -76,12 +76,11 @@
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="4">
             <StringItem index="0" value="Other Incomes"/>
             <StringItem index="1" value="Equity"/>
             <StringItem index="2" value="Loans"/>
-            <StringItem index="3" value="Accrued Payments"/>
-            <StringItem index="4" value="Loan Installment"/>
+            <StringItem index="3" value="Loan Installment"/>
           </StringArray>
         </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">

@@ -65,7 +65,7 @@ public class otherData1 extends javax.swing.JFrame {
         jLabel6.setBounds(28, 159, 180, 49);
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Other Incomes", "Equity", "Loans", "Accrued Payments", "Loan Installment" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Other Incomes", "Equity", "Loans", "Loan Installment" }));
         jComboBox2.setMaximumSize(new java.awt.Dimension(203, 49));
         jComboBox2.setMinimumSize(new java.awt.Dimension(203, 49));
         jComboBox2.setPreferredSize(new java.awt.Dimension(203, 49));
