@@ -42,11 +42,12 @@ public class incomestatement {
     
     String date;
     
-    public boolean initiate(String start, String end){
+    public boolean initiate(String start, String end,int qtr){
         boolean chk1,chk2;
         assignValues(start,end);
-        chk1=sendtoDB(salesTotal,otherIncomesTotal,disReceivedTotal,adminExpTotal,maintExpTotal,pettyExpTotal,otherExpTotal,disAllowedTotal,date);
-        chk2=sendtoDB1(incomeTotal,expTotal,profitBeforeTax,taxTotal,profitAfterTax,date);
+        int crryear = Integer.parseInt(getCurrentYear());
+        chk1=sendtoDB(qtr,salesTotal,otherIncomesTotal,disReceivedTotal,adminExpTotal,maintExpTotal,pettyExpTotal,otherExpTotal,disAllowedTotal,crryear,date);
+        chk2=sendtoDB1(qtr,incomeTotal,expTotal,profitBeforeTax,taxTotal,profitAfterTax,crryear,date);
     
        if (chk1==true && chk2==true){
        return true;
@@ -73,12 +74,12 @@ public class incomestatement {
         date=getCurrentDate();
     }
    
-   private boolean sendtoDB(float salesTOT,float otherIncomes,float discountsR, float adminExp,float MaintExp, float PettyExp, float OtherExp, float discountsA, String date){
+   private boolean sendtoDB(int qtr,float salesTOT,float otherIncomes,float discountsR, float adminExp,float MaintExp, float PettyExp, float OtherExp, float discountsA,int year, String date){
        
        con = DBconnect.connect();
        
        try{
-           String sql = "INSERT INTO `incomestatevalues` (`Sales_Total`,`Other_Incomes`,`Discounts_Received`,`Admin_Exp_Total`,`Maint_Exp_Total`,`Petty_Exp_Total`,`Other_Exp_Total`,`Discounts_Allowed`,`Date`)VALUES ('"+salesTOT+"','"+otherIncomes+"','"+discountsR+"','"+adminExp+"','"+MaintExp+"','"+PettyExp+"','"+OtherExp+"','"+discountsA+"','"+date+"');";
+           String sql = "INSERT INTO `incomestatevalues` (`quater`,`Sales_Total`,`Other_Incomes`,`Discounts_Received`,`Admin_Exp_Total`,`Maint_Exp_Total`,`Petty_Exp_Total`,`Other_Exp_Total`,`Discounts_Allowed`,`Year`,`Date`)VALUES ('"+qtr+"','"+salesTOT+"','"+otherIncomes+"','"+discountsR+"','"+adminExp+"','"+MaintExp+"','"+PettyExp+"','"+OtherExp+"','"+discountsA+"','"+year+"','"+date+"');";
            pst = con.prepareStatement(sql);
            pst.execute();
            System.out.println("Successful");
@@ -90,12 +91,12 @@ public class incomestatement {
        }   
    }
    
-     private boolean sendtoDB1(float incomeTOT,float ExpenseTOT,float PBT, float Tax,float PAT, String date){
+     private boolean sendtoDB1(int qtr,float incomeTOT,float ExpenseTOT,float PBT, float Tax,float PAT,int year, String date){
        
        con = DBconnect.connect();
        
        try{
-           String sql = "INSERT INTO `incomestatefinal` (`income_Total`,`Expense_Total`,`PBT`,`Tax`,`PAT`,`Date`)VALUES ('"+incomeTOT+"','"+ExpenseTOT+"','"+PBT+"','"+Tax+"','"+PAT+"','"+date+"');";
+           String sql = "INSERT INTO `incomestatefinal` (`quater`,`income_Total`,`Expense_Total`,`PBT`,`Tax`,`PAT`,`Year`,`Date`)VALUES ('"+qtr+"','"+incomeTOT+"','"+ExpenseTOT+"','"+PBT+"','"+Tax+"','"+PAT+"','"+year+"','"+date+"');";
            pst = con.prepareStatement(sql);
            pst.execute();
            System.out.println("Successful");
@@ -356,5 +357,25 @@ public class incomestatement {
       
      return date1;
  }
+ 
+ private String getCurrentYear(){
+        char arr[] = new char[4];
+        
+        for (int i=0;i<=4;i++){
+            arr[i] = getCurrentDate().charAt(i);
+        }
+        
+        StringBuilder year = new StringBuilder("");
+        
+        for (int i=0;i<=4;i++){
+        year.insert(i, arr[i]);
+        }
+        
+        System.out.println(year.toString());
+        
+        String currentYear = year.toString();
+        
+        return currentYear;
+     }
     
 }

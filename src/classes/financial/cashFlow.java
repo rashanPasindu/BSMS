@@ -29,7 +29,7 @@ public class cashFlow {
     float gain = 0; // coded
     float increase_In_Receivables = 0; // coded
     float decrease_In_prepaid_Expenses = 0;  //coded
-    float decrease_In_account_Payable = 0; 
+    float decrease_In_account_Payable = 0; //-----
     float decrease_In_accrued_Expenses = 0; //coded
     float net_Cash_Flow_from_Operating_Expenses = 0; // coded
     
@@ -40,14 +40,48 @@ public class cashFlow {
     float net_Cash_Flows_of_Investing = 0; //coded
     
     float stock_purchased = 0.00f; //coded
-    float other = 0.00f; //disregarded
-    float long_term_liab_paid = 0.00f; 
+    float long_term_liab_paid = 0.00f; //-----------
     float net_Cash_Flows_from_Financing_Activites = 0; //coded
     
     float net_Change_in_Cash = 0; //coded
     float begining_Cash_Balance = 0; //conflict
     float cash_Balance_at_End = 0; //coded
     
+    public boolean initiateTransfer(String start,String end,int q){
+        boolean s1=false,s2=false,s3=false,s4=false;
+        
+        runALLMethods(start,end);
+        
+        s1= this.sendtoDBF(q,net_Cash_Flow_from_Operating_Expenses, net_Cash_Flows_of_Investing, net_Cash_Flows_from_Financing_Activites, net_Change_in_Cash, begining_Cash_Balance, cash_Balance_at_End,Integer.parseInt(this.getCurrentYear()),this.getDate());
+        s2= this.sendtoDBOP(q, operatingIncome, depreciationExpense, loss, gain, increase_In_Receivables, decrease_In_prepaid_Expenses,decrease_In_account_Payable , decrease_In_accrued_Expenses,Integer.parseInt(this.getCurrentYear()),this.getDate());
+        s3= this.sendtoDBOI(q, sale_Of_Equipment, sale_Of_Land, sale_Of_MV, purchase_Of_Resources,Integer.parseInt(this.getCurrentYear()),this.getDate());
+        s4= this.sendtoDBFIN(q, long_term_liab_paid, stock_purchased,Integer.parseInt(this.getCurrentYear()),this.getDate());
+        
+        if (s1==true && s2 == true && s3==true && s4==true){
+            return true;
+        }
+        else
+        return false;
+    }
+    private void runALLMethods(String start, String end){
+        
+        this.cashFinal();
+        this.netValues();
+        this.setDepreciationExpense();
+        this.trackTheReceivables(start,end);
+        this.accruedPay(start, end);
+        this.adminPrepaidTOT(start, end);
+        this.getSaleValue(start, end);
+        this.maintPrepaidTOT(start, end);
+        this.pettyPrepaidTOT(start, end);
+        this.otherPrepaidTOT(start, end);
+        this.totalStockPurchased(start, end);
+        this.trackPrepaidExpenses(start, end);
+        this.trackPurchaseOfResources(start, end);
+        this.trackTheReceivables(start, end);
+        
+        
+    }
     private void cashFinal(){
         
     net_Change_in_Cash = (net_Cash_Flow_from_Operating_Expenses + net_Cash_Flows_of_Investing + net_Cash_Flows_from_Financing_Activites);
@@ -58,9 +92,9 @@ public class cashFlow {
     private void netValues(){
         net_Cash_Flow_from_Operating_Expenses = (operatingIncome+depreciationExpense+loss+decrease_In_prepaid_Expenses+decrease_In_account_Payable+decrease_In_accrued_Expenses)-(gain+increase_In_Receivables);
         net_Cash_Flows_of_Investing = (sale_Of_Equipment+sale_Of_Land+sale_Of_MV)-(purchase_Of_Resources);
-        net_Cash_Flows_from_Financing_Activites = -(stock_purchased+long_term_liab_paid+other);
+        net_Cash_Flows_from_Financing_Activites = -(stock_purchased+long_term_liab_paid);
     }
-    void getOperatingIncome(float value){
+    void getOperatingIncome(float value){ // called in sofpclassto save the value
         
         operatingIncome = value;
     }

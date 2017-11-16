@@ -96,13 +96,15 @@ private void setValues(String start,String end){
     date = getCurrentDate() ;
 }
 
-public boolean initiate(String start, String end){
+public boolean initiate(String start, String end,int qtr){
     boolean chk1,chk2,chk3,chk4;
     setValues(start,end);
-    chk1=sendtoDB(goodwill,trademark,other,cashTotal,InventroyTOT,debtorsTot,landBuild,motorV,equip,date);
-    chk2=sendtoDB1(intangibleTotal,currAssestsTot,fixdAssestsTot,date);
-    chk3=sendtoDB2(creditorsTotal,accruedPaymentsTot,shortloansTotal,LongloansTotal,date);
-    chk4=sendtoDB3(currentLiabilitiesTotal,longtermLiabilitiesTotal,date);
+    int currentYear = Integer.parseInt(this.getCurrentYear());
+    
+    chk1=sendtoDB(qtr,goodwill,trademark,other,cashTotal,InventroyTOT,debtorsTot,landBuild,motorV,equip,currentYear,date);
+    chk2=sendtoDB1(qtr,intangibleTotal,currAssestsTot,fixdAssestsTot,currentYear,date);
+    chk3=sendtoDB2(qtr,creditorsTotal,accruedPaymentsTot,shortloansTotal,LongloansTotal,currentYear,date);
+    chk4=sendtoDB3(qtr,currentLiabilitiesTotal,longtermLiabilitiesTotal,currentYear,date);
     
    if (chk1==true && chk2==true && chk3==true && chk4==true){
        return true;
@@ -114,11 +116,11 @@ public boolean initiate(String start, String end){
     
 }
 
-private boolean sendtoDB(float goodwill,float trademark,float other,float cash,float inventory,float debtors,float landANDBuild,float motorV,float equip,String date){
+private boolean sendtoDB(int qtr,float goodwill,float trademark,float other,float cash,float inventory,float debtors,float landANDBuild,float motorV,float equip,int year,String date){
       con = DBconnect.connect();
        
        try{
-           String sql = "INSERT INTO `sofpvaluesassests` (`Goodwill`,`Trademark`,`Other`,`Cash`,`Inventory`,`Debtors`,`Land_&_Bilding`,`Motor_Vehicles`,`Equipment`,`Date`)VALUES ('"+goodwill+"','"+trademark+"','"+other+"','"+cash+"','"+inventory+"','"+debtors+"','"+landANDBuild+"','"+motorV+"','"+equip+"','"+date+"');";
+           String sql = "INSERT INTO `sofpvaluesassests` (`quater`,`Goodwill`,`Trademark`,`Other`,`Cash`,`Inventory`,`Debtors`,`Land_&_Bilding`,`Motor_Vehicles`,`Equipment`,`Year`,`Date`)VALUES ('"+qtr+"','"+goodwill+"','"+trademark+"','"+other+"','"+cash+"','"+inventory+"','"+debtors+"','"+landANDBuild+"','"+motorV+"','"+equip+"','"+year+"','"+date+"');";
            pst = con.prepareStatement(sql);
            pst.execute();
            System.out.println("Successful");
@@ -130,11 +132,11 @@ private boolean sendtoDB(float goodwill,float trademark,float other,float cash,f
        }
 }
 
-private boolean sendtoDB1(float intangibleTOT,float currentTOT,float fixedTOT,String date){
+private boolean sendtoDB1(int qtr,float intangibleTOT,float currentTOT,float fixedTOT,int year,String date){
       con = DBconnect.connect();
        
        try{
-           String sql = "INSERT INTO `sofpvaluestotassests` (`Intangible_Assets_Total`,`Current_Assets_Total`,`Fixed_Assets_Total`,`Date`)VALUES ('"+intangibleTOT+"','"+currentTOT+"','"+fixedTOT+"','"+date+"','"+date+"');";
+           String sql = "INSERT INTO `sofpvaluestotassests` (`quater`,`Intangible_Assets_Total`,`Current_Assets_Total`,`Fixed_Assets_Total`,`Year`,`Date`)VALUES ('"+qtr+"','"+intangibleTOT+"','"+currentTOT+"','"+fixedTOT+"','"+date+"','"+year+"','"+date+"');";
            pst = con.prepareStatement(sql);
            pst.execute();
            System.out.println("Successful");
@@ -146,11 +148,11 @@ private boolean sendtoDB1(float intangibleTOT,float currentTOT,float fixedTOT,St
        }
 }
 
-private boolean sendtoDB2(float creditors,float accruedPay,float shortloans,float longloans,String date){
+private boolean sendtoDB2(int qtr,float creditors,float accruedPay,float shortloans,float longloans,int year,String date){
       con = DBconnect.connect();
        
        try{
-           String sql = "INSERT INTO `sofpvaluesliablities` (`Creditors`,`Accrued_Payments`,`Short-Term-Loans`,`Long-Term-Loans`,`Date`)VALUES ('"+creditors+"','"+accruedPay+"','"+shortloans+"','"+longloans+"','"+date+"');";
+           String sql = "INSERT INTO `sofpvaluesliablities` (`quater`,`Creditors`,`Accrued_Payments`,`Short-Term-Loans`,`Long-Term-Loans`,`Year`,`Date`)VALUES ('"+qtr+"','"+creditors+"','"+accruedPay+"','"+shortloans+"','"+longloans+"','"+year+"','"+date+"');";
            pst = con.prepareStatement(sql);
            pst.execute();
            System.out.println("Successful");
@@ -162,11 +164,11 @@ private boolean sendtoDB2(float creditors,float accruedPay,float shortloans,floa
        }
 }
 
-private boolean sendtoDB3(float currentTOT,float longTOT,String date){
+private boolean sendtoDB3(int qtr,float currentTOT,float longTOT,int year,String date){
       con = DBconnect.connect();
        
        try{
-           String sql = "INSERT INTO `sofpvaluestotliab` (`Current_Liabilities_Total`,`Long_Term_Liabilities_Total`,`Date`)VALUES ('"+currentTOT+"','"+longTOT+"','"+date+"');";
+           String sql = "INSERT INTO `sofpvaluestotliab` (`quater`,`Current_Liabilities_Total`,`Long_Term_Liabilities_Total`,`Year`,`Date`)VALUES ('"+qtr+"','"+currentTOT+"','"+longTOT+"','"+year+"','"+date+"');";
            pst = con.prepareStatement(sql);
            pst.execute();
            System.out.println("Successful");
@@ -842,5 +844,25 @@ private String getStartDateFormat(String start){
      return date1;
  }
  
+ private String getCurrentYear(){
+        char arr[] = new char[4];
+        
+        for (int i=0;i<=4;i++){
+            arr[i] = getCurrentDate().charAt(i);
+        }
+        
+        StringBuilder year = new StringBuilder("");
+        
+        for (int i=0;i<=4;i++){
+        year.insert(i, arr[i]);
+        }
+        
+        System.out.println(year.toString());
+        
+        String currentYear = year.toString();
+        
+        return currentYear;
+     }
+    
 }
 

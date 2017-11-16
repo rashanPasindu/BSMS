@@ -6,6 +6,7 @@
 package buisnessmanagementsystem;
 
 import itp.project.x.Interfaces.login;
+import classes.workoutthestatements;
 
 /**
  *
@@ -16,6 +17,14 @@ public class BuisnessManagementSystem {
     /**
      * @param args the command line arguments
      */
+    
+        workoutthestatements start = new workoutthestatements();
+    
+    BuisnessManagementSystem(){
+         
+          //start.initiate();
+    }
+     
     public static void main(String[] args) {
         // TODO code application logic here
          new login().setVisible(true);//works
