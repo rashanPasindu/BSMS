@@ -49,7 +49,7 @@ public class calcDep {
     
     public float calcDepforMV(){
         
-        String type = "Depreciation for Motor Vehicles";
+        String type = "Depreciation for MotorVehicles";
         float value = 0.00f;
         float cost = getCost(type);
         
@@ -74,7 +74,7 @@ public class calcDep {
     
     public float calcDepforEquip(){
         
-        String type = "Depreciation for Equipment";
+        String type = "Depreciation for Equip";
         float value = 0.00f;
         float cost = getCost(type);
         

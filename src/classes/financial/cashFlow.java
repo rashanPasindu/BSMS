@@ -28,7 +28,7 @@ public class cashFlow {
     float loss = 0; // coded
     float gain = 0; // coded
     float increase_In_Receivables = 0; // coded
-    float decrease_In_prepaid_Expenses = 0; 
+    float decrease_In_prepaid_Expenses = 0;  //coded
     float decrease_In_account_Payable = 0;
     float decrease_In_accrued_Expenses = 0;
     float Net_Cash_Flow_from_Operating_Expenses = 0;
@@ -265,27 +265,190 @@ public class cashFlow {
     
     void trackPrepaidExpenses(String start, String end){
         
-       
+       decrease_In_prepaid_Expenses=adminPrepaidTOT(start,end)+maintPrepaidTOT(start,end)+pettyPrepaidTOT(start,end)+otherPrepaidTOT(start,end);
+ 
     }
     
+    private float adminPrepaidTOT(String start,String end){
+        con = DBconnect.connect();
+        
+        int count = 0;
+        float adpreTOT = 0.00f;
+        boolean status = false;
+        String desad[] = new String[50];
+        
+         
+        try{
+        String sql="SELECT `Description` FROM `adminexpenses` WHERE `Date` >= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` <= '"+end+"')";
+        pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+        while (rs.next())
+            status = prepaidMatcher(rs.getString(sql).toString());
+            if (status == true){ 
+              desad[count] =  rs.getString(sql).toString(); 
+              
+            }
+            count++;
+        } 
+        catch(Exception e){
+            System.out.println(e);
+        }
+        for (int i=0;i<=count;i++){
+        try {
+        String sql="SELECT `Amount` FROM `adminexpenses` WHERE Description` = '"+desad[i]+"' AND `Date` >= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` <= '"+end+"')";
+        pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+         adpreTOT += Float.parseFloat(rs.getString(sql).toString());
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        }
+        return adpreTOT;
+    }
+    
+        private float maintPrepaidTOT(String start,String end){
+        con = DBconnect.connect();
+        
+        int count = 0;
+        float mainpreTOT = 0.00f;
+        boolean status = false;
+        String desmain[] = new String[50];
+        
+         
+        try{
+        String sql="SELECT `Description` FROM `maintainexp` WHERE `Date` >= any (SELECT `Date` FROM `maintainexp` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `maintainexp` WHERE `Date` <= '"+end+"')";
+        pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+        while (rs.next())
+            status = prepaidMatcher(rs.getString(sql).toString());
+            if (status == true){ 
+              desmain[count] =  rs.getString(sql).toString();      
+            }
+            count++;
+        } 
+        catch(Exception e){
+            System.out.println(e);
+        }
+        for (int i=0;i<=count;i++){
+        try {
+        String sql="SELECT `Amount` FROM `adminexpenses` WHERE Description` = '"+desmain[i]+"' AND `Date` >= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` <= '"+end+"')";
+        pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+         mainpreTOT += Float.parseFloat(rs.getString(sql).toString());
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        }
+        return mainpreTOT;
+    }
+        
+     private float pettyPrepaidTOT(String start,String end){
+        con = DBconnect.connect();
+        
+        int count = 0;
+        float pettypreTOT = 0.00f;
+        boolean status = false;
+        String despetty[] = new String[50];
+        
+         
+        try{
+        String sql="SELECT `Description` FROM `pettycashexp` WHERE `Date` >= any (SELECT `Date` FROM `pettycashexp` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `pettycashexp` WHERE `Date` <= '"+end+"')";
+        pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+        while (rs.next())
+            status = prepaidMatcher(rs.getString(sql).toString());
+            if (status == true){ 
+              despetty[count] =  rs.getString(sql).toString();      
+            }
+            count++;
+        } 
+        catch(Exception e){
+            System.out.println(e);
+        }
+        for (int i=0;i<=count;i++){
+        try {
+        String sql="SELECT `Amount` FROM `adminexpenses` WHERE Description` = '"+despetty[i]+"' AND `Date` >= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` <= '"+end+"')";
+        pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+         pettypreTOT += Float.parseFloat(rs.getString(sql).toString());
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        }
+        return pettypreTOT;
+    }
+     
+    private float otherPrepaidTOT(String start,String end){
+        con = DBconnect.connect();
+        
+        int count = 0;
+        float otherpreTOT = 0.00f;
+        boolean status = false;
+        String desother[] = new String[50];
+        
+         
+        try{
+        String sql="SELECT `Description` FROM `otherexp` WHERE `Date` >= any (SELECT `Date` FROM `otherexp` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `otherexp` WHERE `Date` <= '"+end+"')";
+        pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+        while (rs.next())
+            status = prepaidMatcher(rs.getString(sql).toString());
+            if (status == true){ 
+              desother[count] =  rs.getString(sql).toString();      
+            }
+            count++;
+        } 
+        catch(Exception e){
+            System.out.println(e);
+        }
+        for (int i=0;i<=count;i++){
+        try {
+        String sql="SELECT `Amount` FROM `adminexpenses` WHERE Description` = '"+desother[i]+"' AND `Date` >= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` >= '"+start+"') AND `Date` <= any (SELECT `Date` FROM `adminexpenses` WHERE `Date` <= '"+end+"')";
+        pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+         otherpreTOT += Float.parseFloat(rs.getString(sql).toString());
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        }
+        return otherpreTOT;
+    }
     private boolean prepaidMatcher(String Description){
         
+      String match = ""; 
+      
       String patt = "prepaid|Prepaid";
       Pattern pat = Pattern.compile(patt);
       Matcher mat = pat.matcher(Description);
-      String match = "";
-      
-       while(mat.find()){
-                match = mat.group();
-                
-            }
-       
-       if (match != ""){
-        return true;
-       }
-       else{
-           return false;
-       }
-    }
     
+       while (mat.find()){
+                
+           match = mat.group();
+           System.out.println(match);
+           if(mat.find() == true){
+               break;
+           }
+          
+            }
+       System.out.println(match);
+       
+        if ( match != ""){
+              return true;   
+           }
+           else{
+               return false;  
+           }
+    }
 }
