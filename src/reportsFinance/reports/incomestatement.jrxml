@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="incomestatement" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b21b72e2-14ce-4fcb-8e01-9efbdc4127a7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     incomestatefinal.`quater` AS incomestatefinal_quater,
+     incomestatefinal.`income_Total` AS incomestatefinal_income_Total,
+     incomestatefinal.`Expense_Total` AS incomestatefinal_Expense_Total,
+     incomestatefinal.`PBT` AS incomestatefinal_PBT,
+     incomestatefinal.`Tax` AS incomestatefinal_Tax,
+     incomestatefinal.`PAT` AS incomestatefinal_PAT,
+     incomestatefinal.`Date` AS incomestatefinal_Date,
+     incomestatevalues.`Sales_Total` AS incomestatevalues_Sales_Total,
+     incomestatevalues.`Other_Incomes` AS incomestatevalues_Other_Incomes,
+     incomestatevalues.`Discounts_Received` AS incomestatevalues_Discounts_Received,
+     incomestatevalues.`Admin_Exp_Total` AS incomestatevalues_Admin_Exp_Total,
+     incomestatevalues.`Maint_Exp_Total` AS incomestatevalues_Maint_Exp_Total,
+     incomestatevalues.`Petty_Exp_Total` AS incomestatevalues_Petty_Exp_Total,
+     incomestatevalues.`Other_Exp_Total` AS incomestatevalues_Other_Exp_Total,
+     incomestatevalues.`Discounts_Allowed` AS incomestatevalues_Discounts_Allowed,
+     incomestatefinal.`Year` AS incomestatefinal_Year
+FROM
+     `incomestatefinal` incomestatefinal,
+     `incomestatevalues` incomestatevalues]]>
+	</queryString>
+	<field name="incomestatefinal_quater" class="java.lang.Integer"/>
+	<field name="incomestatefinal_income_Total" class="java.lang.Float"/>
+	<field name="incomestatefinal_Expense_Total" class="java.lang.Float"/>
+	<field name="incomestatefinal_PBT" class="java.lang.Float"/>
+	<field name="incomestatefinal_Tax" class="java.lang.Float"/>
+	<field name="incomestatefinal_PAT" class="java.lang.Float"/>
+	<field name="incomestatefinal_Date" class="java.sql.Date"/>
+	<field name="incomestatevalues_Sales_Total" class="java.lang.Float"/>
+	<field name="incomestatevalues_Other_Incomes" class="java.lang.Float"/>
+	<field name="incomestatevalues_Discounts_Received" class="java.lang.Float"/>
+	<field name="incomestatevalues_Admin_Exp_Total" class="java.lang.Float"/>
+	<field name="incomestatevalues_Maint_Exp_Total" class="java.lang.Float"/>
+	<field name="incomestatevalues_Petty_Exp_Total" class="java.lang.Float"/>
+	<field name="incomestatevalues_Other_Exp_Total" class="java.lang.Float"/>
+	<field name="incomestatevalues_Discounts_Allowed" class="java.lang.Float"/>
+	<field name="incomestatefinal_Year" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="95" backcolor="#000000" uuid="80950258-6d4d-4e2e-9091-cd93998586e0"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="555" height="66" uuid="09d8320d-2719-499e-b1de-5b058a7a967d"/>
+					<textElement>
+						<font size="36" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Income/Expense Statement]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="2" y="95" width="553" height="37" forecolor="#000000" backcolor="#CC0000" uuid="261ed75f-a1d4-43d6-ad4e-01adb579a256"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="6aeaa2bd-b0dc-4c8c-a4c2-6ed77ccad377"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="370" y="7" width="138" height="18" forecolor="#000000" uuid="a471daa3-f1ac-4294-b5be-33270d43987a"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatefinal_Year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="3" y="7" width="136" height="18" forecolor="#000000" uuid="45d21cda-fbb4-4d00-a23a-a80dff9b0a7a"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatefinal_quater]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="163" y="7" width="34" height="18" uuid="660cae07-6ddb-40cc-92c2-b52de60e334a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatefinal_quater}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="7" width="34" height="18" uuid="6ed9ea65-dfb0-4c04-8179-eca11c89b913"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatefinal_Year}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="497" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="ceaf0a20-607d-405d-a1ef-ff7da212ad98"/>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="4" y="151" width="186" height="18" forecolor="#000000" uuid="3a895280-5210-45ab-bfc9-9c3481adb594"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatefinal_income_Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="519" y="151" width="34" height="18" uuid="37268cb0-d11f-4100-96e6-c539a43f3dde"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatefinal_income_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="368" width="197" height="18" forecolor="#000000" uuid="64e27644-4698-447b-9ba0-da81c47ff4cf"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatefinal_Expense_Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="368" width="34" height="18" uuid="19c50515-c8b5-4705-934a-a9e9c99f1517"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatefinal_Expense_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="399" width="128" height="18" forecolor="#000000" uuid="a16be93d-bb04-4d24-bb0e-975c706c21cc"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatefinal_PBT]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="519" y="399" width="34" height="18" uuid="ec11d0fc-9dff-40c4-a309-f10c0b8ab3a2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatefinal_PBT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="435" width="127" height="18" forecolor="#000000" uuid="34f43d61-51bb-4ee6-8a59-465779a6b1b0"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatefinal_Tax]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="435" width="34" height="18" uuid="e1a3bf5d-b9cb-473b-8dcf-d7c16a1e3dd5"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatefinal_Tax}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="472" width="134" height="18" forecolor="#000000" uuid="5eb35585-23ed-4b2f-b6e8-a5f580eb64fd"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatefinal_PAT]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="472" width="34" height="18" uuid="f203997a-7b9c-4f6b-834f-f815161d2a04"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatefinal_PAT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="2" y="40" width="188" height="18" forecolor="#000000" uuid="01571ffd-7d73-4fb2-9535-2be4ce83959f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatevalues_Sales_Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="40" width="34" height="18" uuid="fc60ee71-7c6f-431b-a9b7-81889e7e6648"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatevalues_Sales_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="105" width="210" height="18" forecolor="#000000" uuid="36112b21-0bdf-4063-a150-b2e4a0be538d"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatevalues_Other_Incomes]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="105" width="34" height="18" uuid="55d60e7e-6cf3-4a86-9862-ae46bee2dc08"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatevalues_Other_Incomes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="72" width="241" height="18" forecolor="#000000" uuid="11666e79-9221-4f1f-a54d-afe0c0444969"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatevalues_Discounts_Received]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="72" width="34" height="18" uuid="ad342d8c-bbfd-48b5-bf83-430bb24264da"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatevalues_Discounts_Received}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="4" y="196" width="218" height="18" forecolor="#000000" uuid="17e197dc-dc9c-4b68-92d1-e3e1b0f024b7"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatevalues_Admin_Exp_Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="196" width="34" height="18" uuid="7da7672f-547c-4cd5-93e4-3bbfefeeffb6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatevalues_Admin_Exp_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="234" width="211" height="18" forecolor="#000000" uuid="983edd46-c22c-4a59-99f3-6ab5f62f6529"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatevalues_Maint_Exp_Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="234" width="34" height="18" uuid="bb56012d-ee09-46ff-a138-e7e428f9158b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatevalues_Maint_Exp_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="270" width="214" height="18" forecolor="#000000" uuid="4132e57f-2ec8-4878-9995-661b3e2c4b9f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatevalues_Petty_Exp_Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="270" width="34" height="18" uuid="adff3b0b-475f-45ba-becf-96c278ee415a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatevalues_Petty_Exp_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="303" width="208" height="18" forecolor="#000000" uuid="adcf0166-4919-45e0-b474-d24fab66283c"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatevalues_Other_Exp_Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="521" y="303" width="34" height="18" uuid="86ad0f4d-716b-40cf-bfeb-b9e9dccb742a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatevalues_Other_Exp_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="337" width="232" height="18" forecolor="#000000" uuid="afa84d14-6a9e-4400-a9fe-6e7036e9332a"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[incomestatevalues_Discounts_Allowed]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="519" y="337" width="34" height="18" uuid="d6cf6944-9a6b-43fc-b362-0536a5232aab"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{incomestatevalues_Discounts_Allowed}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="aa434d40-84c6-4342-8f6f-33950edb5a43"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="fcba21b3-9d95-46b5-88f4-0d46c34d6875"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="ea8ccce0-bebc-4e77-be47-eaf945d0cd5b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="4cc5e587-8992-412d-92ac-2816e97b8de3"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="52e5644c-3c51-4c34-8b90-9f3b18b8916b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

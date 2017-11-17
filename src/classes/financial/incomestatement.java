@@ -277,7 +277,7 @@ public class incomestatement {
         String disAllowed = null;
         
         try{
-            String s = "SELECT SUM(`Discounts_Allowed`) FROM `bill` WHERE `bill_Date` >= any (SELECT `bill_Date` FROM `bill` WHERE `bill_Date` >= '"+start+"') AND `bill_Date` <= any (SELECT `bill_Date` FROM `bill` WHERE `bill_Date` <= '"+end+"')"; //YYYY-MM-DD HH:MM:SS
+            String s = "SELECT SUM(`Discounts_Allowed`) FROM `bill` WHERE `bill_Date` >= any (SELECT `bill_Date` FROM `bill` WHERE `bill_Date` >= '"+start+"') AND `bill_Date` <= any (SELECT `bill_Date` FROM `bill` WHERE `bill_Date` <= '"+end+"')"; //YYYY-MM-DD 
             pst = con.prepareStatement(s);
             pst.execute();
             rs= pst.executeQuery(s);
@@ -297,7 +297,22 @@ public class incomestatement {
     private float disReceivedToT(String start, String end){
         float disRe =0;
         
+         con = DBconnect.connect();
+    
+    try{
+        String sql="SELECT SUM(`disReceived`) FROM `rorders` WHERE `rdate` >= any (SELECT `rdate` FROM `otherentries` WHERE `rdate` >= '"+start+"') AND `rdate` <= any (SELECT `rdate` FROM `otherentries` WHERE `rdate` <= '"+end+"')";
+        pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+        disRe = Float.parseFloat(rs.getString(sql));
         return disRe;
+    }
+    catch (Exception e){
+        System.out.println(e);
+        return disRe;
+    }
+        
+       
     }
     
   private float getOtherIncomes(String start,String end){
