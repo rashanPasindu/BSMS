@@ -76,6 +76,11 @@ public class Reports extends javax.swing.JFrame {
         jComboBox1.setMaximumSize(new java.awt.Dimension(216, 54));
         jComboBox1.setMinimumSize(new java.awt.Dimension(216, 54));
         jComboBox1.setPreferredSize(new java.awt.Dimension(216, 54));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+        });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -128,6 +133,10 @@ public class Reports extends javax.swing.JFrame {
   
          chkReportTypeLoad(this.getSelected());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+        chkReportTypeLoad(this.getSelected());
+    }//GEN-LAST:event_jComboBox1MouseClicked
 
     /**
      * @param args the command line arguments

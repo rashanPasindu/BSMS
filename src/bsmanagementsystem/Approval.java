@@ -379,7 +379,11 @@ public class Approval extends javax.swing.JFrame {
 {
    String x = this.jDateChooser2.getDate().toString();
    System.out.println(x);
-
+   if (x.isEmpty()){
+      return null; 
+   }
+   
+   else{
    char []arr = new char[50];
    
    x.getChars(8,11,arr,0);
@@ -397,6 +401,7 @@ public class Approval extends javax.swing.JFrame {
    
     //filltxtFields(r,b,d);
     return date;
+   }
 }
     
 String getStartDate()
