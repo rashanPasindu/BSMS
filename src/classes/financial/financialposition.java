@@ -29,7 +29,7 @@ public class financialposition {
     
     float intangibleTotal = 0;
     float goodwill =0;
-    float trademark=0;
+    float intangibles=0;
     
     float cashTotal = 0;
     float InventroyTOT = 0;
@@ -63,7 +63,9 @@ public class financialposition {
 
 private void setValues(String start,String end){
     
-    intangibleTotal=goodwill+trademark;
+    intangibleTotal=goodwill+intangibles;
+    goodwill = getGoodWill();
+    intangibles = getOtherIntangibles();
     cashTotal = cashTotal(start,end);
     InventroyTOT = inventoryTot(getStartDateFormat(start),getEndDateFormat(end));
     debtorsTot = getDebtors(start,end);
@@ -76,7 +78,7 @@ private void setValues(String start,String end){
     fixdAssestsTot=fixdAssestsTot();
     
     assetsTot=currAssestsTot+fixdAssestsTot;
-    
+    float equity = getEquityTOT();
     creditorsTotal=getTotCreditors(start,end);
     accruedPaymentsTot=getTOTAccruedPayments(start,end);
     if(chkLoaninstallmentPayStatus()==false){
@@ -101,7 +103,7 @@ public boolean initiate(String start, String end,int qtr){
     setValues(start,end);
     int currentYear = Integer.parseInt(this.getCurrentYear());
     
-    chk1=sendtoDB(qtr,goodwill,trademark,other,cashTotal,InventroyTOT,debtorsTot,landBuild,motorV,equip,currentYear,date);
+    chk1=sendtoDB(qtr,goodwill,intangibles,other,cashTotal,InventroyTOT,debtorsTot,landBuild,motorV,equip,currentYear,date);
     chk2=sendtoDB1(qtr,intangibleTotal,currAssestsTot,fixdAssestsTot,currentYear,date);
     chk3=sendtoDB2(qtr,creditorsTotal,accruedPaymentsTot,shortloansTotal,LongloansTotal,currentYear,date);
     chk4=sendtoDB3(qtr,currentLiabilitiesTotal,longtermLiabilitiesTotal,currentYear,date);
@@ -804,6 +806,58 @@ private float LongTermLoans(){
         System.out.println(e);
         return longloan;
     }  
+}
+
+private float getEquityTOT(){
+    float eq = 0.00f;
+    con = DBconnect.connect();
+    
+    try{
+      String sql="SELECT SUM(`Amount`) FROM `otherdata` WHERE `Category`='Equity'";
+      pst = con.prepareStatement(sql);
+      rs = pst.executeQuery();
+       eq = Float.parseFloat(rs.getString(sql));
+       return eq;
+    }
+    catch(Exception e){
+        System.out.println(e);
+        return eq;
+    }  
+    
+}
+
+private float getGoodWill(){
+    float gud = 0.00f;
+    con = DBconnect.connect();
+    
+    try{
+      String sql="SELECT SUM(`Amount`) FROM `otherdata` WHERE `Category`='GoodWill'";
+      pst = con.prepareStatement(sql);
+      rs = pst.executeQuery();
+       gud = Float.parseFloat(rs.getString(sql));
+       return gud;
+    }
+    catch(Exception e){
+        System.out.println(e);
+        return gud;
+    }  
+}
+
+private float getOtherIntangibles(){
+    float othrInt = 0.00f;
+    con = DBconnect.connect();
+    
+    try{
+      String sql="SELECT SUM(`Amount`) FROM `otherdata` WHERE `Category`='Intangible Assets'";
+      pst = con.prepareStatement(sql);
+      rs = pst.executeQuery();
+       othrInt = Float.parseFloat(rs.getString(sql));
+       return othrInt;
+    }
+    catch(Exception e){
+        System.out.println(e);
+        return othrInt;
+    } 
 }
 
 private String getCurrentDate(){

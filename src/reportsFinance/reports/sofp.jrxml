@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sofp" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05fcb6f4-2037-4ae1-877f-7730e00663a1">
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     sofpvaluesassets.`quater`,
+     sofpvaluesassets.`Goodwill`,
+     sofpvaluesassets.`Trademark`,
+     sofpvaluesassets.`Other`,
+     sofpvaluesassets.`Cash` ,
+     sofpvaluesassets.`Inventory`,
+     sofpvaluesassets.`Debtors`,
+     sofpvaluesassets.`Land_&_Building`,
+     sofpvaluesassets.`Motor_Vehicles`,
+     sofpvaluesassets.`Equipment`,
+     sofpvaluesassets.`Year`,
+     sofpvaluesliablities.`Creditors`,
+     sofpvaluesliablities.`Accrued_Payments`,
+     sofpvaluesliablities.`Short_Term_Loans`,
+     sofpvaluesliablities.`Long_Term_Loans`,
+     sofpvaluestotassets.`Intangible_Assets_Total`,
+     sofpvaluestotassets.`Current_Assets_Total`,
+     sofpvaluestotassets.`Fixed_Assets_Total`,
+     sofpvaluestotliab.`Current_Liabilities_Total`l,
+     sofpvaluestotliab.`Long_Term_Liabilities_Total`
+FROM
+     `sofpvaluesassets` sofpvaluesassets,
+     `sofpvaluesliablities` sofpvaluesliablities,
+     `sofpvaluestotassets` sofpvaluestotassets,
+     `sofpvaluestotliab` sofpvaluestotliab]]>
+	</queryString>
+	<field name="quater" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Goodwill" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Trademark" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Other" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cash" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Inventory" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Debtors" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Land_&amp;_Building" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Motor_Vehicles" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Equipment" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Year" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Creditors" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Accrued_Payments" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Short_Term_Loans" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Long_Term_Loans" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Intangible_Assets_Total" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Current_Assets_Total" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Fixed_Assets_Total" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="l" class="java.lang.Float"/>
+	<field name="Long_Term_Liabilities_Total" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="456" y="0" width="99" height="132" uuid="b5203573-db7d-41f5-91b3-2d095440c554"/>
+				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="8d99366c-3538-4cde-a7b3-1445108f8cf3"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="6f147139-fa8b-486d-ad66-73ef34dc3f1b"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cherry Title]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="157" y="66" width="249" height="29" uuid="bcef2458-304a-4caa-a5cd-09ca8300006c"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cherry SubTitle]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="f0167919-b573-411c-9edb-7bd4973de984"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="e34cf018-b4c1-44cd-81e6-0f27fecfcd8b"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="7" width="27" height="18" forecolor="#000000" uuid="8fea4c76-cdb6-461c-9f6d-c16e4ca64ae0"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[quater]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="27" y="7" width="27" height="18" forecolor="#000000" uuid="4d3bbb33-0a14-4d3b-837a-913b8d91936e"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Goodwill]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="54" y="7" width="27" height="18" forecolor="#000000" uuid="84658e9e-9e76-469f-a9a1-1594845a1880"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Trademark]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="81" y="7" width="27" height="18" forecolor="#000000" uuid="09546717-abc5-4d6b-a61d-2222eb3f3adc"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Other]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="108" y="7" width="27" height="18" forecolor="#000000" uuid="a5abd95c-81b3-4b2e-b38b-439deffe3240"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cash]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="135" y="7" width="27" height="18" forecolor="#000000" uuid="5fae2e73-ca76-4c19-92a5-d218f5e808b7"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Inventory]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="162" y="7" width="27" height="18" forecolor="#000000" uuid="5b9f4365-66b1-40ee-9f13-f3fa231ba270"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Debtors]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="189" y="7" width="27" height="18" forecolor="#000000" uuid="60079c1e-840e-4945-a1e0-abdd8d7f01cc"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Land_&_Building]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="216" y="7" width="27" height="18" forecolor="#000000" uuid="9f743ada-02a3-4fcb-8dd0-73bbb6fa5870"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Motor_Vehicles]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="243" y="7" width="27" height="18" forecolor="#000000" uuid="0c630585-4756-4733-92bb-17407880ac8f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Equipment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="270" y="7" width="27" height="18" forecolor="#000000" uuid="38a7a720-5a6f-4dce-9685-29e84471fa86"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="297" y="7" width="27" height="18" forecolor="#000000" uuid="09a3eb37-79a4-4415-a843-d4a738208d34"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Creditors]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="324" y="7" width="27" height="18" forecolor="#000000" uuid="a8afffa1-ecef-4343-ab31-70f0e02a94d9"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Accrued_Payments]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="351" y="7" width="27" height="18" forecolor="#000000" uuid="c8e03471-52d0-4395-9d69-d7e794c88ee0"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Short_Term_Loans]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="378" y="7" width="27" height="18" forecolor="#000000" uuid="54074e0d-1448-4174-818d-246abf946a78"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Long_Term_Loans]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="405" y="7" width="27" height="18" forecolor="#000000" uuid="a8a0e628-cfc7-46ce-8d33-21c6ce24365d"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Intangible_Assets_Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="432" y="7" width="27" height="18" forecolor="#000000" uuid="ea38899d-473b-4c58-9a5a-6016f59852cb"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Current_Assets_Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="459" y="7" width="27" height="18" forecolor="#000000" uuid="5715b8cb-7fee-4191-a0a9-0672e705472d"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fixed_Assets_Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="486" y="7" width="27" height="18" forecolor="#000000" uuid="187d09b7-3ad9-477f-b706-426f5805e216"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[l]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="513" y="7" width="27" height="18" forecolor="#000000" uuid="477ee099-bb77-4aeb-b13c-39eee99a7f4f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Long_Term_Liabilities_Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="90f7c40b-bd74-4e1b-9bbb-658e0a9f6d6a"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="27" height="18" uuid="7d218ab4-0572-467f-9d6b-ce5dda2d8e74"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{quater}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="27" y="0" width="27" height="18" uuid="fd34e84d-94d0-47d7-9212-d6e2b39f9dd1"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Goodwill}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="54" y="0" width="27" height="18" uuid="483b64bb-47a2-43a5-801e-9ace3cc43cbe"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Trademark}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="81" y="0" width="27" height="18" uuid="2581fee2-d4ad-49fa-ab6d-c4a17dd15fb4"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Other}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="108" y="0" width="27" height="18" uuid="74734cd9-3d25-47da-9ded-c472c4892b30"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Cash}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="135" y="0" width="27" height="18" uuid="c4cf0247-5e79-47ab-8c87-2ebe1088387c"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Inventory}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="162" y="0" width="27" height="18" uuid="e7dc336d-8970-4546-94f0-ac30cf3cc084"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Debtors}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="189" y="0" width="27" height="18" uuid="c8499c9a-0bb4-42ed-8d75-9a6a35646856"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Land_&_Building}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="216" y="0" width="27" height="18" uuid="97093632-fa94-4107-9ea6-6de78637fc36"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Motor_Vehicles}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="243" y="0" width="27" height="18" uuid="071b3a08-8ca5-41ee-8737-d6cf5dc1b218"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Equipment}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="270" y="0" width="27" height="18" uuid="a8365856-1f17-417e-be52-d75f9d00726e"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Year}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="297" y="0" width="27" height="18" uuid="cb97e884-1fb1-4265-ab67-30876cbce7c5"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Creditors}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="324" y="0" width="27" height="18" uuid="eb2a78b3-b847-40f1-89a9-f9c800e091d2"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Accrued_Payments}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="351" y="0" width="27" height="18" uuid="db6e4907-a34b-430d-994b-90adf8307120"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Short_Term_Loans}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="378" y="0" width="27" height="18" uuid="022f9017-9092-4641-a3a9-a4c69859465b"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Long_Term_Loans}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="405" y="0" width="27" height="18" uuid="5afcd9eb-86fd-4812-968e-f02d0e42bfb3"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Intangible_Assets_Total}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="432" y="0" width="27" height="18" uuid="8bd5dbb9-dee4-40ea-ba9c-5f2e4372641c"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Current_Assets_Total}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="459" y="0" width="27" height="18" uuid="1e2ec303-d951-4ea8-9a20-ebb376e02614"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Fixed_Assets_Total}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="486" y="0" width="27" height="18" uuid="ee988909-136f-4180-9b28-eddf335ea82e"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{l}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="513" y="0" width="27" height="18" uuid="8fcee129-cf3b-49cb-b410-07cc6147ef78"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Long_Term_Liabilities_Total}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="e5b3b4aa-7b24-4af7-aa80-be7138c6bbf2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="8e6020d7-ef4a-4082-949d-00606c567458"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="c8ddee2a-bc05-4f4f-9697-30bec4538577"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="6a3de0dc-6e8f-492d-b685-bea76e7c55ca"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="75e7d450-d7ca-42fd-b486-a08e1a1b7392"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

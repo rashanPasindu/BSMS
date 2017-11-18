@@ -29,20 +29,61 @@ public class generateReports {
  public void showReport(int q,int year) throws JRException{
             
      try {
-        reportIncomeStatement(q,year);
+        this.reportIncomeStatement(q,year);
+        //this.reportStatementOfFinancialPosition(q, year);
+        //.reportCashFlowStatement(q, year);
          } 
      catch (SQLException ex) {
-                
+               System.out.println(ex);
          }
  }
  
-public void reportIncomeStatement(int q, int year) throws SQLException, JRException
+public void reportIncomeStatement(int q, int year) throws SQLException
  {   
     try
         {
        
         JasperDesign jd=JRXmlLoader.load("C:\\Users\\Rashan\\Documents\\NetBeansProjects\\BuisnessManagementSystem\\src\\reportsFinance\\reports\\incomestatement.jrxml");
-        String sql="SELECT s.quater,s.income_Total,s.Expense_Total,s.PBT,s.Tax,s.PAT,s.Year,v.Sales_Total,v.Other_Incomes,v.Discounts_Received,v.Admin_Exp_Total,v.Maint_Exp_Total,v.Petty_Exp_Total,v.Other_Exp_Total,v.Discounts_Allowed FROM incomestatevalues v, incomestatefinal s WHERE quster = '"+q+"' AND Year = '"+year+"'";
+        String sql="SELECT s.quater,s.income_Total,s.Expense_Total,s.PBT,s.Tax,s.PAT,s.Year,v.Sales_Total,v.Other_Incomes,v.Discounts_Received,v.Admin_Exp_Total,v.Maint_Exp_Total,v.Petty_Exp_Total,v.Other_Exp_Total,v.Discounts_Allowed FROM incomestatevalues v, incomestatefinal s WHERE quater = '"+q+"' AND Year = '"+year+"'";
+        JRDesignQuery q1= new JRDesignQuery();
+        q1.setText(sql);
+        jd.setQuery(q1);
+        
+        JasperReport jr=JasperCompileManager.compileReport(jd);
+        JasperPrint jp=JasperFillManager.fillReport(jr,null,con);
+        JasperViewer.viewReport(jp);
+        }
+      catch(Exception e)
+        {}
+
+    } 
+
+public void reportStatementOfFinancialPosition(int q, int year) throws SQLException, JRException
+ {   
+    try
+        {
+       
+        JasperDesign jd=JRXmlLoader.load("C:\\Users\\Rashan\\Documents\\NetBeansProjects\\BuisnessManagementSystem\\src\\reportsFinance\\reports\\incomestatement.jrxml");
+        String sql="SELECT  FROM WHERE quster = '"+q+"' AND Year = '"+year+"'";
+        JRDesignQuery q1= new JRDesignQuery();
+        q1.setText(sql);
+        jd.setQuery(q1);
+        
+        JasperReport jr=JasperCompileManager.compileReport(jd);
+        JasperPrint jp=JasperFillManager.fillReport(jr,null,con);
+        JasperViewer.viewReport(jp);
+        }
+      catch(Exception e)
+        {}
+
+    } 
+public void reportCashFlowStatement(int q, int year) throws SQLException, JRException
+ {   
+    try
+        {
+       
+        JasperDesign jd=JRXmlLoader.load("C:\\Users\\Rashan\\Documents\\NetBeansProjects\\BuisnessManagementSystem\\src\\reportsFinance\\reports\\incomestatement.jrxml");
+        String sql="SELECT  FROM WHERE quster = '"+q+"' AND Year = '"+year+"'";
         JRDesignQuery q1= new JRDesignQuery();
         q1.setText(sql);
         jd.setQuery(q1);

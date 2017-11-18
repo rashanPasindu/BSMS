@@ -5,6 +5,17 @@
  */
 package bsmanagementsystem.internalJFrames;
 
+import java.sql.Connection;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Rashan
@@ -14,6 +25,7 @@ public class Tax extends javax.swing.JInternalFrame {
     /**
      * Creates new form Tax
      */
+    Connection con = null;
     public Tax() {
         initComponents();
     }
@@ -255,7 +267,22 @@ public class Tax extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        con = DBConnect.DBconnect.connect();
+        try
+        {
+       
+        JasperDesign jd=JRXmlLoader.load("C:\\Users\\Rashan\\Documents\\NetBeansProjects\\BuisnessManagementSystem\\src\\classes\\financial\\tax.jrxml");
+        String sql="SELECT ExpenseID,Category,Method,Amount,Description,Approval,Date FROM adminexpenses WHERE Category = 'Tax' AND Date >= any (SELECT Date FROM adminexpenses WHERE Date >= '2017-09-01') AND Date <= any (SELECT Date FROM adminexpenses WHERE Date <= '2017-10-31')";
+        JRDesignQuery q=new JRDesignQuery();
+        q.setText(sql);
+        jd.setQuery(q);
+        
+        JasperReport jr=JasperCompileManager.compileReport(jd);
+        JasperPrint jp=JasperFillManager.fillReport(jr,null,con);
+        JasperViewer.viewReport(jp);
+        }
+      catch(JRException ex)
+        {}
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed

@@ -739,7 +739,7 @@ public class ExpenseInput extends javax.swing.JFrame {
       validations val = new validations();  
       PettyCashExp n = new  PettyCashExp();    
       //String eid = getIdPetty();
-      String cat = getSelectCombo1Petty();
+      String cat = getSelectCombo1PettyCash();
       String method = getSelectCombo2Petty();
       Float amt = getAmountPetty();
       String des = getDescPetty();
@@ -767,7 +767,7 @@ public class ExpenseInput extends javax.swing.JFrame {
         MaintenExp m = new MaintenExp();
              
              //String eid = getIdMaint();
-             String cat = getSelectCombo1Maint();
+             String cat = getSelectCombo1Maintain();
              String method = getSelectCombo2Maint();
              Float amt = getAmountMaint();
              String des = getDescMaint();
@@ -835,7 +835,7 @@ public class ExpenseInput extends javax.swing.JFrame {
          OtherExp m = new OtherExp();
              
              //String eid = getIdOther();
-             String cat = getSelectCombo1Other();
+             String cat = getSelectCombo1OtherExpense();
              String method = getSelectCombo2Other();
              Float amt = getAmountOther();
              String des = getDescOther();
@@ -964,7 +964,7 @@ public class ExpenseInput extends javax.swing.JFrame {
         validations val = new validations();
         
         //val.validateExpMainten(String.valueOf(this.getAmountMaint()),this.getDescMaint(),this.getApprovdMaint());
-        n.updateDB(expense_ID,this.getSelectCombo1Maint(),this.getSelectCombo2Maint(),this.getAmountMaint(),this.getDescMaint(),this.getApprovdMaint(),this.getCurrentDate());
+        n.updateDB(expense_ID,this.getSelectCombo1Maintain(),this.getSelectCombo2Maint(),this.getAmountMaint(),this.getDescMaint(),this.getApprovdMaint(),this.getCurrentDate());
         tableLoad2();
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -973,7 +973,7 @@ public class ExpenseInput extends javax.swing.JFrame {
         validations val = new validations();
         
         //val.validateExpOther(String.valueOf(this.getAmountOther()),this.getDescOther(),this.getApprovdOther());
-        n.updateDB(expense_ID,this.getSelectCombo1Other(),this.getSelectCombo2Other(),this.getAmountOther(),this.getDescOther(),this.getApprovdOther(),this.getCurrentDate());
+        n.updateDB(expense_ID,this.getSelectCombo1OtherExpense(),this.getSelectCombo2Other(),this.getAmountOther(),this.getDescOther(),this.getApprovdOther(),this.getCurrentDate());
         tableLoad4();
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -982,7 +982,7 @@ public class ExpenseInput extends javax.swing.JFrame {
         validations val = new validations();
         
         //val.validateExpPetty(String.valueOf(this.getAmountPetty()),this.getDescPetty(),this.getApprovdPetty());
-        n.updateDB(expense_ID,this.getSelectCombo1Petty(),this.getSelectCombo2Petty(),this.getAmountPetty(),this.getDescPetty(),this.getApprovdPetty(),this.getCurrentDate());
+        n.updateDB(expense_ID,this.getSelectCombo1PettyCash(),this.getSelectCombo2Petty(),this.getAmountPetty(),this.getDescPetty(),this.getApprovdPetty(),this.getCurrentDate());
         tableLoad3();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -1033,59 +1033,43 @@ public class ExpenseInput extends javax.swing.JFrame {
             return a;
         }   
          
-        private String getSelectCombo1Maint()
+        private String getSelectCombo1Maintain()
             {
-            String a;
-            
-            a  = jComboBox7.getSelectedItem().toString();
-            return a;       
+            return jComboBox7.getSelectedItem().toString();       
             }
         
-        private String getSelectCombo1Petty(){
-            String a;
-            
-            a  = jComboBox5.getSelectedItem().toString();
-            return a;       
+        private String getSelectCombo1PettyCash(){
+           
+            return jComboBox5.getSelectedItem().toString();       
             }
-        private String getSelectCombo1Other()
+        private String getSelectCombo1OtherExpense()
             {
-            String a;
-            a  = jTextField13.getText();
-            return a;       
+            
+            return jTextField13.getText();       
             }
          
 
     
     private String getSelectCombo2Admin()
     {
-        String a;
-        
-        a  = jComboBox1.getSelectedItem().toString();
-        return a;
+        return jComboBox1.getSelectedItem().toString();
     }
     
     private String getSelectCombo2Maint()
     {
-        String a;
-        
-        a  = jComboBox8.getSelectedItem().toString();
-                return a;
+        return jComboBox8.getSelectedItem().toString();
     }
              
     private String getSelectCombo2Petty()
             
     {
-       String a;          
-       a  = jComboBox6.getSelectedItem().toString();
-                return a;
+       return jComboBox6.getSelectedItem().toString();
     }
     
     private String getSelectCombo2Other()
              
     {
-        String a;         
-        a  = jComboBox10.getSelectedItem().toString();
-        return a;
+        return jComboBox10.getSelectedItem().toString();
     }
              
     public float getAmountAdmin()

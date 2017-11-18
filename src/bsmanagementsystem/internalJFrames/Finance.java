@@ -6,8 +6,18 @@
 package bsmanagementsystem.internalJFrames;
 
 import classes.financial.financialposition;
-import classes.financial.incomestatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -18,6 +28,7 @@ public class Finance extends javax.swing.JInternalFrame {
     /**
      * Creates new form Finance
      */
+    Connection con = null;
     public Finance() {
         initComponents();
     }
@@ -157,7 +168,9 @@ public class Finance extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    
+       /* 
+        
         int n;
         incomestatement income = new incomestatement();
 
@@ -180,8 +193,16 @@ public class Finance extends javax.swing.JInternalFrame {
              //show the relevant report
         }
         else{
-            //show error message
-        }
+        
+
+    }
+           /* //generateReports gen = new generateReports();//show error message
+            try {
+                this.showReport(1,2017);
+            } catch (JRException ex) {
+                Logger.getLogger(Finance.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }*/
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -341,4 +362,39 @@ public class Finance extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+ public void showReport(int q,int year) throws JRException{
+            
+     try {
+        this.reportIncomeStatement(q,year);
+        //this.reportStatementOfFinancialPosition(q, year);
+        //.reportCashFlowStatement(q, year);
+         } 
+     catch (SQLException ex) {
+               System.out.println(ex);
+         }
+ }
+ 
+public void reportIncomeStatement(int q, int year) throws SQLException
+ {   
+    try
+        {
+       
+        JasperDesign jd=JRXmlLoader.load("‪C:\\Users\\Rashan\\Documents\\NetBeansProjects\\BuisnessManagementSystem\\src\\reportsFinance\\reports\\report1.jrxml");
+        String sql="SELECT * FROM incomestatefinal ";
+        JRDesignQuery q1= new JRDesignQuery();
+        q1.setText(sql);
+        jd.setQuery(q1);
+        
+        JasperReport jr=JasperCompileManager.compileReport(jd);
+        JasperPrint jp=JasperFillManager.fillReport(jr,null,con);
+        JasperViewer.viewReport(jp);
+        }
+      catch(Exception e)
+        {}
+
+    }
+
+
+
+
 }

@@ -5,6 +5,17 @@
  */
 package bsmanagementsystem;
 
+import DBConnect.DBconnect;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Rashan
@@ -14,8 +25,15 @@ public class otherData1 extends javax.swing.JFrame {
     /**
      * Creates new form otherData1
      */
+    Connection con = null;
+    PreparedStatement pst=null;
+    ResultSet rs = null;
+
+    
     public otherData1() {
         initComponents();
+        
+        tableLoad();
     }
 
     /**
@@ -65,7 +83,7 @@ public class otherData1 extends javax.swing.JFrame {
         jLabel6.setBounds(28, 159, 180, 49);
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Other Incomes", "Equity", "Loans", "Loan Installment" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Other Incomes", "Equity", "Loans", "Loan Installment", "GoodWill", "Intangible Assets" }));
         jComboBox2.setMaximumSize(new java.awt.Dimension(203, 49));
         jComboBox2.setMinimumSize(new java.awt.Dimension(203, 49));
         jComboBox2.setPreferredSize(new java.awt.Dimension(203, 49));
@@ -194,7 +212,7 @@ public class otherData1 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public String expense_ID;
+    public String other_ID;
     
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
 
@@ -219,56 +237,51 @@ public class otherData1 extends javax.swing.JFrame {
         jTextField2.setText(amout);
         jTextArea1.setText(des);
 
-        expense_ID = Id;
+        other_ID = Id;
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*
-        AdministrationExp n = new  AdministrationExp();
-        validations val = new validations();
-        boolean a;
-
-        //String eid = getIdAdmin();
+       //String eid = getIdAdmin();
 
         jButton1.addActionListener((ActionEvent e) -> {
-            String cat = getSelectCombo1Admin();
-            String method = getSelectCombo2Admin();
-            float amt = getAmountAdmin();
-            String des = getDescAdmin();
-            String by = getApprovdAdmin();
+            String cat = getSelectCombo();
+            //String method = getSelectCombo2Admin();
+            float amt = getAmount();
+            String des = getDesc();
+           // String by = getApprovdAdmin();
             String date= getCurrentDate();
 
             //all = new AdministrationExp(expense_ID,expense_category,payment_method,amount,description,approved_by);
             //if(val.validateExpAdmin(String.valueOf(amt), des, by) == true){
-                n.initiateTransfer(cat,method,amt,des,by,date);
-                tableLoad1();
-                clearAdmin();
+                sendToDB(cat,amt,des,date);
+                tableLoad();
+                clear();
                 /* else{
                     JOptionPane.showMessageDialog(null,"UN-Successfull");
                 }*/
 
-                //});
+                });
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        /* AdministrationExp n = new AdministrationExp();
-        validations val = new validations();
+        
+        //validations val = new validations();
 
         //val.validateExpAdmin(String.valueOf(this.getAmountAdmin()),this.getDescAdmin(),this.getApprovdAdmin());
-        n.updateDB(expense_ID,this.getSelectCombo1Admin(),this.getSelectCombo2Admin(),this.getAmountAdmin(),this.getDescAdmin(),this.getApprovdAdmin(),this.getCurrentDate());
-        tableLoad1();*/
+        updateDB(other_ID,this.getSelectCombo(),this.getAmount(),this.getDesc(),this.getCurrentDate());
+        tableLoad();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        /*
-        String eid = expense_ID;
+        
+        String eid = other_ID;
         System.out.println(eid);
-        n.delete(eid);
+        delete(eid);
         //tableLoad1();
         //deleteExp(eid);
-        clear();*/
+        clear();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -342,4 +355,132 @@ public class otherData1 extends javax.swing.JFrame {
     public javax.swing.JTextArea jTextArea1;
     public javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+ 
+    public void sendToDB(String cat, float amount, String desc,String date){
+        con = DBconnect.connect();
+        try
+        {
+            String sql;
+            sql = "INSERT INTO `otherData` (`Category`,`Amount`,`Description`,`Date`)VALUES('"+cat+"','"+amount+"','"+desc+"','"+date+"')";
+            pst = con.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Entry Successfull");
+        }
+        
+      catch(SQLException e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Entry UN-Successfull");
+                }
+    
+    }
+ 
+ public void tableLoad(){
+         Connection con = null;
+         PreparedStatement pst=null;
+         ResultSet rs = null;
+        
+         con = DBconnect.connect();
+         try
+        {
+            
+            String sql;
+            sql = "SELECT `otherID`,`Category`,`Amount`,`Description`,`Date` FROM `otherData`";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            //JOptionPane.showMessageDialog(null,"Successfull");
+        
+        }
+        
+    catch(SQLException e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"UN-Successfull");
+                }
+        
+    }
+  public void delete(String id){
+       
+        con = DBconnect.connect();
+        String n = id;
+        
+        int y= JOptionPane.showConfirmDialog(null,"Do you want to delete this ?");
+        
+        if (y==0){
+        
+            
+        String q="DELETE from `otherData` where `otherID` = '"+n+"';";
+            
+        try{
+            pst=con.prepareStatement(q);
+            pst.execute();
+            tableLoad();
+            //clear();
+            
+            }
+            catch(SQLException e){
+            
+            JOptionPane.showMessageDialog(null,e+"iError");
+            
+            }
+        }
+     }
+      
+ public void updateDB(String id,String cat,float amount, String desc,String date){
+    con = DBconnect.connect();
+        try
+        {
+            String sql;
+            sql = "UPDATE `otherData` SET `Category` ='"+cat+"',1Amount` = '"+amount+"',`Description` = '"+desc+"' `Date` = '"+date+"' WHERE `otherID` ='"+id+"'";
+            pst = con.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Entry Successfull");
+            //fillcombo();
+        }
+        
+      catch(SQLException e)
+                {
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Entry UN-Successfull");
+                }
+}
+
+ private String getSelectCombo()
+        {
+          String a;
+
+            a  = jComboBox2.getSelectedItem().toString();
+            return a;
+        }  
+ public float getAmount()
+    {
+        float a;
+        
+            String b = jTextField2.getText();
+
+            a = Float.parseFloat(b);
+                return a;
+        }
+       
+public String getDesc()
+    {
+        String a;
+          
+            a = jTextArea1.getText();
+            return a;
+    }
+ public String getCurrentDate(){
+        
+        String date1;
+        
+        Date date = new Date();
+        
+       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        date1 = formatter.format(date);
+        
+        System.out.println(date1);
+        
+        return date1;
+    }
 }

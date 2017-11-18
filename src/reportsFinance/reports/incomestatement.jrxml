@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="incomestatement" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b21b72e2-14ce-4fcb-8e01-9efbdc4127a7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="144"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -126,7 +126,7 @@ FROM
 				<text><![CDATA[incomestatefinal_income_Total]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="519" y="151" width="34" height="18" uuid="37268cb0-d11f-4100-96e6-c539a43f3dde"/>
+				<reportElement style="Detail" positionType="Float" x="508" y="151" width="45" height="18" uuid="37268cb0-d11f-4100-96e6-c539a43f3dde"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
@@ -196,7 +196,7 @@ FROM
 				<text><![CDATA[incomestatevalues_Sales_Total]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="521" y="40" width="34" height="18" uuid="fc60ee71-7c6f-431b-a9b7-81889e7e6648"/>
+				<reportElement style="Detail" positionType="Float" x="508" y="40" width="47" height="18" uuid="fc60ee71-7c6f-431b-a9b7-81889e7e6648"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
@@ -210,7 +210,7 @@ FROM
 				<text><![CDATA[incomestatevalues_Other_Incomes]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="521" y="105" width="34" height="18" uuid="55d60e7e-6cf3-4a86-9862-ae46bee2dc08"/>
+				<reportElement style="Detail" positionType="Float" x="508" y="105" width="47" height="18" uuid="55d60e7e-6cf3-4a86-9862-ae46bee2dc08"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
@@ -224,7 +224,7 @@ FROM
 				<text><![CDATA[incomestatevalues_Discounts_Received]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="521" y="72" width="34" height="18" uuid="ad342d8c-bbfd-48b5-bf83-430bb24264da"/>
+				<reportElement style="Detail" positionType="Float" x="508" y="72" width="47" height="18" uuid="ad342d8c-bbfd-48b5-bf83-430bb24264da"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
@@ -238,7 +238,7 @@ FROM
 				<text><![CDATA[incomestatevalues_Admin_Exp_Total]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="521" y="196" width="34" height="18" uuid="7da7672f-547c-4cd5-93e4-3bbfefeeffb6"/>
+				<reportElement style="Detail" positionType="Float" x="508" y="196" width="47" height="18" uuid="7da7672f-547c-4cd5-93e4-3bbfefeeffb6"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
@@ -252,7 +252,7 @@ FROM
 				<text><![CDATA[incomestatevalues_Maint_Exp_Total]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="521" y="234" width="34" height="18" uuid="bb56012d-ee09-46ff-a138-e7e428f9158b"/>
+				<reportElement style="Detail" positionType="Float" x="508" y="234" width="47" height="18" uuid="bb56012d-ee09-46ff-a138-e7e428f9158b"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
@@ -266,7 +266,7 @@ FROM
 				<text><![CDATA[incomestatevalues_Petty_Exp_Total]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="521" y="270" width="34" height="18" uuid="adff3b0b-475f-45ba-becf-96c278ee415a"/>
+				<reportElement style="Detail" positionType="Float" x="508" y="270" width="47" height="18" uuid="adff3b0b-475f-45ba-becf-96c278ee415a"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
