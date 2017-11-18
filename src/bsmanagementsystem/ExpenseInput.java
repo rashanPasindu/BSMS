@@ -717,15 +717,18 @@ public class ExpenseInput extends javax.swing.JFrame {
            String by = getApprovdAdmin();
            String date= getCurrentDate();
            
-            //all = new AdministrationExp(expense_ID,expense_category,payment_method,amount,description,approved_by);
+           if (amt == 0 && des== null && by == null){
+                //JOptionPane.showMessageDialog(null,"Please fill all avaibale text areas");        
+           }
+           else{
             //if(val.validateExpAdmin(String.valueOf(amt), des, by) == true){
             n.initiateTransfer(cat,method,amt,des,by,date);
             tableLoad1();
             clearAdmin();
            /* else{
-                JOptionPane.showMessageDialog(null,"UN-Successfull");
+               
             }*/
-                    
+           }       
                     
                     
        });      
@@ -747,14 +750,17 @@ public class ExpenseInput extends javax.swing.JFrame {
       String date= getCurrentDate();
                
        jButton4.addActionListener((ActionEvent e) -> {
-         
+           if (amt == 0 && des== null && by == null){
+               // JOptionPane.showMessageDialog(null,"Please fill all avaibale text areas");
+           }
+           else{
         //all = new AdministrationExp(expense_ID,expense_category,payment_method,amount,description,approved_by);
         //val.validateExpPetty(String.valueOf(amt),des,by);
         n.initiateTransfer(cat,method,amt,des,by,date);
             //n.tableLoad();
             tableLoad3();
             clearPetty();
-    
+           }
        });      
            
         
@@ -776,14 +782,17 @@ public class ExpenseInput extends javax.swing.JFrame {
       
        jButton7.addActionListener((ActionEvent e) -> {
          
-           
+            if (amt == 0 && des== null && by == null){
+               // JOptionPane.showMessageDialog(null,"Please fill all avaibale text areas");
+           }
+            else{
             //all = new AdministrationExp(expense_ID,expense_category,payment_method,amount,description,approved_by);
             //val.validateExpMainten(String.valueOf(amt),des,by);
             m.initiateTransfer(cat,method,amt,des,by,date);
             //n.tableLoad();
             tableLoad2();
             clearMaint();
-               
+            }
   
        });      
         
@@ -834,21 +843,26 @@ public class ExpenseInput extends javax.swing.JFrame {
          validations val = new validations();
          OtherExp m = new OtherExp();
              
-             //String eid = getIdOther();
-             String cat = getSelectCombo1OtherExpense();
-             String method = getSelectCombo2Other();
-             Float amt = getAmountOther();
-             String des = getDescOther();
-             String by = getApprovdOther();
-             String date= getCurrentDate();
-          
-      
+             //String eid = getIdOther(); 
+                
        jButton10.addActionListener((ActionEvent e) -> {
-         
-            m.initiateTransfer(cat,method,amt,des,by,date);
-            //val.validateExpOther(String.valueOf(amt),des,by);
-            tableLoad4();
-            clearMaint();
+           
+              String cat = getSelectCombo1OtherExpense();
+              String method = getSelectCombo2Other();
+              Float amt = getAmountOther();
+              String des = getDescOther();
+              String by = getApprovdOther();
+              String date = getCurrentDate();
+           
+           if (amt == 0 && des== null && by == null){
+               //JOptionPane.showMessageDialog(null,"Please fill all avaibale text areas");
+           }
+           else{    
+               m.initiateTransfer(cat,method,amt,des,by,date);
+               //val.validateExpOther(String.valueOf(amt),des,by);
+               tableLoad4();
+               clearMaint();
+           }
         }); 
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -1030,6 +1044,7 @@ public class ExpenseInput extends javax.swing.JFrame {
           String a;
 
             a  = jComboBox2.getSelectedItem().toString();
+            
             return a;
         }   
          
@@ -1077,36 +1092,65 @@ public class ExpenseInput extends javax.swing.JFrame {
         float a;
         
             String b = jTextField1.getText();
-
-            a = Float.parseFloat(b);
-                return a;
+            if (b.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Amount Box");
+                return 0;
+            }
+            
+            else{
+                a = Float.parseFloat(b);
+                return a;    
+            }
         }
         
         public float getAmountMaint()
     {
             float a;
             String b = jTextField7.getText();
-
-            a = Float.parseFloat(b);
-                return a;
+            
+             if (b.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Amount Box");
+                return 0;
+            }
+            
+            else{
+                a = Float.parseFloat(b);
+                return a;    
+            }       
     }
         
     public float getAmountPetty()
     {
             float a;
+            
             String b = jTextField4.getText();
-
-            a = Float.parseFloat(b);
-                return a;
+            
+            if (b.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Amount Box");
+                return 0;
+            }
+            
+            else{
+                a = Float.parseFloat(b);
+                return a;    
+            }
     }
         
     public float getAmountOther()
     {
             float a;
+            
             String b = jTextField10.getText();
-
-            a = Float.parseFloat(b);
-                return a;
+            
+             if (b.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Amount Box");
+                return 0;
+            }
+            
+            else{
+                a = Float.parseFloat(b);
+                return a;    
+            }
     }
         
     public String getDescAdmin()
@@ -1114,28 +1158,53 @@ public class ExpenseInput extends javax.swing.JFrame {
         String a;
           
             a = jTextArea1.getText();
+            
+            if (a.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Description Box");
+                return null;
+            }
+            else{
             return a;
+            }
     }
         
     public String getDescMaint(){
 
             String a;
             a = jTextArea3.getText();
+            if (a.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Description Box");
+                return null;
+            }
+            else{
             return a;
+            }
     }
     
     public String getDescPetty(){
 
             String a;
             a = jTextArea2.getText();
+            if (a.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Description Box");
+                return null;
+            }
+            else{
             return a;
+            }
     }
     
     public String getDescOther(){
 
             String a;
             a = jTextArea4.getText();
+            if (a.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Description Box");
+                return null;
+            }
+            else{
             return a;
+            }
         }
 
     
@@ -1143,26 +1212,50 @@ public class ExpenseInput extends javax.swing.JFrame {
          
         String a;
             a = jTextField2.getText();
+            if (a.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Approved Box");
+                return null;
+            }
+            else{
             return a;
+            }
     }
      
     public String getApprovdMaint(){
         
         String a;
             a = jTextField9.getText();
+            if (a.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Aprroved Box");
+                return null;
+            }
+            else{
             return a;
+            }
     }
     public String getApprovdPetty(){
         
         String a;    
             a = jTextField6.getText();
+            if (a.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Approved Box");
+                return null;
+            }
+            else{
             return a;
+            }
     }
     public String getApprovdOther(){
         
         String a;
             a = jTextField12.getText();
+            if (a.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Approved Box");
+                return null;
+            }
+            else{
             return a;
+            }
     }
     public String getCurrentDate(){
         
