@@ -251,14 +251,14 @@ public class otherData1 extends javax.swing.JFrame {
            // String by = getApprovdAdmin();
             String date= getCurrentDate();
 
-            //all = new AdministrationExp(expense_ID,expense_category,payment_method,amount,description,approved_by);
-            //if(val.validateExpAdmin(String.valueOf(amt), des, by) == true){
+                if (amt != 0 && des != null){
                 sendToDB(cat,amt,des,date);
                 tableLoad();
                 clear();
-                /* else{
-                    JOptionPane.showMessageDialog(null,"UN-Successfull");
-                }*/
+                }
+                else{
+                   // JOptionPane.showMessageDialog(null,"UN-Successfull");
+                }
 
                 });
 
@@ -458,9 +458,14 @@ public class otherData1 extends javax.swing.JFrame {
         float a;
         
             String b = jTextField2.getText();
-
+            if (b.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Amount Box");
+                return 0;
+            }
+            else{
             a = Float.parseFloat(b);
                 return a;
+                }
         }
        
 public String getDesc()
@@ -468,7 +473,14 @@ public String getDesc()
         String a;
           
             a = jTextArea1.getText();
+            
+            if (a.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please fill the Description Box");
+                return null;
+            }
+            else{
             return a;
+            }
     }
  public String getCurrentDate(){
         
