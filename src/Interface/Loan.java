@@ -14,7 +14,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.JTextComponent;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -122,15 +121,12 @@ public class Loan extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         combo1 = new javax.swing.JComboBox();
         combo2 = new javax.swing.JComboBox();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton1.setText("Calculate Loan");
         jButton1.setMaximumSize(new java.awt.Dimension(130, 36));
         jButton1.setMinimumSize(new java.awt.Dimension(130, 36));
@@ -140,9 +136,10 @@ public class Loan extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 299, 140, -1));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(211, 403, 140, 36);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton2.setText("Assign");
         jButton2.setMaximumSize(new java.awt.Dimension(130, 36));
         jButton2.setMinimumSize(new java.awt.Dimension(130, 36));
@@ -152,26 +149,40 @@ public class Loan extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 422, 140, -1));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 58, -1, -1));
+        getContentPane().add(jButton2);
+        jButton2.setBounds(113, 602, 140, 36);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(180, 79, 0, 0);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("ID");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 135, -1, -1));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(113, 146, 45, 35);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Percentage");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 192, -1, -1));
-        getContentPane().add(per, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 190, 125, -1));
-        getContentPane().add(ii, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 133, 125, -1));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(113, 249, 93, 34);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        per.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                perKeyReleased(evt);
+            }
+        });
+        getContentPane().add(per);
+        per.setBounds(255, 250, 125, 34);
+        getContentPane().add(ii);
+        ii.setBounds(255, 146, 125, 35);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("%");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 192, -1, -1));
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(398, 256, 19, 20);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Amount");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 354, -1, -1));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(113, 482, 80, 32);
 
         loan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -191,12 +202,15 @@ public class Loan extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(loan);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 121, 620, 171));
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(568, 146, 620, 228);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("Salary");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 164, -1, -1));
-        getContentPane().add(ss, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 162, 125, -1));
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(113, 199, 67, 32);
+        getContentPane().add(ss);
+        ss.setBounds(255, 199, 125, 32);
 
         tt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tt.setModel(new javax.swing.table.DefaultTableModel(
@@ -217,28 +231,35 @@ public class Loan extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tt);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 435, 620, 215));
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(568, 482, 620, 253);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Employee Loans");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 53, 212, 36));
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(60, 35, 166, 44);
 
+        loanamount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         loanamount.setText("calculated amount");
-        getContentPane().add(loanamount, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 353, 113, 21));
+        getContentPane().add(loanamount);
+        loanamount.setBounds(243, 482, 160, 32);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("Date");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 381, -1, 25));
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(113, 558, 56, 35);
 
         datebox.setDateFormatString("yyyy-MM-dd");
-        getContentPane().add(datebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 381, 102, -1));
+        getContentPane().add(datebox);
+        datebox.setBounds(243, 558, 160, 35);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("Loan Type");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 221, -1, -1));
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(113, 298, 93, 34);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton4.setText("Back");
         jButton4.setMaximumSize(new java.awt.Dimension(130, 36));
         jButton4.setMinimumSize(new java.awt.Dimension(130, 36));
@@ -248,13 +269,15 @@ public class Loan extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(989, 57, 140, -1));
+        getContentPane().add(jButton4);
+        jButton4.setBounds(1166, 39, 140, 36);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel10.setText("Duration");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(113, 351, 84, 25);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton3.setText("Edit");
         jButton3.setMaximumSize(new java.awt.Dimension(130, 36));
         jButton3.setMinimumSize(new java.awt.Dimension(130, 36));
@@ -264,9 +287,10 @@ public class Loan extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 422, 140, -1));
+        getContentPane().add(jButton3);
+        jButton3.setBounds(342, 602, 140, 36);
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton5.setText("Clear Fields");
         jButton5.setMaximumSize(new java.awt.Dimension(130, 36));
         jButton5.setMinimumSize(new java.awt.Dimension(130, 36));
@@ -276,16 +300,20 @@ public class Loan extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 476, 140, -1));
+        getContentPane().add(jButton5);
+        jButton5.setBounds(225, 688, 140, 36);
 
-        combo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Loan Type", "Short-time Loan", "Long-term", "Salary advance" }));
-        getContentPane().add(combo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 219, -1, -1));
+        combo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Loan Type", "Short-time Loan", "Long-time Loan" }));
+        getContentPane().add(combo1);
+        combo1.setBounds(255, 299, 125, 34);
 
         combo2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Duration", "1 week", "2 weeks", "3 weeks", " " }));
-        getContentPane().add(combo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 248, 125, -1));
+        getContentPane().add(combo2);
+        combo2.setBounds(255, 351, 125, 25);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bill/backgrnd1.png"))); // NOI18N
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(0, 0, 1370, 770);
 
         pack();
         setLocationRelativeTo(null);
@@ -293,62 +321,70 @@ public class Loan extends javax.swing.JFrame {
 
     private void loanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loanMouseClicked
         // mouse click
-        try
-        {
         int r=loan.getSelectedRow();
         String Id=loan.getValueAt(r, 0).toString();
         String sl=loan.getValueAt(r, 2).toString();
         
         ii.setText(Id);
         ss.setText(sl);
-        }
-        catch(Exception e)
-                {}
-        
     }//GEN-LAST:event_loanMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        // assign button
+        // assign data
         
         String Id=ii.getText();
         String i=loanamount.getText();
         String p=per.getText();
         String date;
-        date = ((JTextComponent)datebox.getDateEditor().getUiComponent()).getText();
+        date = ((JTextField)datebox.getDateEditor().getUiComponent()).getText();
         String t1=combo1.getSelectedItem().toString();
         String t2=combo2.getSelectedItem().toString();
         
-        try
+        if(!(per.getText().isEmpty()) && !(combo1.getSelectedItem().toString().isEmpty()) && !(combo2.getSelectedItem().toString().isEmpty()) && 
+                !(((JTextField)datebox.getDateEditor().getUiComponent()).getText().isEmpty()))
         {
-        String q="Update loans set Loan_Type='"+t1+"',Loan_amount='"+i+"',Duration='"+t2+"',Obtained_on='"+date+"',Percentage_Allowed='"+p+"' where Emp_ID='"+Id+"'  ";
-        pst=con.prepareStatement(q);
-        pst.execute();
+                       
+        Loanclass x=new Loanclass();
         
+        x.setId(Id);
+        x.setAmount(Float.parseFloat(i));
+        x.setPerc(Integer.parseInt(p));
+        x.setDate(date);
+        x.setLtype(t1);
+        x.setDuration(t2);
+       
+        x.assign();
         //load table
         tableloadtt();
         clearfields();
-        }
-        catch(Exception ex)
-        {
-        }
-        
-        
 
-        
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Please select and enter all the required fields","Error",JOptionPane.ERROR_MESSAGE); 
+            clearfields();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //claculate button
+        if(!(per.getText().isEmpty()))
+        {
+                 
+       Loanclass p = new Loanclass();
         
-      
-        float n=new Float(per.getText());
-        float l=new Float(ss.getText());
+        p.setPerc(Integer.parseInt(per.getText()));
+        p.setSalary(Float.parseFloat(ss.getText()));
         
-        float G=(l*n)/100;
-        
-        loanamount.setText(String.valueOf(G));
- 
+        float l= p.calculate();
+        loanamount.setText(String.valueOf(l));  
+        }
+        else
+        {
+        JOptionPane.showMessageDialog(this, "Please enter all the required fields","Error",JOptionPane.ERROR_MESSAGE); 
+            clearfields();
+         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ttMouseClicked
@@ -363,7 +399,7 @@ public class Loan extends javax.swing.JFrame {
         String lt=tt.getValueAt(r, 3).toString();
         String dur=tt.getValueAt(r, 7).toString();
         String amt=tt.getValueAt(r, 5).toString();
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(r, 6).toString());
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(r, 6).toString());
         
         loanamount.setText(amt);
         combo2.setSelectedItem(dur);
@@ -396,26 +432,22 @@ public class Loan extends javax.swing.JFrame {
         String i=loanamount.getText();
         String p=per.getText();
         String date;
-        date = ((JTextComponent)datebox.getDateEditor().getUiComponent()).getText();
+        date = ((JTextField)datebox.getDateEditor().getUiComponent()).getText();
         String t1=combo1.getSelectedItem().toString();
         String t2=combo2.getSelectedItem().toString();
          
-        try{
-             
-        String q="Update loans set Loan_Type='"+t1+"',Loan_amount='"+i+"',Duration='"+t2+"',Obtained_on='"+date+"',Percentage_Allowed='"+p+"' where Emp_ID='"+Id+"'  ";
-        pst=con.prepareStatement(q);
-       
-        int result=pst.executeUpdate();
-        tableloadtt();
-        if(result == 1){
-            JOptionPane.showMessageDialog(this,"Succusfully updated");
-        clearfields();
-           
-        }
-        }
-        catch(Exception e)
-        {}
+        Loanclass y=new Loanclass();
         
+        y.setId(Id);
+        y.setAmount(Float.parseFloat(i));
+        y.setPerc(Integer.parseInt(p));
+        y.setDate(date);
+        y.setLtype(t1);
+        y.setDuration(t2);
+       
+        y.update();
+           tableloadtt();
+            clearfields();
     }  
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -425,6 +457,25 @@ public class Loan extends javax.swing.JFrame {
         clearfields();
         
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void perKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_perKeyReleased
+        //   percentage
+           String a=per.getText();
+        int b=0;
+        
+       
+        for(int i=0;i<a.length();i++)
+        {
+            if(!Character.isDigit(a.charAt(i)))
+                b=1;    
+        }
+        
+        if(b==1)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid Integer");
+            per.setText("");
+        }
+    }//GEN-LAST:event_perKeyReleased
 
     /**
      * @param args the command line arguments
@@ -452,6 +503,7 @@ public class Loan extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Loan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -474,7 +526,7 @@ public class Loan extends javax.swing.JFrame {
     private com.toedter.calendar.JDayChooser jDayChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -22,7 +22,8 @@ public class DeliveryController {
     
      public static int addDelivery(Delivery delivery) throws SQLException{
         int result=0;
-        String q = "INSERT INTO delivery(deliveryID,Item_Code,Item_Name,QTY,payment_Status,address,delivery_Status,invoice_ID,customer_ID) values ('" + delivery.getDeliveryID()+ "','" + delivery.getItem_Code()+ "','" + delivery.getItem_Name()+ "'," + delivery.getQTY()+ ", '" + delivery.getPayment_Status()+"',' " + delivery.getAddress()+" ', '" + delivery.getDelivery_Status()+"', " + delivery.getInvoice_ID()+",'" + delivery.getCustomer_ID()+"')";
+         System.out.println("on cash delivery"+ delivery.getPayment_Status());
+        String q = "INSERT INTO delivery(deliveryList,payment_Status,address,delivery_Status,invoice_ID,customer_ID) values ('" + delivery.getDeliveryList()+ "','" + delivery.getPayment_Status()+"',' " + delivery.getAddress()+" ', '" + delivery.getDelivery_Status()+"', " + delivery.getInvoice_ID()+"," + delivery.getCustomer_ID()+")";
 
          PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -33,7 +34,7 @@ public class DeliveryController {
      
      public static int deleteDelivery(Delivery delivery) throws SQLException {
         int result=0;
-        String q = "DELETE from delivery WHERE deliveryID='"+ delivery.getDeliveryID()+"'";
+        String q = "DELETE from delivery WHERE deliveryID = " + delivery.getDeliveryID()+" ";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -44,7 +45,7 @@ public class DeliveryController {
     
      public static int updateDelivery(Delivery delivery) throws SQLException{
         int result=0;
-        String q = "UPDATE delivery  SET Item_Code='" + delivery.getItem_Code()+ "',Item_Name='" + delivery.getItem_Name()+ "',QTY=" + delivery.getQTY()+ ",payment_Status='" + delivery.getPayment_Status()+ "',address='" + delivery.getAddress()+ "',delivery_Status='" + delivery.getDelivery_Status()+ "',invoice_ID='" + delivery.getInvoice_ID()+ "',customer_ID='" + delivery.getCustomer_ID()+ "' where deliveryID='"+delivery.getDeliveryID()+ "' ";
+        String q = "UPDATE delivery  SET deliveryList='" + delivery.getDeliveryList() + "',payment_Status='" + delivery.getPayment_Status()+ "',address='" + delivery.getAddress()+ "',delivery_Status='" + delivery.getDelivery_Status()+ "',invoice_ID=" + delivery.getInvoice_ID()+ ",customer_ID=" + delivery.getCustomer_ID()+ " where deliveryID =" + delivery.getDeliveryID()+ " ";
 //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -53,7 +54,7 @@ public class DeliveryController {
     }
      
      public static ResultSet getAllDeliveryResultSet() throws SQLException{
-        String sql="select deliveryID,Item_Code,Item_Name,QTY,payment_Status,address,delivery_Status,invoice_ID,customer_ID from delivery";
+        String sql="select deliveryID,deliveryList,payment_Status,address,delivery_Status,invoice_ID,customer_ID from delivery";
         
         PreparedStatement pst= con.prepareStatement(sql);
         ResultSet rs=pst.executeQuery();
@@ -63,7 +64,7 @@ public class DeliveryController {
     
     
      public static ResultSet searchDeliveryByInvoiceID(String Invoice_ID) throws SQLException{
-        String sql="select deliveryID,Item_Code,Item_Name,QTY,payment_Status,address,delivery_Status,invoice_ID,customer_ID from delivery WHERE  CAST(invoice_ID AS CHAR)  LIKE '%"+Invoice_ID+"%'";
+        String sql="select deliveryID,deliveryList,payment_Status,address,delivery_Status,invoice_ID,customer_ID from delivery WHERE  CAST(invoice_ID AS CHAR)  LIKE '%"+Invoice_ID+"%'";
          
         PreparedStatement pst= con.prepareStatement(sql);
         ResultSet rs=pst.executeQuery();

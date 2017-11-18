@@ -82,7 +82,6 @@ public class conform_suppliers_update extends javax.swing.JFrame {
         user_name = new javax.swing.JTextField();
         conform2_updatesuppliers = new javax.swing.JButton();
         conform2_updatesuppliers1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WARNING !!!");
@@ -130,9 +129,6 @@ public class conform_suppliers_update extends javax.swing.JFrame {
             }
         });
         getContentPane().add(conform2_updatesuppliers1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 140, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1_1.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 430, 190));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,7 +227,6 @@ public class conform_suppliers_update extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton conform2_updatesuppliers;
     private javax.swing.JButton conform2_updatesuppliers1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

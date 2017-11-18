@@ -135,9 +135,9 @@ public class suppliersx extends javax.swing.JFrame {
         bsck_to_home1 = new javax.swing.JButton();
         update_sname1 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1366, 751));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Trajan Pro", 1, 24)); // NOI18N
@@ -146,20 +146,20 @@ public class suppliersx extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 220, -1));
 
         supplierid_update1.setText(".");
-        getContentPane().add(supplierid_update1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 60, 20));
+        getContentPane().add(supplierid_update1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, 60, 20));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 255, 255));
         jLabel6.setText("SUPPLIER NAME:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 430, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 430, -1, -1));
 
         update_supcontact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 update_supcontactActionPerformed(evt);
             }
         });
-        getContentPane().add(update_supcontact, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, 280, -1));
-        getContentPane().add(supplieremail, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 210, -1));
+        getContentPane().add(update_supcontact, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 520, 240, -1));
+        getContentPane().add(supplieremail, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 220, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel7.setText("SUPPLIER EMAIL:");
@@ -167,7 +167,7 @@ public class suppliersx extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setText("COMPANY CONTACT NUMBER:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
 
         companycontact_int.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,41 +179,41 @@ public class suppliersx extends javax.swing.JFrame {
                 companycontact_intKeyReleased(evt);
             }
         });
-        getContentPane().add(companycontact_int, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 210, -1));
+        getContentPane().add(companycontact_int, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 220, -1));
 
         suppliercontact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 suppliercontactActionPerformed(evt);
             }
         });
-        getContentPane().add(suppliercontact, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 210, -1));
+        getContentPane().add(suppliercontact, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 220, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel5.setText("SUPPLIER CONTACT:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 500, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 500, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel4.setText("COMPANY NAME:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 500, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 500, -1, -1));
 
         companyname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 companynameActionPerformed(evt);
             }
         });
-        getContentPane().add(companyname, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 210, -1));
+        getContentPane().add(companyname, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 220, -1));
 
         suppliernic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 suppliernicActionPerformed(evt);
             }
         });
-        getContentPane().add(suppliernic, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 210, -1));
+        getContentPane().add(suppliernic, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 220, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 255, 255));
         jLabel3.setText("SUPPLIER NIC:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, -1));
 
         re_order_table.setText("REPORTS");
         re_order_table.addActionListener(new java.awt.event.ActionListener() {
@@ -223,10 +223,10 @@ public class suppliersx extends javax.swing.JFrame {
         });
         getContentPane().add(re_order_table, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 210, 30));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 255, 255));
         jLabel9.setText("SUPPLIER ID:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 100, 20));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 100, 20));
 
         table_view_suppliers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -258,7 +258,7 @@ public class suppliersx extends javax.swing.JFrame {
                 add_supplierActionPerformed(evt);
             }
         });
-        getContentPane().add(add_supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 210, 30));
+        getContentPane().add(add_supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 220, 30));
 
         bsck_to_home.setText("BACK TO MENU");
         bsck_to_home.addActionListener(new java.awt.event.ActionListener() {
@@ -302,47 +302,47 @@ public class suppliersx extends javax.swing.JFrame {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 130, 180, 20));
 
         update_sNIC1.setText(".");
-        getContentPane().add(update_sNIC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 150, 20));
+        getContentPane().add(update_sNIC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 150, 20));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel13.setText("SUPPLIER NAME:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
         suppliername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 suppliernameKeyReleased(evt);
             }
         });
-        getContentPane().add(suppliername, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 210, -1));
+        getContentPane().add(suppliername, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 220, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel14.setText("SUPPLIER EMAIL:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel15.setText("COMPANY CONTACT NUMBER:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
         getContentPane().add(update_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 220, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel16.setText("SUPPLIER CONTACT:");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         update_companycontact_int.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 update_companycontact_intKeyReleased(evt);
             }
         });
-        getContentPane().add(update_companycontact_int, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, 220, -1));
+        getContentPane().add(update_companycontact_int, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 520, 230, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel17.setText("COMPANY NAME:");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel18.setText("SUPPLIER NIC:");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
-        getContentPane().add(update_companyname, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 520, 370, -1));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
+        getContentPane().add(update_companyname, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 520, 320, -1));
 
         jButton1.setText("UPDATE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -352,10 +352,10 @@ public class suppliersx extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 420, 140, 30));
 
-        jLabel12.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Sylfaen", 1, 20)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("UPDATE SUPPLIERS:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 200, 20));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 220, 20));
 
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
@@ -382,14 +382,11 @@ public class suppliersx extends javax.swing.JFrame {
         getContentPane().add(bsck_to_home1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 60, 210, 30));
 
         update_sname1.setText(".");
-        getContentPane().add(update_sname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 420, 300, 30));
+        getContentPane().add(update_sname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 420, 300, 30));
 
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("(select  row)");
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1370, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -411,7 +408,9 @@ public class suppliersx extends javax.swing.JFrame {
     }//GEN-LAST:event_suppliernicActionPerformed
 
     private void re_order_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_re_order_tableActionPerformed
-        
+        reports re=new reports();
+        re.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_re_order_tableActionPerformed
 
@@ -442,7 +441,6 @@ public class suppliersx extends javax.swing.JFrame {
             tableload1();
             
             JOptionPane.showMessageDialog(this, "Added Successfull");
-            clearfields();
             System.out.println("record added");
             
         } catch (Exception e) {
@@ -501,7 +499,7 @@ public class suppliersx extends javax.swing.JFrame {
         b3.setVisible(true);
         
         this.dispose();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void table_view_suppliersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_view_suppliersMouseClicked
@@ -635,7 +633,6 @@ public class suppliersx extends javax.swing.JFrame {
     private javax.swing.JTextField companycontact_int;
     private javax.swing.JTextField companyname;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

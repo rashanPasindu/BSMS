@@ -61,4 +61,15 @@ public class FualRoundsController {
         return rs;
     }
     
+    public static ResultSet searchFuelRbyVehi(String Vehicle_ID) throws SQLException{
+        String sql="select vehicle_ID,cost,date,price_per_litre,total_litres from fuel_rounds WHERE vehicle_ID LIKE '"+Vehicle_ID+"%' "; 
+        
+        PreparedStatement pst= con.prepareStatement(sql);
+        ResultSet rs=pst.executeQuery();
+        
+        return rs;
+        
+        
+    }
+    
 }

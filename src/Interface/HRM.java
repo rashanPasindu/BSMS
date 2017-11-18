@@ -5,8 +5,6 @@
  */
 package Interface;
 
-import bsmanagementsystem.MainPage;
-
 /**
  *
  * @author user
@@ -35,80 +33,94 @@ public class HRM extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Employee Details");
-        jButton1.setMaximumSize(new java.awt.Dimension(216, 54));
-        jButton1.setMinimumSize(new java.awt.Dimension(216, 54));
-        jButton1.setPreferredSize(new java.awt.Dimension(216, 54));
+        jButton1.setMaximumSize(new java.awt.Dimension(130, 36));
+        jButton1.setMinimumSize(new java.awt.Dimension(130, 36));
+        jButton1.setPreferredSize(new java.awt.Dimension(130, 36));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, -1, -1));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(320, 310, 200, 36);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton2.setText("Loans");
-        jButton2.setMaximumSize(new java.awt.Dimension(216, 54));
-        jButton2.setMinimumSize(new java.awt.Dimension(216, 54));
-        jButton2.setPreferredSize(new java.awt.Dimension(216, 54));
+        jButton2.setMaximumSize(new java.awt.Dimension(130, 36));
+        jButton2.setMinimumSize(new java.awt.Dimension(130, 36));
+        jButton2.setPreferredSize(new java.awt.Dimension(130, 36));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 350, -1, -1));
+        getContentPane().add(jButton2);
+        jButton2.setBounds(800, 310, 190, 36);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton3.setText("Attendance");
-        jButton3.setMaximumSize(new java.awt.Dimension(216, 54));
-        jButton3.setMinimumSize(new java.awt.Dimension(216, 54));
-        jButton3.setPreferredSize(new java.awt.Dimension(216, 54));
+        jButton3.setMaximumSize(new java.awt.Dimension(130, 36));
+        jButton3.setMinimumSize(new java.awt.Dimension(130, 36));
+        jButton3.setPreferredSize(new java.awt.Dimension(130, 36));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 470, -1, -1));
+        getContentPane().add(jButton3);
+        jButton3.setBounds(320, 420, 200, 36);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton4.setText("Salary");
-        jButton4.setMaximumSize(new java.awt.Dimension(216, 54));
-        jButton4.setMinimumSize(new java.awt.Dimension(216, 54));
-        jButton4.setPreferredSize(new java.awt.Dimension(216, 54));
+        jButton4.setMaximumSize(new java.awt.Dimension(130, 36));
+        jButton4.setMinimumSize(new java.awt.Dimension(130, 36));
+        jButton4.setPreferredSize(new java.awt.Dimension(130, 36));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 470, -1, -1));
+        getContentPane().add(jButton4);
+        jButton4.setBounds(800, 420, 190, 36);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Human Resource Management");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 380, 70));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(540, 40, 300, 40);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setText("Back");
+        jButton5.setText("Log Out");
         jButton5.setMaximumSize(new java.awt.Dimension(130, 36));
         jButton5.setMinimumSize(new java.awt.Dimension(130, 36));
         jButton5.setPreferredSize(new java.awt.Dimension(130, 36));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(jButton5);
+        jButton5.setBounds(1180, 130, 130, 36);
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton6.setText("Reports");
+        jButton6.setMaximumSize(new java.awt.Dimension(130, 36));
+        jButton6.setMinimumSize(new java.awt.Dimension(130, 36));
+        jButton6.setPreferredSize(new java.awt.Dimension(130, 36));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 120, -1, -1));
+        getContentPane().add(jButton6);
+        jButton6.setBounds(590, 570, 180, 36);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 1370, 770));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 1370, 770);
 
         pack();
         setLocationRelativeTo(null);
@@ -142,10 +154,12 @@ public class HRM extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new MainPage().setVisible(true);
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // reports
+        reports l=new reports();
+        l.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +187,7 @@ public class HRM extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HRM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -188,7 +203,8 @@ public class HRM extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

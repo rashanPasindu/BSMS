@@ -116,8 +116,7 @@ public class v_reorder_level extends javax.swing.JFrame {
         jLabel15.setName(""); // NOI18N
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
-        setSize(new java.awt.Dimension(1366, 768));
-        setLocationRelativeTo(null);
+        setBounds(0, 0, 1366, 768);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -161,6 +160,7 @@ public class v_reorder_level extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(v_reorder_level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

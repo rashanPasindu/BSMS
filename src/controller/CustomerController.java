@@ -24,7 +24,7 @@ public class CustomerController {
     
     public static int addCustomer(Customer customer) throws SQLException{
         int result=0;
-        String q = "INSERT INTO customer(customer_ID,customer_Name,Address,tel_number) values ('" + customer.getCustomer_ID()+ "','" + customer.getCustomer_Name()+ "','" + customer.getAddress()+ "'," + customer.getTel_number()+ ")";
+        String q = "INSERT INTO customer(customer_Name,Address,tel_number) values ('" + customer.getCustomer_Name()+ "','" + customer.getAddress()+ "','" + customer.getTel_number()+ "')";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -44,7 +44,7 @@ public class CustomerController {
     
     public static int updateCustomer(Customer customer) throws SQLException{
         int result=0;
-        String q = "UPDATE customer  SET customer_Name='" + customer.getCustomer_Name()+ "',Address='" + customer.getAddress()+ "',tel_number=" + customer.getTel_number()+ " where customer_ID='"+ customer.getCustomer_ID()+"' ";
+        String q = "UPDATE customer  SET customer_Name='" + customer.getCustomer_Name()+ "',Address='" + customer.getAddress()+ "',tel_number='" + customer.getTel_number()+ "' where customer_ID="+ customer.getCustomer_ID()+" ";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -61,7 +61,7 @@ public class CustomerController {
         PreparedStatement pst= con.prepareStatement(sql);
         ResultSet rs=pst.executeQuery();
         while (rs.next()) {
-            customers.add(new Customer(rs.getString(0), rs.getString(1),rs.getString(2), rs.getInt(3)));
+            customers.add(new Customer(rs.getInt(0), rs.getString(1),rs.getString(2), rs.getString(3)));
         }
         return customers;
     }
@@ -88,6 +88,15 @@ public class CustomerController {
      
       public static ResultSet searchCustomerByName(String customerName) throws SQLException{
         String sql="select customer_ID,customer_Name,Address,tel_number from Customer WHERE customer_Name LIKE '"+customerName+"%' ";
+        
+        PreparedStatement pst= con.prepareStatement(sql);
+        ResultSet rs=pst.executeQuery();
+        
+        return rs;
+    }
+      
+       public static ResultSet searchCustomerByTele(String telno) throws SQLException{
+        String sql="select customer_ID,customer_Name,Address,tel_number from Customer WHERE tel_number LIKE '"+telno+"%' "; 
         
         PreparedStatement pst= con.prepareStatement(sql);
         ResultSet rs=pst.executeQuery();

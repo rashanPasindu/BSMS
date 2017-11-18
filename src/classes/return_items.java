@@ -6,15 +6,9 @@
 package classes;
 
 import DBConnect.DBconnect;
-import net.proteanit.sql.DbUtils;
-import Interface.retun_damage_items;
-import com.mysql.jdbc.ResultSetImpl;
-import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JFrame;
-import Interface.return_damage_history;
 import javax.swing.JOptionPane;
 
 /**

@@ -42,7 +42,7 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
       public void tableload()
     {
         try {
-        String sql = "SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,p.ProfitMargin,p.CostPerUnit,a.PaintColor,a.Liters"
+        String sql = "SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,a.PaintColor,a.Liters"
                 + " FROM products p,paintsandtools a WHERE p.ProductID=a.ProductID";
         pst = con.prepareStatement(sql);
         rs =pst.executeQuery();
@@ -66,10 +66,10 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         datebox.setDate(null);
         
         manufacturebox.setText("");
-        profitbox.setText("");
+        //profitbox.setText("");
         spsibox.setText("");
         litersbox.setText("");
-        costperunitbox.setText("");
+        //costperunitbox.setText("");
         descriptionbox1.setText("");
         colorbox.setSelectedIndex(0);
         litersbox.setText("");
@@ -86,22 +86,18 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         datebox = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        costperunitbox = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
         pidbox = new javax.swing.JTextField();
         pnamebox = new javax.swing.JTextField();
         quantitybox = new javax.swing.JTextField();
         manufacturebox = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         ptypebox = new javax.swing.JComboBox<>();
-        profitbox = new javax.swing.JTextField();
         spsibox = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         litersbox = new javax.swing.JTextField();
@@ -109,7 +105,6 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         searchbox = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
@@ -137,23 +132,14 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1222, 661, 120, 46));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("Product ID ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 55, -1, -1));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("CALCULATE");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(952, 148, 130, 36));
-
         datebox.setDateFormatString("yyyy-MM-dd");
-        getContentPane().add(datebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 243, 227, 33));
+        getContentPane().add(datebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 227, 33));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("Product Name ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 101, -1, -1));
 
@@ -166,12 +152,11 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1214, 96, 130, 36));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Quantity");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 198, -1, -1));
-        getContentPane().add(costperunitbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 151, 227, 33));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Product Type ");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 142, -1, -1));
 
@@ -183,16 +168,18 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1214, 139, 130, 36));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Cost/unit");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 158, -1, -1));
         getContentPane().add(pidbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 47, 227, 33));
         getContentPane().add(pnamebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 93, 227, 33));
+
+        quantitybox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                quantityboxKeyReleased(evt);
+            }
+        });
         getContentPane().add(quantitybox, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 191, 227, 33));
         getContentPane().add(manufacturebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 276, 227, 33));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel12.setText("Paint Color");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 377, -1, -1));
 
@@ -203,7 +190,12 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ptypebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 135, 227, 33));
-        getContentPane().add(profitbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 87, 227, 33));
+
+        spsibox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                spsiboxKeyReleased(evt);
+            }
+        });
         getContentPane().add(spsibox, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 47, 227, 33));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -214,7 +206,18 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1214, 53, 130, 36));
-        getContentPane().add(litersbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 203, 227, 33));
+
+        litersbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                litersboxActionPerformed(evt);
+            }
+        });
+        litersbox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                litersboxKeyReleased(evt);
+            }
+        });
+        getContentPane().add(litersbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 227, 33));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -234,7 +237,7 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 447, 1330, 207));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Manufacture");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 276, -1, -1));
 
@@ -247,12 +250,14 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         });
         getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1214, 182, 130, 36));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Profit Margin (%)/unit");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 94, -1, -1));
+        searchbox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchboxKeyReleased(evt);
+            }
+        });
         getContentPane().add(searchbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(847, 406, 227, 33));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("MRP/unit");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 54, -1, -1));
 
@@ -265,7 +270,7 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         });
         getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1212, 404, 130, 36));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setText("Description");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 322, -1, -1));
 
@@ -278,9 +283,9 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         });
         getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1081, 404, 119, 36));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("Date");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 243, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Search Products Name");
@@ -295,9 +300,9 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         getContentPane().add(colorbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 373, 227, 33));
         getContentPane().add(descriptionbox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 322, 227, 33));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel13.setText("Liters");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 210, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -308,8 +313,7 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         jLabel15.setName(""); // NOI18N
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
-        pack();
-        setLocationRelativeTo(null);
+        setBounds(0, 0, 1366, 768);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -320,17 +324,6 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-        float mpr = new Float(spsibox.getText());
-        float profit1 = new Float(profitbox.getText());
-
-        float calprofit=mpr*(profit1/100);
-        float costperunit=(mpr-calprofit);
-
-        costperunitbox.setText(String.valueOf(costperunit));
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
@@ -348,15 +341,30 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
             date = ((JTextField)datebox.getDateEditor().getUiComponent()).getText();
             String manufacture = manufacturebox.getText();
 
-            String profit = profitbox.getText();
+            //String profit = profitbox.getText();
             String spsi = spsibox.getText();
 
             String description = descriptionbox1.getText();
-            String costperunit = costperunitbox.getText();
+            //String costperunit = costperunitbox.getText();
             
             String color = colorbox.getSelectedItem().toString();
             String liters = litersbox.getText();
-
+            
+         paint p=new paint();   
+         p.setProductid(productid);
+         p.setProductname(productname);
+         p.setProducttype(producttype);
+         p.setQuantity(Integer.parseInt(quantity));
+         p.setDate(date);
+         p.setManufacture(manufacture);
+         //p.setProfit(Float.parseFloat(profit));
+         p.setSpsi(Float.parseFloat(spsi));
+         p.setDescription(description);
+        // p.setCostperunit(Float.parseFloat(costperunit));
+         p.setLiters( Float.parseFloat(liters));
+         p.setColor(color);
+         p.update();
+/*
             try{
 
                 String sql="UPDATE products SET ProductName ='"+ productname +"',ProductType ='"+ producttype +"',"
@@ -379,7 +387,11 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
 
             }catch(Exception e){
 
-            }
+            }*/
+            clearfields();
+
+            //to load the table
+            tableload();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -391,7 +403,10 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         if(x==0)
         {
             String productid = pidbox.getText();
-
+            paint p=new paint();  
+            p.setProductid(productid);
+            p.delete();
+/*
             try{
 
                 String sql="DELETE from products WHERE ProductID ='"+ productid +"'";
@@ -408,7 +423,11 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
 
             }catch(Exception e){
 
-            }
+            }*/
+            clearfields();
+
+            //to load the table
+            tableload();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -430,17 +449,31 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         date = ((JTextField)datebox.getDateEditor().getUiComponent()).getText();
         String manufacture = manufacturebox.getText();
 
-        String profit = profitbox.getText();
+        //String profit = profitbox.getText();
         String spsi = spsibox.getText();
 
         String description = litersbox.getText();
-        String costperunit = costperunitbox.getText();
+        //String costperunit = costperunitbox.getText();
         String color = colorbox.getSelectedItem().toString();
         String liters = litersbox.getText();
 
+        paint p=new paint();   
+         p.setProductid(productid);
+         p.setProductname(productname);
+         p.setProducttype(producttype);
+         p.setQuantity(Integer.parseInt(quantity));
+         p.setDate(date);
+         p.setManufacture(manufacture);
+         //p.setProfit(Float.parseFloat(profit));
+         p.setSpsi(Float.parseFloat(spsi));
+         p.setDescription(description);
+         //p.setCostperunit(Float.parseFloat(costperunit));
+         p.setLiters( Float.parseFloat(liters));
+         p.setColor(color);
+         p.insert();
         
         //To calculate the cost per unit
-
+/*
         float mpr = new Float(spsibox.getText());
         float profit1 = new Float(profitbox.getText());
 
@@ -466,7 +499,11 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         } catch (Exception e){
 
             System.out.println(e);
-        }
+        }*/
+            clearfields();
+
+            //to load the table
+            tableload();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -484,10 +521,10 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
             String manufacture = jTable1.getValueAt(row, 5).toString();
             String description = jTable1.getValueAt(row, 6).toString();
             String quantity = jTable1.getValueAt(row, 7).toString();
-            String profit = jTable1.getValueAt(row, 8).toString();
-            String total = jTable1.getValueAt(row, 9).toString();
-            String color = jTable1.getValueAt(row, 10).toString();
-            String liters = jTable1.getValueAt(row, 11).toString();
+            //String profit = jTable1.getValueAt(row, 8).toString();
+            //String total = jTable1.getValueAt(row, 9).toString();
+            String color = jTable1.getValueAt(row, 8).toString();
+            String liters = jTable1.getValueAt(row, 9).toString();
 
             pidbox.setText(productid);
             pnamebox.setText(productname);
@@ -497,11 +534,11 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
             datebox.setDate(date);
 
             manufacturebox.setText(manufacture);
-            profitbox.setText(profit);
+            //profitbox.setText(profit);
             spsibox.setText(spsi);
             
             descriptionbox1.setText(description);
-            costperunitbox.setText(total);
+            //costperunitbox.setText(total);
             colorbox.setSelectedItem(color);
             litersbox.setText(liters);
 
@@ -529,7 +566,7 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
 
         String search = searchbox.getText();
 
-        String sql="SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,p.ProfitMargin,p.CostPerUnit,b.PaintColor,b.Liters from products p,paintsandtools b WHERE p.ProductName LIKE '%"+search+"%' AND p.ProductID=b.ProductID";
+        String sql="SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,b.PaintColor,b.Liters from products p,paintsandtools b WHERE p.ProductName LIKE '%"+search+"%' AND p.ProductID=b.ProductID";
 
         try{
 
@@ -545,6 +582,84 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
     private void colorboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_colorboxActionPerformed
+
+    private void searchboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchboxKeyReleased
+        // TODO add your handling code here:
+        // TO SEARCH PRODUCTS KODI
+
+        String search = searchbox.getText();
+
+        String sql="SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,b.PaintColor,b.Liters from products p,paintsandtools b WHERE p.ProductName LIKE '%"+search+"%' AND p.ProductID=b.ProductID";
+
+        try{
+
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_searchboxKeyReleased
+
+    private void litersboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_litersboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_litersboxActionPerformed
+
+    private void quantityboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityboxKeyReleased
+        // TODO add your handling code here:
+        String quantity = quantitybox.getText();
+           int ck = 0;
+           
+        
+        for(int i =0 ; i<quantity.length(); i++)
+                {   //Validating qty
+                  if(!Character.isDigit(quantity.charAt(i)))
+                      ck =11;
+                }
+        if(ck==11)
+        {
+//            JOptionPane.showMessageDialog(null, "Please Enter a Integer value for Quantity");
+            JOptionPane.showMessageDialog(this, "Please Enter a Integer value for Quantity","Error: Incompatible Type",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_quantityboxKeyReleased
+
+    private void spsiboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spsiboxKeyReleased
+        // TODO add your handling code here:
+        String quantity = spsibox.getText();
+           int ck = 0;
+           
+        
+        for(int i =0 ; i<quantity.length(); i++)
+                {   //Validating qty
+                  if(!Character.isDigit(quantity.charAt(i)))
+                      ck =11;
+                }
+        if(ck==11)
+        {
+//            JOptionPane.showMessageDialog(null, "Please Enter a Integer value for Quantity");
+            JOptionPane.showMessageDialog(this, "Please Enter a Integer value for MPR","Error: Incompatible Type",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_spsiboxKeyReleased
+
+    private void litersboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_litersboxKeyReleased
+        
+         String quantity =litersbox.getText();
+           int ck = 0;
+           
+        
+        for(int i =0 ; i<quantity.length(); i++)
+                {   //Validating qty
+                  if(!Character.isDigit(quantity.charAt(i)))
+                      ck =11;
+                }
+        if(ck==11)
+        {
+//            JOptionPane.showMessageDialog(null, "Please Enter a Integer value for Quantity");
+            JOptionPane.showMessageDialog(this, "Please Enter a Integer value for Liters","Error: Incompatible Type",JOptionPane.ERROR_MESSAGE);
+        }
+       
+    }//GEN-LAST:event_litersboxKeyReleased
 
     /**
      * @param args the command line arguments
@@ -573,6 +688,8 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -584,12 +701,10 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> colorbox;
-    private javax.swing.JTextField costperunitbox;
     private com.toedter.calendar.JDateChooser datebox;
     private javax.swing.JTextField descriptionbox1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -597,7 +712,6 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -606,7 +720,6 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -616,7 +729,6 @@ public class v_Paint_Painting_Supplies extends javax.swing.JFrame {
     private javax.swing.JTextField manufacturebox;
     private javax.swing.JTextField pidbox;
     private javax.swing.JTextField pnamebox;
-    private javax.swing.JTextField profitbox;
     private javax.swing.JComboBox<String> ptypebox;
     private javax.swing.JTextField quantitybox;
     private javax.swing.JTextField searchbox;

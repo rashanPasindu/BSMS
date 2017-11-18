@@ -7,8 +7,8 @@ package interfa;
 
 import Codes.Constants;
 import Codes.ValidationChecker;
-import bill.BillEdit;
 import bill.Payment;
+import controller.CustomerController;
 import controller.DeliveryController;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -39,6 +39,7 @@ public class Delivery extends javax.swing.JFrame {
         paymentButtonGroup.add(doncash);
         try {
             dTable.setModel(DbUtils.resultSetToTableModel(DeliveryController.getAllDeliveryResultSet()));
+            dcustt.setModel(DbUtils.resultSetToTableModel(CustomerController.getAllCustomersAsResultSet()));
         } catch (SQLException ex) {
             Logger.getLogger(Delivery.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,6 +61,7 @@ public class Delivery extends javax.swing.JFrame {
 
         Donedeleiver = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         dTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -79,21 +81,21 @@ public class Delivery extends javax.swing.JFrame {
         delevrupdate = new javax.swing.JButton();
         delevrdelete = new javax.swing.JButton();
         delevrcf = new javax.swing.JButton();
-        ditemcode = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        ditemname = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        dqty = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         dinvoiceid = new javax.swing.JTextField();
         dcustid = new javax.swing.JTextField();
         dsearch = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        dlisttext = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        dcustt = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
+        dcustsearchtext = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         Donedeleiver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Donedeleiver.setText("Done");
@@ -102,10 +104,18 @@ public class Delivery extends javax.swing.JFrame {
         Donedeleiver.setPreferredSize(new java.awt.Dimension(130, 36));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1366, 768));
         setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("Manage Customer Details");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(49, 169, 259, 40);
 
         dTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,27 +135,38 @@ public class Delivery extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(dTable);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 930, 509));
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(520, 329, 764, 320);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Delivery");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, 39));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(740, 10, 100, 39);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("Delivery ID");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 60, -1, -1));
-        getContentPane().add(delivid, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 58, 137, -1));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(26, 71, 130, 20);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        delivid.setEditable(false);
+        delivid.setBackground(new java.awt.Color(102, 153, 255));
+        delivid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(delivid);
+        delivid.setBounds(180, 61, 210, 30);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Address");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 412, -1, -1));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(26, 398, 110, 20);
 
         daddress.setColumns(20);
+        daddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         daddress.setRows(5);
         jScrollPane2.setViewportView(daddress);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 378, 199, -1));
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(180, 400, 210, 90);
 
         Mapdeliver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Mapdeliver.setText("Map");
@@ -157,11 +178,13 @@ public class Delivery extends javax.swing.JFrame {
                 MapdeliverActionPerformed(evt);
             }
         });
-        getContentPane().add(Mapdeliver, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 502, -1, -1));
+        getContentPane().add(Mapdeliver);
+        Mapdeliver.setBounds(150, 520, 130, 36);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Status");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 560, -1, -1));
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(43, 580, 100, 20);
 
         ddeli.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ddeli.setSelected(true);
@@ -171,20 +194,24 @@ public class Delivery extends javax.swing.JFrame {
                 ddeliActionPerformed(evt);
             }
         });
-        getContentPane().add(ddeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 556, -1, -1));
+        getContentPane().add(ddeli);
+        ddeli.setBounds(153, 576, 81, 25);
 
         dpen.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         dpen.setText("Pending");
-        getContentPane().add(dpen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 556, -1, -1));
+        getContentPane().add(dpen);
+        dpen.setBounds(236, 576, 81, 25);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Payment");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 599, -1, -1));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(40, 620, 120, 20);
 
         ddaid.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ddaid.setSelected(true);
         ddaid.setText("Paid");
-        getContentPane().add(ddaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 599, -1, -1));
+        getContentPane().add(ddaid);
+        ddaid.setBounds(150, 620, 55, 25);
 
         doncash.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         doncash.setText("On cash delivery");
@@ -193,121 +220,149 @@ public class Delivery extends javax.swing.JFrame {
                 doncashActionPerformed(evt);
             }
         });
-        getContentPane().add(doncash, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 599, -1, -1));
+        getContentPane().add(doncash);
+        doncash.setBounds(230, 620, 137, 25);
 
-        delevradd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        delevradd.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         delevradd.setText("Add");
         delevradd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delevraddActionPerformed(evt);
             }
         });
-        getContentPane().add(delevradd, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 680, -1, -1));
+        getContentPane().add(delevradd);
+        delevradd.setBounds(130, 670, 100, 29);
 
-        delevrupdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        delevrupdate.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         delevrupdate.setText("Update");
         delevrupdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delevrupdateActionPerformed(evt);
             }
         });
-        getContentPane().add(delevrupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 680, -1, -1));
+        getContentPane().add(delevrupdate);
+        delevrupdate.setBounds(250, 670, 120, 29);
 
-        delevrdelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        delevrdelete.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         delevrdelete.setText("Delete");
         delevrdelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delevrdeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(delevrdelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 680, -1, -1));
+        getContentPane().add(delevrdelete);
+        delevrdelete.setBounds(380, 670, 110, 29);
 
-        delevrcf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        delevrcf.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         delevrcf.setText("Clear Fields");
         delevrcf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delevrcfActionPerformed(evt);
             }
         });
-        getContentPane().add(delevrcf, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 680, -1, -1));
-        getContentPane().add(ditemcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 109, 138, -1));
+        getContentPane().add(delevrcf);
+        delevrcf.setBounds(500, 670, 140, 29);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Item Name");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 154, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Item Code");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 114, -1, -1));
-        getContentPane().add(ditemname, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 152, 138, -1));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setText("Invoice ID");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 262, -1, -1));
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(26, 241, 130, 20);
 
-        dqty.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dqtyActionPerformed(evt);
-            }
-        });
-        dqty.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                dqtyKeyReleased(evt);
-            }
-        });
-        getContentPane().add(dqty, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 208, 138, -1));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("Quantity");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 210, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel10.setText("Customer ID");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 311, -1, -1));
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(26, 112, 150, 20);
 
+        dinvoiceid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dinvoiceid.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 dinvoiceidKeyReleased(evt);
             }
         });
-        getContentPane().add(dinvoiceid, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 260, 138, -1));
-        getContentPane().add(dcustid, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 309, 138, -1));
+        getContentPane().add(dinvoiceid);
+        dinvoiceid.setBounds(179, 231, 210, 30);
 
+        dcustid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(dcustid);
+        dcustid.setBounds(179, 102, 210, 30);
+
+        dsearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dsearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 dsearchKeyReleased(evt);
             }
         });
-        getContentPane().add(dsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 80, 261, -1));
+        getContentPane().add(dsearch);
+        dsearch.setBounds(750, 280, 261, 30);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Search by Invoice Num");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, -1, -1));
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel11.setText("Search by Invoice Number");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(520, 291, 220, 20);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel12.setText("Delivery List");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(26, 293, 140, 20);
+
+        dlisttext.setColumns(20);
+        dlisttext.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dlisttext.setRows(5);
+        jScrollPane3.setViewportView(dlisttext);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(181, 289, 210, 100);
+
+        dcustt.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        dcustt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dcusttMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(dcustt);
+
+        getContentPane().add(jScrollPane4);
+        jScrollPane4.setBounds(520, 117, 764, 144);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel13.setText("Search Customer by Telephone Number");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(520, 79, 330, 20);
+
+        dcustsearchtext.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dcustsearchtext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                dcustsearchtextKeyTyped(evt);
+            }
+        });
+        getContentPane().add(dcustsearchtext);
+        dcustsearchtext.setBounds(860, 70, 220, 30);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 40, 120, 40));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(1200, 30, 100, 40);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Manage Customer Details");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 675, 230, 40));
-
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jLabel26.setText("jLabel25");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        getContentPane().add(jLabel15);
+        jLabel15.setBounds(0, 0, 1366, 768);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void delevraddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delevraddActionPerformed
@@ -350,24 +405,24 @@ public class Delivery extends javax.swing.JFrame {
     }//GEN-LAST:event_delevrupdateActionPerformed
 
     private void delevrdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delevrdeleteActionPerformed
-      int x = JOptionPane.showConfirmDialog(null, "Do you want to DELETE this record?");
+        int x = JOptionPane.showConfirmDialog(null, "Do you want to DELETE this record?");
         if (x == 0) {
-        try {
-            model.Delivery delivery = readDeliveryFields();
-            int result = DeliveryController.deleteDelivery(delivery);
+            try {
+                model.Delivery delivery = readDeliveryFields();
+                int result = DeliveryController.deleteDelivery(delivery);
 
-            if (result == 1) {
-                JOptionPane.showMessageDialog(this, "deleted successfully");
-                clearDeliveryFields();
-                dTable.setModel(DbUtils.resultSetToTableModel(DeliveryController.getAllDeliveryResultSet()));
-            } else {
+                if (result == 1) {
+                    JOptionPane.showMessageDialog(this, "deleted successfully");
+                    clearDeliveryFields();
+                    dTable.setModel(DbUtils.resultSetToTableModel(DeliveryController.getAllDeliveryResultSet()));
+                } else {
+                    JOptionPane.showMessageDialog(this, "Cannot be deleted");
+
+                }
+            } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Cannot be deleted");
-
+                Logger.getLogger(Delivery.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Cannot be deleted");
-            Logger.getLogger(Delivery.class.getName()).log(Level.SEVERE, null, ex);
-        }
         }
     }//GEN-LAST:event_delevrdeleteActionPerformed
 
@@ -387,24 +442,24 @@ public class Delivery extends javax.swing.JFrame {
         if (dTable.getSelectedRowCount() == 1) {
 
             delivid.setText(dTable.getValueAt(dTable.getSelectedRow(), 0).toString());
-            ditemcode.setText(dTable.getValueAt(dTable.getSelectedRow(), 1).toString());
-            ditemname.setText(dTable.getValueAt(dTable.getSelectedRow(), 2).toString());
-            dqty.setText(dTable.getValueAt(dTable.getSelectedRow(), 3).toString());
-            if (dTable.getValueAt(dTable.getSelectedRow(), 4).toString().equals(Constants.DELIVERY_PAYMENT_PAID)) {
+            dlisttext.setText(dTable.getValueAt(dTable.getSelectedRow(), 1).toString());
+            if (dTable.getValueAt(dTable.getSelectedRow(), 2).toString().equals(Constants.DELIVERY_PAYMENT_PAID)) {
                 ddaid.setSelected(true);
             } else {
                 doncash.setSelected(true);
 
             }
-            daddress.setText(dTable.getValueAt(dTable.getSelectedRow(), 5).toString());
-            if (dTable.getValueAt(dTable.getSelectedRow(), 6).toString().equals(Constants.DELIVERY_STATUS_DELIVERED)) {
+            daddress.setText(dTable.getValueAt(dTable.getSelectedRow(), 3).toString());
+            if (dTable.getValueAt(dTable.getSelectedRow(), 4).toString().equals(Constants.DELIVERY_STATUS_DELIVERED)) {
                 delevradd.setSelected(true);
             } else {
                 dpen.setSelected(true);
 
             }
-            dinvoiceid.setText(dTable.getValueAt(dTable.getSelectedRow(), 7).toString());
-            dcustid.setText(dTable.getValueAt(dTable.getSelectedRow(), 8).toString());
+            dinvoiceid.setText(dTable.getValueAt(dTable.getSelectedRow(), 5).toString());
+            
+            dcustid.setText(dTable.getValueAt(dTable.getSelectedRow(), 6).toString());
+            
 
 //               
 //               
@@ -419,48 +474,56 @@ public class Delivery extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dsearchKeyReleased
 
-    private void dqtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dqtyKeyReleased
-         if(!ValidationChecker.isInteger(dqty.getText()) && !dqty.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Please enter a valid quantity");
-        }
-    }//GEN-LAST:event_dqtyKeyReleased
-
     private void dinvoiceidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dinvoiceidKeyReleased
-         if(!ValidationChecker.isInteger(dinvoiceid.getText()) && !dinvoiceid.getText().isEmpty()){
+        if (!ValidationChecker.isInteger(dinvoiceid.getText()) && !dinvoiceid.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter integers only");
         }
     }//GEN-LAST:event_dinvoiceidKeyReleased
 
-    private void dqtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dqtyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dqtyActionPerformed
-
     private void MapdeliverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MapdeliverActionPerformed
-      
+
         try {
-            
-            String URL ="https://www.google.lk/maps?source=tldsi&hl=en";
+
+            String URL = "https://www.google.lk/maps?source=tldsi&hl=en";
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(URL));
-            
-        }
-        catch (Exception e){
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-    
+
 
     }//GEN-LAST:event_MapdeliverActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Payment pay = new Payment();
-        pay.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Customer cus = new Customer();
         cus.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void dcusttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dcusttMouseClicked
+        if (dcustt.getSelectedRowCount() == 1) {
+
+            dcustid.setText(dcustt.getValueAt(dcustt.getSelectedRow(), 0).toString());
+            daddress.setText(dcustt.getValueAt(dcustt.getSelectedRow(), 2).toString());
+
+        }
+    }//GEN-LAST:event_dcusttMouseClicked
+
+    private void dcustsearchtextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcustsearchtextKeyTyped
+       try {
+                if (!dcustsearchtext.getText().isEmpty()) {
+                    dcustt.setModel(DbUtils.resultSetToTableModel(CustomerController.searchCustomerByTele(dcustsearchtext.getText())));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+    }//GEN-LAST:event_dcustsearchtextKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Payment pay = new Payment();
+        pay.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -488,6 +551,7 @@ public class Delivery extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Delivery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
@@ -502,6 +566,8 @@ public class Delivery extends javax.swing.JFrame {
     private javax.swing.JTable dTable;
     private javax.swing.JTextArea daddress;
     private javax.swing.JTextField dcustid;
+    private javax.swing.JTextField dcustsearchtext;
+    private javax.swing.JTable dcustt;
     private javax.swing.JRadioButton ddaid;
     private javax.swing.JRadioButton ddeli;
     private javax.swing.JButton delevradd;
@@ -510,52 +576,47 @@ public class Delivery extends javax.swing.JFrame {
     private javax.swing.JButton delevrupdate;
     private javax.swing.JTextField delivid;
     private javax.swing.JTextField dinvoiceid;
-    private javax.swing.JTextField ditemcode;
-    private javax.swing.JTextField ditemname;
+    private javax.swing.JTextArea dlisttext;
     private javax.swing.JRadioButton doncash;
     private javax.swing.JRadioButton dpen;
-    private javax.swing.JTextField dqty;
     private javax.swing.JTextField dsearch;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 
     private model.Delivery readDeliveryFields() {
-        String id = delivid.getText();
-        String code = ditemcode.getText();
-        String name = ditemname.getText();
-        Integer qty = new Integer(dqty.getText());
+        
+        String dlist = dlisttext.getText();
         Integer invoiceId = new Integer(dinvoiceid.getText());
-        String customer = dcustid.getText();
+        Integer customer = new Integer(dcustid.getText());
         String address = daddress.getText();
         String status = ddeli.isSelected() ? Constants.DELIVERY_STATUS_DELIVERED : Constants.DELIVERY_STATUS_PENDING;
         String payment = ddaid.isSelected() ? Constants.DELIVERY_PAYMENT_PAID : Constants.DELIVERY_STATUS_ON_CASH;
 
-        model.Delivery delivery = new model.Delivery(id, code, name, qty, payment, address, status, invoiceId, customer);
+        model.Delivery delivery = new model.Delivery(dlist, payment, address, status, invoiceId, customer);
         return delivery;
     }
 
     private void clearDeliveryFields() {
 
         delivid.setText("");
-        ditemcode.setText("");
-        ditemname.setText("");
-        dqty.setText("");
         dinvoiceid.setText("");
+        dlisttext.setText("");
         dcustid.setText("");
         daddress.setText("");
         ddeli.setSelected(true);

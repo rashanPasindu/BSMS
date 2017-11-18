@@ -23,7 +23,7 @@ public class VehicleController {
     
     public static int addNormalVehicle(Vehicle vehicle) throws SQLException{
         int result=0;
-        String q = "INSERT INTO vehicle(vehicle_ID,vehicle_type,vehicle_number,vehicle_cost) values ('" + vehicle.getVehicle_ID()+ "','" + vehicle.getVehicle_type()+ "','" + vehicle.getVehicle_number()+ "'," + vehicle.getVehicle_cost()+ ")";
+        String q = "INSERT INTO vehicle(vehicle_ID,vehicle_type,vehicle_number,vehicle_cost,Date) values ('" + vehicle.getVehicle_ID()+ "','" + vehicle.getVehicle_type()+ "','" + vehicle.getVehicle_number()+ "'," + vehicle.getVehicle_cost()+ ", '" + vehicle.getDate()+"')";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -43,7 +43,7 @@ public class VehicleController {
     
     public static int updateNormalVehicle(Vehicle vehicle) throws SQLException{
         int result=0;
-        String q = "UPDATE vehicle  SET vehicle_type='" + vehicle.getVehicle_type()+ "',vehicle_number='" + vehicle.getVehicle_number()+ "',vehicle_cost=" + vehicle.getVehicle_cost()+ " where vehicle_ID='"+vehicle.getVehicle_ID()+"' ";
+        String q = "UPDATE vehicle  SET vehicle_type='" + vehicle.getVehicle_type()+ "',vehicle_number='" + vehicle.getVehicle_number()+ "',vehicle_cost=" + vehicle.getVehicle_cost()+ ",Date='" + vehicle.getDate()+ "' where vehicle_ID='"+vehicle.getVehicle_ID()+"' ";
                                                                                                                
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -62,7 +62,9 @@ public class VehicleController {
     
     
     public static int addLeasedVehicle(Vehicle vehicle) throws SQLException{
-        int result= addNormalVehicle(vehicle);
+         int result= addNormalVehicle(vehicle); 
+            System.out.println(result);
+         
         if(result == 1){
             result= LeasedVehicleController.addLeasedVehicle(vehicle.getLeasedVehicle());
             
@@ -101,9 +103,11 @@ public class VehicleController {
     
     
      public static ResultSet getAllLeasedVAsResultSet() throws SQLException{
-        String sql="select vehicle.vehicle_ID,vehicle.vehicle_type,vehicle.vehicle_number,vehicle.vehicle_cost,"
-                + "leased_vehicle.Initial_Pay,leased_vehicle.installment_Fee,leased_vehicle.leased_Company,leased_vehicle.installment_Scheme,leased_vehicle.noOFYears,leased_vehicle.startDate,leased_vehicle.endDate,leased_vehicle.Leased_Year"
+        String sql="select vehicle.vehicle_ID,vehicle.vehicle_type,vehicle.vehicle_number,vehicle.vehicle_cost"
+                + ",leased_vehicle.Initial_Pay,leased_vehicle.installment_Fee,leased_vehicle.leased_Company,leased_vehicle.installment_Scheme,leased_vehicle.noOFYears,leased_vehicle.startDate,leased_vehicle.endDate,leased_vehicle.Leased_Year"
                 + " from vehicle INNER JOIN leased_vehicle ON vehicle.vehicle_ID =leased_vehicle.vehicle_ID  ";
+
+//           String sql="select * from leased_vehicle";
         
         PreparedStatement pst= con.prepareStatement(sql);
         ResultSet rs=pst.executeQuery();
@@ -114,15 +118,32 @@ public class VehicleController {
      
      
       public static Vehicle getVehicleByID(String id) throws SQLException{
-        String sql="select vehicle_ID,vehicle_type,vehicle_number,vehicle_cost from vehicle WHERE vehicle_ID='"+id+"'";
+        String sql="select vehicle_ID,vehicle_type,vehicle_number,vehicle_cost,Date from vehicle WHERE vehicle_ID='"+id+"'";
         Vehicle vehicle=null;
         PreparedStatement pst= con.prepareStatement(sql);
         ResultSet rs=pst.executeQuery();
         while (rs.next()) {
             
-            vehicle =new Vehicle(rs.getString("vehicle_ID"), rs.getString("vehicle_type"),rs.getString("vehicle_number"), rs.getInt("vehicle_cost"));
+            vehicle =new Vehicle(rs.getString("vehicle_ID"), rs.getString("vehicle_type"),rs.getString("vehicle_number"), rs.getInt("vehicle_cost"), rs.getString("Date"));
         }
         return vehicle;
     }
     
+      public static ResultSet getAllVforfuelResultSet() throws SQLException{
+        String sql= "select vehicle_ID,vehicle_number from vehicle";
+        
+        PreparedStatement pst= con.prepareStatement(sql);
+        ResultSet rs=pst.executeQuery();
+        
+        return rs;
+    }
+      
+      public static ResultSet searcVehiforFuel(String vehicle_number) throws SQLException{
+        String sql="select vehicle_ID,vehicle_number from vehicle WHERE vehicle_number LIKE '"+vehicle_number+"%' "; 
+        
+        PreparedStatement pst= con.prepareStatement(sql);
+        ResultSet rs=pst.executeQuery();
+        
+        return rs;
+    }
 }

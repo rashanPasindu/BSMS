@@ -9,12 +9,15 @@ import DBConnect.DBconnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.JTextComponent;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -26,11 +29,7 @@ public class assignsal extends javax.swing.JInternalFrame {
     PreparedStatement pst =null;
     ResultSet rs=null;
     
-    
-    /**
-     * Creates new form assign salary
-     */
-    
+       
     
     public assignsal() {
         initComponents();
@@ -89,25 +88,15 @@ public class assignsal extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         datebox = new com.toedter.calendar.JDateChooser();
         jButton5 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(1329, 649));
-        setMinimumSize(new java.awt.Dimension(1329, 649));
-        setPreferredSize(new java.awt.Dimension(1329, 649));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Employee Salary");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("ID");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Salary ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Assign");
@@ -119,18 +108,18 @@ public class assignsal extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 230, 114, -1));
-        getContentPane().add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 160, -1));
-        getContentPane().add(c, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, 160, -1));
+
+        c.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cKeyReleased(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Rs");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 19, -1));
-        getContentPane().add(b, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 160, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Name");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, -1));
 
         sal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,14 +139,10 @@ public class assignsal extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(sal);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 413, 133));
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Assigned Date");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
 
         datebox.setDateFormatString("yyyy-MM-dd");
-        getContentPane().add(datebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, 160, -1));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Clear Fields");
@@ -169,10 +154,79 @@ public class assignsal extends javax.swing.JInternalFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 300, 114, -1));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bill/backgrnd1.png"))); // NOI18N
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 700));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLabel3))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5))
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(b)
+                                        .addComponent(a)
+                                        .addComponent(datebox, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                                    .addComponent(c, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(a, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(b, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(c, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(datebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(150, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -181,26 +235,29 @@ public class assignsal extends javax.swing.JInternalFrame {
      
             //add records
         String aa=a.getText();
-        String cc=c.getText();
+        float cc=Float.parseFloat(c.getText());
         String date;
-        date = ((JTextComponent)datebox.getDateEditor().getUiComponent()).getText();
+        date = ((JTextField)datebox.getDateEditor().getUiComponent()).getText();
         
         
-         try{
-                String sql="update salary_level set Salary='"+cc+"',Assigned_Date='"+date+"' where Emp_ID='"+aa+"' ";
-                pst=con.prepareStatement(sql);
-                pst.execute();
+        if(!(c.getText().isEmpty()) && !(((JTextField)datebox.getDateEditor().getUiComponent()).getText().isEmpty()))
+        {
+          
+                assignsal_class x=new assignsal_class();
                 
-                String sql2="update loans set Salary='"+cc+"' where Emp_ID='"+aa+"' ";
-                pst=con.prepareStatement(sql2);
-                pst.execute();
-                
+                x.setId(aa);
+                x.setSalary(cc);
+                x.setDt(date);
+                x.insert();
                 tableload();
                 clearfields();
-
-            }
-            catch(Exception e)
-            {}
+                   
+    }
+          else
+        {
+        JOptionPane.showMessageDialog(this, "Please enter all the required fields","Error",JOptionPane.ERROR_MESSAGE); 
+            clearfields();
+         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -213,13 +270,10 @@ public class assignsal extends javax.swing.JInternalFrame {
         
         String Id=sal.getValueAt(r, 0).toString();
         String nm=sal.getValueAt(r, 1).toString();
-       // String sl=sal.getValueAt(r, 2).toString();
-       // Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(r, 3).toString());
-
+      
         a.setText(Id);
         b.setText(nm);
-      //  c.setText(sl);
-      //  datebox.setDate(date);
+      
         }
         catch(Exception e)
         {}
@@ -230,6 +284,25 @@ public class assignsal extends javax.swing.JInternalFrame {
         clearfields();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void cKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cKeyReleased
+        // salary validation
+           String a=c.getText();
+        int b=0;
+        
+       
+        for(int i=0;i<a.length();i++)
+        {
+            if(!Character.isDigit(a.charAt(i)))
+                b=1;    
+        }
+        
+        if(b==1)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid Integer");
+            c.setText("");
+        }
+    }//GEN-LAST:event_cKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField a;
@@ -239,7 +312,6 @@ public class assignsal extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

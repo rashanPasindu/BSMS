@@ -46,7 +46,6 @@ public class AddResource extends javax.swing.JFrame {
         try {
             initComponents();
             con = DBconnect.connect();
-            //table load
             tableload();
             otable.setModel(DbUtils.resultSetToTableModel(VehicleController.getAllNormalVAsResultSet()));
             otherRTable.setModel(DbUtils.resultSetToTableModel(OtherResourcesController.getAllOtherResoucesAsResultSet()));
@@ -60,7 +59,7 @@ public class AddResource extends javax.swing.JFrame {
     public void tableload() {
         try {
             String sql = "SELECT equi_id,equi_name,brand,serial,value FROM equipment";
-
+    
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
 
@@ -79,75 +78,6 @@ public class AddResource extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        lvehsdate = new com.toedter.calendar.JDateChooser();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        lvehid = new javax.swing.JTextField();
-        lvehcom = new javax.swing.JTextField();
-        lvehedate = new com.toedter.calendar.JDateChooser();
-        lvehny = new javax.swing.JTextField();
-        lvehinsche = new javax.swing.JComboBox<>();
-        lvehinsfee = new javax.swing.JTextField();
-        lvehinipay = new javax.swing.JTextField();
-        lvehcost = new javax.swing.JTextField();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        leasedTable = new javax.swing.JTable();
-        addleasedvehi = new javax.swing.JButton();
-        editleasedvehi = new javax.swing.JButton();
-        deleteleasedvehi = new javax.swing.JButton();
-        cfleasedvehi = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        lvehtype = new javax.swing.JTextField();
-        jLabel33 = new javax.swing.JLabel();
-        lvehnum = new javax.swing.JTextField();
-        lvehlyear = new javax.swing.JTextField();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        otable = new javax.swing.JTable();
-        ovehid = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        ovehtype = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        ovehcost = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        ovehnum = new javax.swing.JTextField();
-        addownedveh = new javax.swing.JButton();
-        updateownedveh = new javax.swing.JButton();
-        deleteownedveh = new javax.swing.JButton();
-        cfownedveh = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        orid = new javax.swing.JTextField();
-        ortype = new javax.swing.JTextField();
-        ordes = new javax.swing.JTextField();
-        orval = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        otherRTable = new javax.swing.JTable();
-        addotherr = new javax.swing.JButton();
-        updateotherr = new javax.swing.JButton();
-        deleteotherr = new javax.swing.JButton();
-        cfotherr = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        oadate = new com.toedter.calendar.JDateChooser();
-        jLabel21 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -165,69 +95,327 @@ public class AddResource extends javax.swing.JFrame {
         editequpment = new javax.swing.JButton();
         deleteequpment = new javax.swing.JButton();
         cfequpment = new javax.swing.JButton();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        aedate = new com.toedter.calendar.JDateChooser();
+        jLabel19 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        lvehid = new javax.swing.JTextField();
+        lvehcom = new javax.swing.JTextField();
+        lvehny = new javax.swing.JTextField();
+        lvehinsche = new javax.swing.JComboBox<>();
+        lvehinsfee = new javax.swing.JTextField();
+        lvehinipay = new javax.swing.JTextField();
+        lvehcost = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        leasedTable = new javax.swing.JTable();
+        addleasedvehi = new javax.swing.JButton();
+        editleasedvehi = new javax.swing.JButton();
+        deleteleasedvehi = new javax.swing.JButton();
+        cfleasedvehi = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        lvehtype = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        lvehnum = new javax.swing.JTextField();
+        lvehlyear = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        lvehsdate = new com.toedter.calendar.JDateChooser();
+        lvehedate = new com.toedter.calendar.JDateChooser();
+        jLabel21 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        otable = new javax.swing.JTable();
+        cfownedveh = new javax.swing.JButton();
+        arvdate = new com.toedter.calendar.JDateChooser();
+        jLabel35 = new javax.swing.JLabel();
+        ovehid = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        ovehtype = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        ovehcost = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        ovehnum = new javax.swing.JTextField();
+        addownedveh = new javax.swing.JButton();
+        updateownedveh = new javax.swing.JButton();
+        deleteownedveh = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        orid = new javax.swing.JTextField();
+        ortype = new javax.swing.JTextField();
+        ordes = new javax.swing.JTextField();
+        orval = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        otherRTable = new javax.swing.JTable();
+        addotherr = new javax.swing.JButton();
+        updateotherr = new javax.swing.JButton();
+        deleteotherr = new javax.swing.JButton();
+        cfotherr = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        oadate = new com.toedter.calendar.JDateChooser();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1366, 768));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(1366, 768));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1366, 768));
 
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(null);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel2.setText("Equipment ID");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(24, 81, 130, 20);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel3.setText("Equipment Name");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(24, 144, 150, 20);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel4.setText("Brand");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(24, 201, 80, 20);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setText("Value");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(24, 339, 70, 20);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel6.setText("Serial Number");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(24, 267, 130, 20);
+
+        eqid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        eqid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eqidActionPerformed(evt);
+            }
+        });
+        jPanel1.add(eqid);
+        eqid.setBounds(174, 71, 180, 30);
+
+        eqname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        eqname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eqnameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(eqname);
+        eqname.setBounds(174, 134, 180, 30);
+
+        brand.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        brand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brandActionPerformed(evt);
+            }
+        });
+        jPanel1.add(brand);
+        brand.setBounds(174, 191, 180, 30);
+
+        senum.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(senum);
+        senum.setBounds(174, 257, 180, 30);
+
+        val.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        val.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valKeyReleased(evt);
+            }
+        });
+        jPanel1.add(val);
+        val.setBounds(174, 326, 180, 30);
+
+        eqtable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Equipment ID", "Equipment Name", "Brand", "Serial Number", "Value", "Date"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        eqtable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eqtableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(eqtable);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(430, 70, 840, 411);
+
+        addequpment.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addequpment.setText("Add");
+        addequpment.setMaximumSize(new java.awt.Dimension(130, 36));
+        addequpment.setMinimumSize(new java.awt.Dimension(130, 36));
+        addequpment.setPreferredSize(new java.awt.Dimension(130, 36));
+        addequpment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addequpmentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(addequpment);
+        addequpment.setBounds(24, 520, 132, 38);
+
+        editequpment.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        editequpment.setText("Edit");
+        editequpment.setMaximumSize(new java.awt.Dimension(130, 36));
+        editequpment.setMinimumSize(new java.awt.Dimension(130, 36));
+        editequpment.setPreferredSize(new java.awt.Dimension(130, 36));
+        editequpment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editequpmentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(editequpment);
+        editequpment.setBounds(174, 521, 130, 36);
+
+        deleteequpment.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        deleteequpment.setText("Delete");
+        deleteequpment.setMaximumSize(new java.awt.Dimension(130, 36));
+        deleteequpment.setMinimumSize(new java.awt.Dimension(130, 36));
+        deleteequpment.setPreferredSize(new java.awt.Dimension(130, 36));
+        deleteequpment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteequpmentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(deleteequpment);
+        deleteequpment.setBounds(314, 521, 130, 36);
+
+        cfequpment.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cfequpment.setText("Clear Fileds");
+        cfequpment.setMaximumSize(new java.awt.Dimension(130, 36));
+        cfequpment.setMinimumSize(new java.awt.Dimension(130, 36));
+        cfequpment.setPreferredSize(new java.awt.Dimension(130, 36));
+        cfequpment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cfequpmentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cfequpment);
+        cfequpment.setBounds(462, 521, 130, 36);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel8.setText("Aquired Date");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(24, 407, 120, 20);
+
+        aedate.setDateFormatString("yyyy-MM-dd");
+        jPanel1.add(aedate);
+        aedate.setBounds(174, 394, 180, 30);
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        jPanel1.add(jLabel19);
+        jLabel19.setBounds(0, 0, 1360, 610);
+
+        jTabbedPane1.addTab("Equipments", jPanel1);
+
         jTabbedPane2.setMaximumSize(new java.awt.Dimension(1366, 768));
         jTabbedPane2.setMinimumSize(new java.awt.Dimension(1366, 768));
 
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 53, -1, -1));
+        jPanel6.setLayout(null);
+        jPanel6.add(jLabel10);
+        jLabel10.setBounds(22, 53, 0, 0);
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel24.setText("Vehicle ID");
-        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 55, -1, -1));
+        jPanel6.add(jLabel24);
+        jLabel24.setBounds(28, 22, 110, 20);
 
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel25.setText("Leased company");
-        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 188, -1, -1));
+        jPanel6.add(jLabel25);
+        jLabel25.setBounds(28, 138, 160, 20);
 
-        lvehsdate.setDateFormatString("yyyy-MM-dd");
-        jPanel6.add(lvehsdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 226, 124, -1));
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel26.setText("Start date");
-        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 231, -1, -1));
+        jPanel6.add(jLabel26);
+        jLabel26.setBounds(28, 179, 110, 20);
 
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel27.setText("End date");
-        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 284, -1, -1));
+        jPanel6.add(jLabel27);
+        jLabel27.setBounds(28, 217, 110, 20);
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel28.setText("No: of years");
-        jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 321, -1, -1));
+        jPanel6.add(jLabel28);
+        jLabel28.setBounds(28, 252, 130, 20);
 
-        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel29.setText("Installment scheme");
-        jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 361, -1, -1));
+        jPanel6.add(jLabel29);
+        jLabel29.setBounds(28, 290, 180, 20);
 
-        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel30.setText("Installement fee");
-        jPanel6.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 401, -1, -1));
+        jPanel6.add(jLabel30);
+        jLabel30.setBounds(28, 328, 160, 20);
 
-        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel31.setText("Initial payment");
-        jPanel6.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 449, -1, -1));
+        jPanel6.add(jLabel31);
+        jLabel31.setBounds(28, 366, 150, 20);
 
-        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel32.setText("Total cost");
-        jPanel6.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 489, -1, -1));
-        jPanel6.add(lvehid, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 53, 124, -1));
-        jPanel6.add(lvehcom, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 186, 124, -1));
+        jPanel6.add(jLabel32);
+        jLabel32.setBounds(28, 404, 110, 20);
 
-        lvehedate.setDateFormatString("yyyy-MM-dd");
-        jPanel6.add(lvehedate, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 279, 124, -1));
+        lvehid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel6.add(lvehid);
+        lvehid.setBounds(191, 12, 150, 30);
 
+        lvehcom.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lvehcom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lvehcomActionPerformed(evt);
+            }
+        });
+        jPanel6.add(lvehcom);
+        lvehcom.setBounds(191, 128, 150, 30);
+
+        lvehny.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lvehny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lvehnyActionPerformed(evt);
+            }
+        });
         lvehny.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 lvehnyKeyReleased(evt);
@@ -236,11 +424,20 @@ public class AddResource extends javax.swing.JFrame {
                 lvehnyKeyTyped(evt);
             }
         });
-        jPanel6.add(lvehny, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 319, 124, -1));
+        jPanel6.add(lvehny);
+        lvehny.setBounds(191, 242, 150, 30);
 
+        lvehinsche.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lvehinsche.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4 months", "6months", "12 months" }));
-        jPanel6.add(lvehinsche, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 359, 124, -1));
+        jPanel6.add(lvehinsche);
+        lvehinsche.setBounds(191, 280, 150, 30);
 
+        lvehinsfee.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lvehinsfee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lvehinsfeeActionPerformed(evt);
+            }
+        });
         lvehinsfee.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 lvehinsfeeKeyReleased(evt);
@@ -249,8 +446,10 @@ public class AddResource extends javax.swing.JFrame {
                 lvehinsfeeKeyTyped(evt);
             }
         });
-        jPanel6.add(lvehinsfee, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 399, 124, -1));
+        jPanel6.add(lvehinsfee);
+        lvehinsfee.setBounds(191, 318, 150, 30);
 
+        lvehinipay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lvehinipay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lvehinipayActionPerformed(evt);
@@ -264,8 +463,10 @@ public class AddResource extends javax.swing.JFrame {
                 lvehinipayKeyTyped(evt);
             }
         });
-        jPanel6.add(lvehinipay, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 447, 127, -1));
+        jPanel6.add(lvehinipay);
+        lvehinipay.setBounds(191, 356, 150, 30);
 
+        lvehcost.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lvehcost.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 lvehcostKeyReleased(evt);
@@ -274,7 +475,8 @@ public class AddResource extends javax.swing.JFrame {
                 lvehcostKeyTyped(evt);
             }
         });
-        jPanel6.add(lvehcost, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 487, 127, -1));
+        jPanel6.add(lvehcost);
+        lvehcost.setBounds(191, 394, 150, 30);
 
         leasedTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -302,7 +504,8 @@ public class AddResource extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(leasedTable);
 
-        jPanel6.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 22, 997, 442));
+        jPanel6.add(jScrollPane5);
+        jScrollPane5.setBounds(370, 30, 970, 430);
 
         addleasedvehi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         addleasedvehi.setText("Add");
@@ -314,7 +517,8 @@ public class AddResource extends javax.swing.JFrame {
                 addleasedvehiActionPerformed(evt);
             }
         });
-        jPanel6.add(addleasedvehi, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 502, -1, -1));
+        jPanel6.add(addleasedvehi);
+        addleasedvehi.setBounds(30, 490, 130, 36);
 
         editleasedvehi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         editleasedvehi.setText("Edit");
@@ -326,7 +530,8 @@ public class AddResource extends javax.swing.JFrame {
                 editleasedvehiActionPerformed(evt);
             }
         });
-        jPanel6.add(editleasedvehi, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 502, -1, -1));
+        jPanel6.add(editleasedvehi);
+        editleasedvehi.setBounds(180, 490, 130, 36);
 
         deleteleasedvehi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deleteleasedvehi.setText("Delete");
@@ -338,7 +543,8 @@ public class AddResource extends javax.swing.JFrame {
                 deleteleasedvehiActionPerformed(evt);
             }
         });
-        jPanel6.add(deleteleasedvehi, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 502, -1, -1));
+        jPanel6.add(deleteleasedvehi);
+        deleteleasedvehi.setBounds(340, 490, 130, 36);
 
         cfleasedvehi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cfleasedvehi.setText("Clear fields");
@@ -350,18 +556,28 @@ public class AddResource extends javax.swing.JFrame {
                 cfleasedvehiActionPerformed(evt);
             }
         });
-        jPanel6.add(cfleasedvehi, new org.netbeans.lib.awtextra.AbsoluteConstraints(896, 502, -1, -1));
+        jPanel6.add(cfleasedvehi);
+        cfleasedvehi.setBounds(490, 490, 130, 36);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("Type");
-        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 105, -1, -1));
-        jPanel6.add(lvehtype, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 103, 124, -1));
+        jPanel6.add(jLabel9);
+        jLabel9.setBounds(28, 60, 80, 20);
 
-        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lvehtype.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel6.add(lvehtype);
+        lvehtype.setBounds(191, 52, 150, 30);
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel33.setText("Vehicle Number");
-        jPanel6.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 151, -1, -1));
-        jPanel6.add(lvehnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 151, 124, -1));
+        jPanel6.add(jLabel33);
+        jLabel33.setBounds(28, 100, 150, 20);
 
+        lvehnum.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel6.add(lvehnum);
+        lvehnum.setBounds(191, 90, 150, 30);
+
+        lvehlyear.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lvehlyear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lvehlyearActionPerformed(evt);
@@ -375,34 +591,44 @@ public class AddResource extends javax.swing.JFrame {
                 lvehlyearKeyTyped(evt);
             }
         });
-        jPanel6.add(lvehlyear, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 527, 127, -1));
+        jPanel6.add(lvehlyear);
+        lvehlyear.setBounds(191, 435, 150, 30);
 
-        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel34.setText("Leased year");
-        jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 529, 112, -1));
+        jPanel6.add(jLabel34);
+        jLabel34.setBounds(28, 445, 160, 20);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jLabel11.setText("jLabel11");
-        jPanel6.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 610));
+        lvehsdate.setDateFormatString("yyyy-MM-dd");
+        jPanel6.add(lvehsdate);
+        lvehsdate.setBounds(191, 166, 150, 30);
+
+        lvehedate.setDateFormatString("yyyy-MM-dd");
+        jPanel6.add(lvehedate);
+        lvehedate.setBounds(191, 204, 150, 30);
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        jPanel6.add(jLabel21);
+        jLabel21.setBounds(0, 0, 1360, 610);
 
         jTabbedPane2.addTab("Leased Vehicles", jPanel6);
 
         jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.setLayout(null);
 
         otable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Vehical ID", "Vehical Name", "Modal", "Year", "Vehical Number"
+                "Vehical ID", "Vehical Name", "Modal", "Year", "Vehical Number", "Aquired Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -416,80 +642,8 @@ public class AddResource extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(otable);
 
-        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 1052, 480));
-
-        ovehid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ovehidActionPerformed(evt);
-            }
-        });
-        jPanel4.add(ovehid, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 44, 129, 28));
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("Vehical ID");
-        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 14, 88, -1));
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel17.setText("Vehical Type ");
-        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 14, -1, -1));
-        jPanel4.add(ovehtype, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 44, 125, 28));
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setText("Cost");
-        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(638, 14, -1, -1));
-
-        ovehcost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ovehcostActionPerformed(evt);
-            }
-        });
-        ovehcost.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                ovehcostKeyReleased(evt);
-            }
-        });
-        jPanel4.add(ovehcost, new org.netbeans.lib.awtextra.AbsoluteConstraints(638, 44, 121, 28));
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel20.setText("Vehical Number");
-        jPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 14, -1, -1));
-        jPanel4.add(ovehnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 44, 146, 28));
-
-        addownedveh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        addownedveh.setText("Add");
-        addownedveh.setMaximumSize(new java.awt.Dimension(130, 36));
-        addownedveh.setMinimumSize(new java.awt.Dimension(130, 36));
-        addownedveh.setPreferredSize(new java.awt.Dimension(130, 36));
-        addownedveh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addownedvehActionPerformed(evt);
-            }
-        });
-        jPanel4.add(addownedveh, new org.netbeans.lib.awtextra.AbsoluteConstraints(1152, 144, -1, -1));
-
-        updateownedveh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        updateownedveh.setText("Edit");
-        updateownedveh.setMaximumSize(new java.awt.Dimension(130, 36));
-        updateownedveh.setMinimumSize(new java.awt.Dimension(130, 36));
-        updateownedveh.setPreferredSize(new java.awt.Dimension(130, 36));
-        updateownedveh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateownedvehActionPerformed(evt);
-            }
-        });
-        jPanel4.add(updateownedveh, new org.netbeans.lib.awtextra.AbsoluteConstraints(1152, 198, -1, -1));
-
-        deleteownedveh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        deleteownedveh.setText("Delete");
-        deleteownedveh.setMaximumSize(new java.awt.Dimension(130, 36));
-        deleteownedveh.setMinimumSize(new java.awt.Dimension(130, 36));
-        deleteownedveh.setPreferredSize(new java.awt.Dimension(130, 36));
-        deleteownedveh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteownedvehActionPerformed(evt);
-            }
-        });
-        jPanel4.add(deleteownedveh, new org.netbeans.lib.awtextra.AbsoluteConstraints(1152, 252, -1, -1));
+        jPanel4.add(jScrollPane4);
+        jScrollPane4.setBounds(440, 60, 830, 402);
 
         cfownedveh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cfownedveh.setText("Clear Fields");
@@ -501,54 +655,168 @@ public class AddResource extends javax.swing.JFrame {
                 cfownedvehActionPerformed(evt);
             }
         });
-        jPanel4.add(cfownedveh, new org.netbeans.lib.awtextra.AbsoluteConstraints(1152, 306, -1, -1));
+        jPanel4.add(cfownedveh);
+        cfownedveh.setBounds(485, 487, 130, 36);
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 610));
+        arvdate.setDateFormatString("yyyy-MM-dd");
+        jPanel4.add(arvdate);
+        arvdate.setBounds(170, 380, 160, 30);
 
-        jTabbedPane2.addTab("Owned Vehicals", jPanel4);
+        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel35.setText("Aquired Date");
+        jPanel4.add(jLabel35);
+        jLabel35.setBounds(30, 380, 120, 30);
+
+        ovehid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ovehid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ovehidActionPerformed(evt);
+            }
+        });
+        jPanel4.add(ovehid);
+        ovehid.setBounds(170, 90, 160, 28);
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel16.setText("Vehical ID");
+        jPanel4.add(jLabel16);
+        jLabel16.setBounds(24, 96, 110, 20);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel17.setText("Vehical Type ");
+        jPanel4.add(jLabel17);
+        jLabel17.setBounds(24, 171, 110, 20);
+
+        ovehtype.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel4.add(ovehtype);
+        ovehtype.setBounds(170, 170, 160, 28);
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel18.setText("Cost");
+        jPanel4.add(jLabel18);
+        jLabel18.setBounds(33, 322, 50, 20);
+
+        ovehcost.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ovehcost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ovehcostActionPerformed(evt);
+            }
+        });
+        ovehcost.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ovehcostKeyReleased(evt);
+            }
+        });
+        jPanel4.add(ovehcost);
+        ovehcost.setBounds(170, 320, 160, 28);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel20.setText("Vehical Number");
+        jPanel4.add(jLabel20);
+        jLabel20.setBounds(24, 243, 130, 20);
+
+        ovehnum.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel4.add(ovehnum);
+        ovehnum.setBounds(170, 240, 160, 31);
+
+        addownedveh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addownedveh.setText("Add");
+        addownedveh.setMaximumSize(new java.awt.Dimension(130, 36));
+        addownedveh.setMinimumSize(new java.awt.Dimension(130, 36));
+        addownedveh.setPreferredSize(new java.awt.Dimension(130, 36));
+        addownedveh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addownedvehActionPerformed(evt);
+            }
+        });
+        jPanel4.add(addownedveh);
+        addownedveh.setBounds(59, 487, 130, 36);
+
+        updateownedveh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateownedveh.setText("Edit");
+        updateownedveh.setMaximumSize(new java.awt.Dimension(130, 36));
+        updateownedveh.setMinimumSize(new java.awt.Dimension(130, 36));
+        updateownedveh.setPreferredSize(new java.awt.Dimension(130, 36));
+        updateownedveh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateownedvehActionPerformed(evt);
+            }
+        });
+        jPanel4.add(updateownedveh);
+        updateownedveh.setBounds(197, 487, 130, 36);
+
+        deleteownedveh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        deleteownedveh.setText("Delete");
+        deleteownedveh.setMaximumSize(new java.awt.Dimension(130, 36));
+        deleteownedveh.setMinimumSize(new java.awt.Dimension(130, 36));
+        deleteownedveh.setPreferredSize(new java.awt.Dimension(130, 36));
+        deleteownedveh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteownedvehActionPerformed(evt);
+            }
+        });
+        jPanel4.add(deleteownedveh);
+        deleteownedveh.setBounds(337, 487, 130, 36);
+
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        jPanel4.add(jLabel22);
+        jLabel22.setBounds(0, 0, 1360, 610);
+
+        jTabbedPane2.addTab("Owned Vehicles", jPanel4);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1428, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Motar Vehicals", jPanel2);
+        jTabbedPane1.addTab("Motar Vehicles", jPanel2);
 
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setLayout(null);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel12.setText("Resourse ID");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
+        jPanel3.add(jLabel12);
+        jLabel12.setBounds(51, 132, 110, 20);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel13.setText("Type");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 32, -1, -1));
+        jPanel3.add(jLabel13);
+        jLabel13.setBounds(51, 194, 50, 20);
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setText("Description");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 32, -1, -1));
+        jPanel3.add(jLabel14);
+        jLabel14.setBounds(51, 256, 100, 20);
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel15.setText("Value");
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 32, -1, -1));
+        jPanel3.add(jLabel15);
+        jLabel15.setBounds(51, 318, 50, 20);
 
+        orid.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         orid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 oridActionPerformed(evt);
             }
         });
-        jPanel3.add(orid, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 67, 84, -1));
-        jPanel3.add(ortype, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 67, 100, -1));
-        jPanel3.add(ordes, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 67, 85, -1));
+        jPanel3.add(orid);
+        orid.setBounds(190, 120, 180, 30);
 
+        ortype.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel3.add(ortype);
+        ortype.setBounds(190, 190, 180, 30);
+
+        ordes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel3.add(ordes);
+        ordes.setBounds(190, 250, 180, 30);
+
+        orval.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         orval.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orvalActionPerformed(evt);
@@ -559,7 +827,8 @@ public class AddResource extends javax.swing.JFrame {
                 orvalKeyReleased(evt);
             }
         });
-        jPanel3.add(orval, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 67, 96, -1));
+        jPanel3.add(orval);
+        orval.setBounds(190, 310, 180, 30);
 
         otherRTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -587,7 +856,8 @@ public class AddResource extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(otherRTable);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 1085, 482));
+        jPanel3.add(jScrollPane3);
+        jScrollPane3.setBounds(490, 70, 792, 402);
 
         addotherr.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         addotherr.setText("Add");
@@ -599,7 +869,8 @@ public class AddResource extends javax.swing.JFrame {
                 addotherrActionPerformed(evt);
             }
         });
-        jPanel3.add(addotherr, new org.netbeans.lib.awtextra.AbsoluteConstraints(1186, 199, -1, -1));
+        jPanel3.add(addotherr);
+        addotherr.setBounds(51, 554, 130, 36);
 
         updateotherr.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updateotherr.setText("Edit");
@@ -611,7 +882,8 @@ public class AddResource extends javax.swing.JFrame {
                 updateotherrActionPerformed(evt);
             }
         });
-        jPanel3.add(updateotherr, new org.netbeans.lib.awtextra.AbsoluteConstraints(1186, 253, -1, -1));
+        jPanel3.add(updateotherr);
+        updateotherr.setBounds(207, 554, 130, 36);
 
         deleteotherr.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deleteotherr.setText("Delete");
@@ -623,7 +895,8 @@ public class AddResource extends javax.swing.JFrame {
                 deleteotherrActionPerformed(evt);
             }
         });
-        jPanel3.add(deleteotherr, new org.netbeans.lib.awtextra.AbsoluteConstraints(1186, 307, -1, -1));
+        jPanel3.add(deleteotherr);
+        deleteotherr.setBounds(355, 554, 130, 36);
 
         cfotherr.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cfotherr.setText("Clear Fields");
@@ -635,170 +908,48 @@ public class AddResource extends javax.swing.JFrame {
                 cfotherrActionPerformed(evt);
             }
         });
-        jPanel3.add(cfotherr, new org.netbeans.lib.awtextra.AbsoluteConstraints(1186, 361, -1, -1));
+        jPanel3.add(cfotherr);
+        cfotherr.setBounds(511, 554, 130, 36);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("Aquired Date");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 33, 106, -1));
+        jPanel3.add(jLabel7);
+        jLabel7.setBounds(51, 381, 110, 20);
 
         oadate.setDateFormatString("yyyy-MM-dd");
-        jPanel3.add(oadate, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 67, 160, -1));
+        jPanel3.add(oadate);
+        oadate.setBounds(190, 370, 180, 30);
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 640));
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        jPanel3.add(jLabel23);
+        jLabel23.setBounds(0, 0, 1360, 610);
 
         jTabbedPane1.addTab("Land and Building", jPanel3);
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Equipment ID");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 49, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Equipment Name");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 49, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Brand");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 49, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Value");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(788, 49, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Serial Number");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(625, 49, -1, -1));
-
-        eqid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eqidActionPerformed(evt);
-            }
-        });
-        jPanel1.add(eqid, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 79, 98, -1));
-        jPanel1.add(eqname, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 79, 99, -1));
-
-        brand.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                brandActionPerformed(evt);
-            }
-        });
-        jPanel1.add(brand, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 79, 92, -1));
-        jPanel1.add(senum, new org.netbeans.lib.awtextra.AbsoluteConstraints(625, 79, 82, -1));
-
-        val.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                valKeyReleased(evt);
-            }
-        });
-        jPanel1.add(val, new org.netbeans.lib.awtextra.AbsoluteConstraints(788, 79, 88, -1));
-
-        eqtable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Equipment ID", "Equipment Name", "Brand", "Serial Number", "Value"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        eqtable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                eqtableMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(eqtable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 119, 1046, 474));
-
-        addequpment.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        addequpment.setText("Add");
-        addequpment.setMaximumSize(new java.awt.Dimension(130, 36));
-        addequpment.setMinimumSize(new java.awt.Dimension(130, 36));
-        addequpment.setPreferredSize(new java.awt.Dimension(130, 36));
-        addequpment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addequpmentActionPerformed(evt);
-            }
-        });
-        jPanel1.add(addequpment, new org.netbeans.lib.awtextra.AbsoluteConstraints(1188, 63, 132, 38));
-
-        editequpment.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        editequpment.setText("Edit");
-        editequpment.setMaximumSize(new java.awt.Dimension(130, 36));
-        editequpment.setMinimumSize(new java.awt.Dimension(130, 36));
-        editequpment.setPreferredSize(new java.awt.Dimension(130, 36));
-        editequpment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editequpmentActionPerformed(evt);
-            }
-        });
-        jPanel1.add(editequpment, new org.netbeans.lib.awtextra.AbsoluteConstraints(1188, 119, -1, -1));
-
-        deleteequpment.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        deleteequpment.setText("Delete");
-        deleteequpment.setMaximumSize(new java.awt.Dimension(130, 36));
-        deleteequpment.setMinimumSize(new java.awt.Dimension(130, 36));
-        deleteequpment.setPreferredSize(new java.awt.Dimension(130, 36));
-        deleteequpment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteequpmentActionPerformed(evt);
-            }
-        });
-        jPanel1.add(deleteequpment, new org.netbeans.lib.awtextra.AbsoluteConstraints(1188, 173, -1, -1));
-
-        cfequpment.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cfequpment.setText("Clear Fileds");
-        cfequpment.setMaximumSize(new java.awt.Dimension(130, 36));
-        cfequpment.setMinimumSize(new java.awt.Dimension(130, 36));
-        cfequpment.setPreferredSize(new java.awt.Dimension(130, 36));
-        cfequpment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cfequpmentActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cfequpment, new org.netbeans.lib.awtextra.AbsoluteConstraints(1188, 227, -1, -1));
-
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 640));
-
-        jTabbedPane1.addTab("Equipments", jPanel1);
-
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1340, 670));
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 56, 1433, 712);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Resources ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 28, 110, 50));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(747, 11, 110, 39);
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton8.setText("Back");
-        jButton8.setMaximumSize(new java.awt.Dimension(188, 54));
-        jButton8.setMinimumSize(new java.awt.Dimension(188, 54));
-        jButton8.setPreferredSize(new java.awt.Dimension(188, 54));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1182, 28, 140, 40));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(1228, 21, 100, 40);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(0, 0, 1366, 768);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void eqidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eqidActionPerformed
@@ -809,14 +960,6 @@ public class AddResource extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_brandActionPerformed
 
-    private void clearfields() {
-        eqid.setText("");
-        eqname.setText("");
-        brand.setText("");
-        senum.setText("");
-        val.setText("");
-
-    }
 
 
     private void oridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oridActionPerformed
@@ -861,6 +1004,7 @@ public class AddResource extends javax.swing.JFrame {
             String bran = eqtable.getValueAt(r, 2).toString();
             String snum = eqtable.getValueAt(r, 3).toString();
             String value = eqtable.getValueAt(r, 4).toString();
+            ((JTextField)aedate.getDateEditor().getUiComponent()).setText(eqtable.getValueAt(eqtable.getSelectedRow(), 5).toString());
             eqid.setText(id);
             eqname.setText(name);
             brand.setText(bran);
@@ -881,11 +1025,11 @@ public class AddResource extends javax.swing.JFrame {
             Vehicle vehicle = readOwnedTextValues();
             int result = VehicleController.addNormalVehicle(vehicle);
             if (result == 1) {
-                JOptionPane.showMessageDialog(this, "Owned vehicle added successfully");
+                JOptionPane.showMessageDialog(this, "Vehicle added successfully");
                 clearOwnedVfields();
                 otable.setModel(DbUtils.resultSetToTableModel(VehicleController.getAllNormalVAsResultSet()));
             } else {
-                JOptionPane.showMessageDialog(this, "Cannot add the Owned vehicle");
+                JOptionPane.showMessageDialog(this, "Cannot add the vehicle");
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddResource.class.getName()).log(Level.SEVERE, null, ex);
@@ -899,6 +1043,7 @@ public class AddResource extends javax.swing.JFrame {
             ovehtype.setText(otable.getValueAt(otable.getSelectedRow(), 1).toString());
             ovehnum.setText(otable.getValueAt(otable.getSelectedRow(), 2).toString());
             ovehcost.setText(otable.getValueAt(otable.getSelectedRow(), 3).toString());
+            ((JTextField)arvdate.getDateEditor().getUiComponent()).setText(otable.getValueAt(otable.getSelectedRow(), 4).toString());
         }
     }//GEN-LAST:event_otableMouseClicked
 
@@ -907,11 +1052,11 @@ public class AddResource extends javax.swing.JFrame {
             Vehicle vehicle = readOwnedTextValues();
             int result = VehicleController.updateNormalVehicle(vehicle);
             if (result == 1) {
-                JOptionPane.showMessageDialog(this, "Owned vehicle updated successfully");
+                JOptionPane.showMessageDialog(this, "Vehicle updated successfully");
                 clearOwnedVfields();
                 otable.setModel(DbUtils.resultSetToTableModel(VehicleController.getAllNormalVAsResultSet()));
             } else {
-                JOptionPane.showMessageDialog(this, "Cannot update the Owned vehicle");
+                JOptionPane.showMessageDialog(this, "Cannot update the vehicle");
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddResource.class.getName()).log(Level.SEVERE, null, ex);
@@ -925,11 +1070,11 @@ public class AddResource extends javax.swing.JFrame {
                 Vehicle vehicle = readOwnedTextValues();
                 int result = VehicleController.deleteNormalVehicle(vehicle);
                 if (result == 1) {
-                    JOptionPane.showMessageDialog(this, "Owned vehicle deleted successfully");
+                    JOptionPane.showMessageDialog(this, "Vehicle deleted successfully");
                     clearOwnedVfields();
                     otable.setModel(DbUtils.resultSetToTableModel(VehicleController.getAllNormalVAsResultSet()));
                 } else {
-                    JOptionPane.showMessageDialog(this, "Cannot delete the Owned vehicle");
+                    JOptionPane.showMessageDialog(this, "Cannot delete the vehicle");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(AddResource.class.getName()).log(Level.SEVERE, null, ex);
@@ -1220,10 +1365,27 @@ public class AddResource extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_orvalKeyReleased
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-       new RESource1().setVisible(true);
+    private void eqnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eqnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eqnameActionPerformed
+
+    private void lvehcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lvehcomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lvehcomActionPerformed
+
+    private void lvehnyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lvehnyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lvehnyActionPerformed
+
+    private void lvehinsfeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lvehinsfeeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lvehinsfeeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         new RESource1().setVisible(true);
        this.dispose();
-    }//GEN-LAST:event_jButton8ActionPerformed
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1251,6 +1413,7 @@ public class AddResource extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AddResource.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1265,6 +1428,8 @@ public class AddResource extends javax.swing.JFrame {
     private javax.swing.JButton addleasedvehi;
     private javax.swing.JButton addotherr;
     private javax.swing.JButton addownedveh;
+    private com.toedter.calendar.JDateChooser aedate;
+    private com.toedter.calendar.JDateChooser arvdate;
     private javax.swing.JTextField brand;
     private javax.swing.JButton cfequpment;
     private javax.swing.JButton cfleasedvehi;
@@ -1279,7 +1444,7 @@ public class AddResource extends javax.swing.JFrame {
     private javax.swing.JTextField eqid;
     private javax.swing.JTextField eqname;
     private javax.swing.JTable eqtable;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1295,6 +1460,7 @@ public class AddResource extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -1307,6 +1473,7 @@ public class AddResource extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1359,8 +1526,11 @@ public class AddResource extends javax.swing.JFrame {
         String ltype = ovehtype.getText();
         String lnum = ovehnum.getText();
         Integer lcost = new Integer(ovehcost.getText());
+        String vDate = ((JTextField)arvdate.getDateEditor().getUiComponent()).getText();
 
-        Vehicle vehicle = new Vehicle(lid, ltype, lnum, lcost);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Vehicle vehicle = new Vehicle(lid, ltype, lnum, lcost,vDate);
 
         return vehicle;
     }
@@ -1370,6 +1540,7 @@ public class AddResource extends javax.swing.JFrame {
         ovehtype.setText("");
         ovehnum.setText("");
         ovehcost.setText("");
+        arvdate.setDate(null);
     }
 
     private OtherResources readOtherResourceFields() {
@@ -1414,7 +1585,7 @@ public class AddResource extends javax.swing.JFrame {
         String enddate = ((JTextField)lvehedate.getDateEditor().getUiComponent()).getText();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        Vehicle vehicle = new Vehicle(lid, ltype, lnum, lcost);
+        Vehicle vehicle = new Vehicle(lid, ltype, lnum, lcost,startdate);
         LeasedVehicle leasedVehicle = new LeasedVehicle(lid, linipay, linsfee, lcom, inscheme, nyears, startdate, enddate, vehiyear);
         vehicle.setLeasedVehicle(leasedVehicle);
 
@@ -1441,7 +1612,10 @@ public class AddResource extends javax.swing.JFrame {
         String br = brand.getText();
         String sr = senum.getText();
         Float va = new Float(val.getText());
-        Equipment equipment = new Equipment(id, name, br, sr, va);
+        String edate = ((JTextField)aedate.getDateEditor().getUiComponent()).getText();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
+        Equipment equipment = new Equipment(id, name, br, sr, va,edate);
         return equipment;
 
     }
@@ -1452,6 +1626,7 @@ public class AddResource extends javax.swing.JFrame {
         brand.setText("");
         senum.setText("");
         val.setText("");
+        aedate.setDate(null);
     }
 
 }

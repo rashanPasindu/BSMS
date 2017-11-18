@@ -31,13 +31,10 @@ public class Salarynew extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         black = new javax.swing.JDesktopPane();
         jButton3 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Assign Salary");
@@ -46,7 +43,8 @@ public class Salarynew extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 150, 50));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(45, 13, 141, 32);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Calculate Final Pay");
@@ -55,10 +53,8 @@ public class Salarynew extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 180, 50));
-
-        black.setMaximumSize(new java.awt.Dimension(1330, 650));
-        black.setMinimumSize(new java.awt.Dimension(1330, 650));
+        getContentPane().add(jButton2);
+        jButton2.setBounds(256, 14, 159, 31);
 
         javax.swing.GroupLayout blackLayout = new javax.swing.GroupLayout(black);
         black.setLayout(blackLayout);
@@ -68,25 +64,27 @@ public class Salarynew extends javax.swing.JFrame {
         );
         blackLayout.setVerticalGroup(
             blackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
 
-        getContentPane().add(black, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 101, 1330, 650));
+        getContentPane().add(black);
+        black.setBounds(20, 60, 579, 486);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 30, 130, 50));
+        getContentPane().add(jButton3);
+        jButton3.setBounds(490, 10, 86, 32);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bill/backgrnd1.png"))); // NOI18N
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 770));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 610, 560);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -106,9 +104,8 @@ public class Salarynew extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        HRM l=new HRM();
-        l.setVisible(true);
+        HRM a=new HRM();
+        a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -138,6 +135,7 @@ public class Salarynew extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Salarynew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -152,6 +150,6 @@ public class Salarynew extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

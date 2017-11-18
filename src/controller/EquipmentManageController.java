@@ -22,7 +22,7 @@ public class EquipmentManageController {
 
     public static int addEquipmentManage(EquipmentManage equipmentmanage) throws SQLException {
         int result = 0;
-        String q = "INSERT INTO equipmentmang(equipmnt_ID,Description,Date,Cost) values ('" + equipmentmanage.getEquipmnt_ID()+ "','" + equipmentmanage.getDescription()+ "','" + equipmentmanage.getDate()+ "'," + equipmentmanage.getCost()+ ")";
+        String q = "INSERT INTO equipmentmang(equipment_ID,Description,Date,Cost) values ('" + equipmentmanage.getEquipment_ID()+ "','" + equipmentmanage.getDescription()+ "','" + equipmentmanage.getDate()+ "'," + equipmentmanage.getCost()+ ")";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -32,7 +32,7 @@ public class EquipmentManageController {
 
     public static int deleteEquipmentManage(EquipmentManage equipmentmanage) throws SQLException {
         int result = 0;
-        String q = "DELETE from equipmentmang WHERE equipmnt_ID='" + equipmentmanage.getEquipmnt_ID()+ "'";
+        String q = "DELETE from equipmentmang WHERE equipment_ID='" + equipmentmanage.getEquipment_ID()+ "'";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -42,7 +42,7 @@ public class EquipmentManageController {
 
     public static int updateEquipmentManage(EquipmentManage equipmentmanage) throws SQLException {
         int result = 0;
-        String q = "UPDATE equipmentmang  SET Description='" + equipmentmanage.getDescription()+ "',Date='" + equipmentmanage.getDate()+ "',Cost=" + equipmentmanage.getCost()+ " where equipmnt_ID='" + equipmentmanage.getEquipmnt_ID()+ "' ";
+        String q = "UPDATE equipmentmang  SET Description='" + equipmentmanage.getDescription()+ "',Date='" + equipmentmanage.getDate()+ "',Cost=" + equipmentmanage.getCost()+ " where equipment_ID='" + equipmentmanage.getEquipment_ID()+ "' ";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -51,11 +51,22 @@ public class EquipmentManageController {
     }
     
     public static ResultSet getAllEquipmentAsResultSet() throws SQLException{
-        String sql="select equipmnt_ID,Description,Date,Cost from equipmentmang";
+        String sql="select equipment_ID,Description,Date,Cost from equipmentmang";
         
         PreparedStatement pst= con.prepareStatement(sql);
         ResultSet rs=pst.executeQuery();
         
         return rs;
     }
+    
+    public static ResultSet searchEqManbyID(String eqid) throws SQLException{
+        String sql="select equipment_ID,Description,Date,Cost from equipmentmang WHERE equipment_ID LIKE '"+eqid+"%' ";
+        
+        PreparedStatement pst= con.prepareStatement(sql);
+        ResultSet rs=pst.executeQuery();
+        
+        return rs;
+    }
+    
+    
 }

@@ -22,7 +22,7 @@ public class EquipmentController {
     
      public static int addEquipment(Equipment equipment) throws SQLException{
         int result=0;
-        String q = "INSERT INTO equipment(equipmnt_ID,equip_Name,Brand,Serial,Value) values ('" + equipment.getEquipmnt_ID()+ "','" + equipment.getEquip_Name()+ "','" + equipment.getBrand()+ "','" + equipment.getSerial()+ "'," + equipment.getValue()+ ")";
+        String q = "INSERT INTO equipment(equipmnt_ID,equip_Name,Brand,Serial,Value,Date) values ('" + equipment.getEquipmnt_ID()+ "','" + equipment.getEquip_Name()+ "','" + equipment.getBrand()+ "','" + equipment.getSerial()+ "'," + equipment.getValue()+ ",'" + equipment.getDate()+ "')";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -44,7 +44,7 @@ public class EquipmentController {
     
      public static int updateEquipment(Equipment equipment) throws SQLException{
         int result=0;
-        String q = "UPDATE equipment  SET equip_Name='" + equipment.getEquip_Name()+ "',Brand='" + equipment.getBrand()+ "',Serial='" + equipment.getSerial()+ "',Value=" + equipment.getValue()+ " where equipmnt_ID='"+equipment.getEquipmnt_ID()+"' ";
+        String q = "UPDATE equipment  SET equip_Name='" + equipment.getEquip_Name()+ "',Brand='" + equipment.getBrand()+ "',Serial='" + equipment.getSerial()+ "',Value=" + equipment.getValue()+ ", Date='" + equipment.getDate()+ "' where equipmnt_ID='"+equipment.getEquipmnt_ID()+"' ";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -54,11 +54,29 @@ public class EquipmentController {
      
      
      public static ResultSet getAllEqipmentAsResultSet() throws SQLException{
-        String sql="select equipmnt_ID,equip_Name,Brand,Serial,Value from equipment";
+        String sql="select equipmnt_ID,equip_Name,Brand,Serial,Value,Date from equipment";
         
         PreparedStatement pst= con.prepareStatement(sql);
         ResultSet rs=pst.executeQuery();
         
         return rs;
     }
+     
+      public static ResultSet getAllEqipmentRepairAsResultSet() throws SQLException{
+        String sql="select equipmnt_ID,equip_Name,Brand,Serial from equipment";
+        
+        PreparedStatement pst= con.prepareStatement(sql);
+        ResultSet rs=pst.executeQuery();
+        
+        return rs;
+    }
+      
+      public static ResultSet searchEqbyID(String eqid) throws SQLException{
+        String sql="select equipmnt_ID,equip_Name,Brand,Serial from equipment WHERE equipmnt_ID LIKE '"+eqid+"%' ";
+        
+        PreparedStatement pst= con.prepareStatement(sql);
+        ResultSet rs=pst.executeQuery();
+        
+        return rs;
+    }      
 }

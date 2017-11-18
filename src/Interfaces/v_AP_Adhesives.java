@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+
 import DBConnect.DBconnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +29,7 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
     Connection con=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
-    
+//    
     
 
     /**
@@ -49,7 +50,7 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
     {
         try {
  
-        String sql = "SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,p.ProfitMargin,p.CostPerUnit,a.Length"
+        String sql = "SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,a.Length"
                 + " FROM products p,adhersivesandtapes a WHERE p.ProductID=a.ProductID";
         //String sql = "SELECT ProductID,ProductName,ProductType,Date,MRP,Manufacture,Description,Quantity,ProfitMargin,CostPerUnit FROM adhersives&tapes";
         pst = con.prepareStatement(sql);
@@ -74,10 +75,10 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         datebox.setDate(null);
         
         manufacturebox.setText("");
-        profitbox.setText("");
+        //profitbox.setText("");
         spsibox.setText("");
         descriptionbox.setText("");
-        costperunitbox.setText("");
+       // costperunitbox.setText("");
         lengthbox.setText("");
     }
 
@@ -96,26 +97,21 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         pidbox = new javax.swing.JTextField();
         pnamebox = new javax.swing.JTextField();
         quantitybox = new javax.swing.JTextField();
         manufacturebox = new javax.swing.JTextField();
         ptypebox = new javax.swing.JComboBox<>();
-        profitbox = new javax.swing.JTextField();
         spsibox = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         descriptionbox = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tt = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
         datebox = new com.toedter.calendar.JDateChooser();
         jButton4 = new javax.swing.JButton();
-        costperunitbox = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         searchbox = new javax.swing.JTextField();
@@ -142,45 +138,37 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 640, 120, 46));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("Product ID ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("Product Name ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 96, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Quantity ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 188, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Product Type ");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 137, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Manufacture");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 283, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Profit Margin (%)/unit");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 89, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("MRP/unit");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 45, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setText("Description");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 329, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("Date");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 232, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Cost/unit");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 146, -1, -1));
         getContentPane().add(pidbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 38, 227, 33));
         getContentPane().add(pnamebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 88, 227, 33));
 
@@ -199,13 +187,6 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ptypebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 130, 227, 33));
-
-        profitbox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                profitboxKeyReleased(evt);
-            }
-        });
-        getContentPane().add(profitbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(697, 82, 227, 33));
 
         spsibox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -242,15 +223,6 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 416, 1330, 207));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("CALCULATE");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(953, 136, 130, 36));
-
         datebox.setDateFormatString("yyyy-MM-dd");
         getContentPane().add(datebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 232, 227, 33));
 
@@ -262,13 +234,6 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1212, 154, 130, 36));
-
-        costperunitbox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                costperunitboxKeyReleased(evt);
-            }
-        });
-        getContentPane().add(costperunitbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(697, 139, 227, 33));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton6.setText("Delete Item");
@@ -320,16 +285,16 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         jLabel10.setText("Search Products Name");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 371, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel12.setText("Length");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 192, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, -1, -1));
 
         lengthbox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 lengthboxKeyReleased(evt);
             }
         });
-        getContentPane().add(lengthbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(697, 185, 227, 33));
+        getContentPane().add(lengthbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 90, 227, 33));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -339,9 +304,6 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backgrnd1.png"))); // NOI18N
         jLabel14.setName(""); // NOI18N
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
-
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -360,50 +322,70 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
         //ADD ITEMS KODI
-        
+       
         String productid = pidbox.getText();
         String productname = pnamebox.getText();
         String producttype = ptypebox.getSelectedItem().toString();
         String quantity = quantitybox.getText();
        
-       // String date = datebox.getDate().toString()
+      
         String date;
         date = ((JTextField)datebox.getDateEditor().getUiComponent()).getText();
         String manufacture = manufacturebox.getText();
         
-        String profit = profitbox.getText();
+        //String profit = profitbox.getText();
         String spsi = spsibox.getText();
         
         String description = descriptionbox.getText();
-        String costperunit = costperunitbox.getText();
+        //String costperunit = costperunitbox.getText();
         
         String length = lengthbox.getText();
         
+       
+       
+      
+      
         boolean check = true;
         
         if(!(pidbox.getText().isEmpty()) && !( pnamebox.getText().isEmpty()) &&!(ptypebox.getSelectedItem().toString().isEmpty()) &&!(quantitybox.getText().isEmpty()) &&
-        !(((JTextField)datebox.getDateEditor().getUiComponent()).getText().isEmpty()) &&!(manufacturebox.getText().isEmpty()) &&!(profitbox.getText().isEmpty()) &&!(spsibox.getText().isEmpty()) &&
-        !(descriptionbox.getText().isEmpty()) &&!( costperunitbox.getText().isEmpty()) && !(lengthbox.getText().isEmpty()) )
+        !(((JTextField)datebox.getDateEditor().getUiComponent()).getText().isEmpty()) &&!(manufacturebox.getText().isEmpty()) &&!(spsibox.getText().isEmpty()) &&
+        !(descriptionbox.getText().isEmpty()) && !(lengthbox.getText().isEmpty()) )
         {
       
+            adhesives ad=new adhesives();
         
         //To calculate the cost per unit
         
         float mpr = new Float(spsibox.getText());
-        float profit1 = new Float(profitbox.getText());
+        //float profit1 = new Float(profitbox.getText());
         
 //        float calprofit=mpr*(profit1/100);
 //       float costperunit=(mpr-calprofit);
        
+//        
+//        if(costperunit == null || costperunit.isEmpty()){
+//            /*
+//            float calprofit=mpr*(profit1/100);
+//            Float costperunit1=new Float(mpr-calprofit);
+//            costperunit=costperunit1.toString();
+//            */
+//            ad.calCPU(mpr,profit1);
+//        }
+         ad.setProductid(productid);
+         ad.setProductname(productname);
+         ad.setProducttype(producttype);
+         ad.setQuantity(Integer.parseInt(quantity));
+         ad.setDate(date);
+         ad.setManufacture(manufacture);
+       //  ad.setProfit(Float.parseFloat(profit));
+         ad.setSpsi(Float.parseFloat(spsi));
+         ad.setDescription(description);
+       //  ad.setCostperunit(Float.parseFloat(costperunit));
+         ad.setLength( Float.parseFloat(length));
+      
+         ad.insert();
         
-        if(costperunit == null || costperunit.isEmpty()){
-            
-            float calprofit=mpr*(profit1/100);
-            Float costperunit1=new Float(mpr-calprofit);
-            costperunit=costperunit1.toString();
-        }
-        
-
+/*
         try {
             String q= "INSERT INTO products(ProductID,ProductName,ProductType,Date,MRP,Manufacture,Description,Quantity,ProfitMargin,CostPerUnit) values"
                     + " ('"+ productid +"','"+ productname +"','"+ producttype +"','"+ date +"','"+ spsi +"','"+ manufacture +"','"+ description +"','"+ quantity +"','"+ profit +"','"+ costperunit +"')";
@@ -416,7 +398,7 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
             pst = con.prepareStatement(q1);
             pst.execute();
             clearfields();
-            
+          
             //to load the table
             tableload();
           JOptionPane.showMessageDialog(null,"Entry Successfull");
@@ -426,31 +408,15 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
             
             System.out.println(e);
             JOptionPane.showMessageDialog(null,"Entry UN-Successfull");
-        }
+        }*/
+        clearfields();
+        tableload();
         }
         else{
             JOptionPane.showMessageDialog(this, "Please enter all the required fields","Error",JOptionPane.ERROR_MESSAGE); 
             }
        
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
-        
-       float mpr = new Float(spsibox.getText());
-       float profit1 = new Float(profitbox.getText());
-       
-       float calprofit=mpr*(profit1/100);
-       float costperunit=(mpr-calprofit);
-       
-       
-       costperunitbox.setText(String.valueOf(costperunit));
-       
-       
-       
-       
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void ttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ttMouseClicked
      //kodi_to get the seleted value
@@ -471,11 +437,10 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         String description = tt.getValueAt(row, 6).toString();
         String quantity = tt.getValueAt(row, 7).toString();
         
-        //String date = jTable1.getValueAt(row, 4).toString();
   
-        String profit = tt.getValueAt(row, 8).toString();
-        String total = tt.getValueAt(row, 9).toString();
-        String length = tt.getValueAt(row, 10).toString();
+        //String profit = tt.getValueAt(row, 8).toString();
+        //String total = tt.getValueAt(row, 9).toString();
+        String length = tt.getValueAt(row, 8).toString();
         
        
         
@@ -487,10 +452,10 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         datebox.setDate(date);
         
         manufacturebox.setText(manufacture);
-        profitbox.setText(profit);
+        //profitbox.setText(profit);
         spsibox.setText(spsi);
         descriptionbox.setText(description);
-        costperunitbox.setText(total);
+        //costperunitbox.setText(total);
         lengthbox.setText(length);
         
         }
@@ -518,14 +483,29 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         date = ((JTextField)datebox.getDateEditor().getUiComponent()).getText();
         String manufacture = manufacturebox.getText();
         
-        String profit = profitbox.getText();
+        //String profit = profitbox.getText();
         String spsi = spsibox.getText();
         
         String description = descriptionbox.getText();
-        String costperunit = costperunitbox.getText();
+        //String costperunit = costperunitbox.getText();
         
         String length = lengthbox.getText();
         
+         adhesives ad=new adhesives();
+         ad.setProductid(productid);
+         ad.setProductname(productname);
+         ad.setProducttype(producttype);
+         ad.setQuantity(Integer.parseInt(quantity));
+         ad.setDate(date);
+         ad.setManufacture(manufacture);
+         //ad.setProfit(Float.parseFloat(profit));
+         ad.setSpsi(Float.parseFloat(spsi));
+         ad.setDescription(description);
+         //ad.setCostperunit(Float.parseFloat(costperunit));
+         ad.setLength( Float.parseFloat(length));
+        
+         ad.update();
+         /*
         try{
         
             
@@ -551,7 +531,12 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Update Successfull");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Update UN-Successfull");
-        }
+        }*/
+          
+        clearfields();
+        
+        //load table
+        tableload();
         }
         
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -564,8 +549,11 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         if(x==0)
         {
             String productid = pidbox.getText();
-        
-        
+         
+             adhesives ad=new adhesives();
+             ad.setProductid(productid);
+             ad.delete();
+        /*
         try{
         
         String sql="DELETE from products WHERE ProductID ='"+ productid +"'";
@@ -583,7 +571,11 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         
         }catch(Exception e){
            JOptionPane.showMessageDialog(null,"Delete UN-Successfull");
-        }
+        }*/
+          clearfields();
+        
+        //load table
+        tableload();
         }
         
         
@@ -614,7 +606,7 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
        
         String search=searchbox.getText();
         
-        String sql="SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,p.ProfitMargin,p.CostPerUnit,a.Length from products p,adhersivesandtapes a WHERE p.ProductName LIKE '%"+search+"%' AND p.ProductID=a.ProductID";
+        String sql="SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,a.Length from products p,adhersivesandtapes a WHERE p.ProductName LIKE '%"+search+"%' AND p.ProductID=a.ProductID";
         // String sql="SELECT ProductID,ProductName,ProductType,Quantity,Date,MRP,Manufacture,Description,Quantity,ProfitMargin,CostPerUnit FROM products WHERE ProductName LIKE '%"+search+"%'";
         
         try{
@@ -662,7 +654,7 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
         
         String search=searchbox.getText();
         
-        String sql="SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,p.ProfitMargin,p.CostPerUnit,a.Length from products p,adhersivesandtapes a WHERE p.ProductName LIKE '%"+search+"%' AND p.ProductID=a.ProductID";
+        String sql="SELECT p.ProductID,p.ProductName,p.ProductType,p.Date,p.MRP,p.Manufacture,p.Description,p.Quantity,a.Length from products p,adhersivesandtapes a WHERE p.ProductName LIKE '%"+search+"%' AND p.ProductID=a.ProductID";
         // String sql="SELECT ProductID,ProductName,ProductType,Quantity,Date,MRP,Manufacture,Description,Quantity,ProfitMargin,CostPerUnit FROM products WHERE ProductName LIKE '%"+search+"%'";
         
         try{
@@ -695,40 +687,6 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, "Please Enter a Integer value for MRP","Error: Incompatible Type",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_spsiboxKeyReleased
-
-    private void profitboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_profitboxKeyReleased
-        // TODO add your handling code here:
-        String quantity = profitbox.getText();
-           int ck = 0;
-           
-        
-        for(int i =0 ; i<quantity.length(); i++)
-                {   //Validating qty
-                  if(!Character.isDigit(quantity.charAt(i)))
-                      ck =11;
-                }
-        if(ck==11)
-        {
-            JOptionPane.showMessageDialog(this, "Please Enter a Integer value for profit","Error: Incompatible Type",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_profitboxKeyReleased
-
-    private void costperunitboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costperunitboxKeyReleased
-        // TODO add your handling code here:
-        String quantity = costperunitbox.getText();
-           int ck = 0;
-           
-        
-        for(int i =0 ; i<quantity.length(); i++)
-                {   //Validating qty
-                  if(!Character.isDigit(quantity.charAt(i)))
-                      ck =11;
-                }
-        if(ck==11)
-        {
-            JOptionPane.showMessageDialog(this, "Please Enter a Integer value for cost","Error: Incompatible Type",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_costperunitboxKeyReleased
 
     private void lengthboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lengthboxKeyReleased
         // TODO add your handling code here:
@@ -773,6 +731,7 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(v_AP_Adhesives.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -783,12 +742,10 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField costperunitbox;
     private com.toedter.calendar.JDateChooser datebox;
     private javax.swing.JTextField descriptionbox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -796,7 +753,6 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -804,7 +760,6 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -813,7 +768,6 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
     private javax.swing.JTextField manufacturebox;
     private javax.swing.JTextField pidbox;
     private javax.swing.JTextField pnamebox;
-    private javax.swing.JTextField profitbox;
     private javax.swing.JComboBox<String> ptypebox;
     private javax.swing.JTextField quantitybox;
     private javax.swing.JTextField searchbox;

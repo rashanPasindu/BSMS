@@ -10,32 +10,35 @@ package model;
  * @author Sandun
  */
 public class Vehicle {
-    
-    private String vehicle_ID;	
-    private String vehicle_type;	
+
+    private String vehicle_ID;
+    private String vehicle_type;
     private String vehicle_number;
     private int vehicle_cost;
     private LeasedVehicle leasedVehicle;
+    private String Date;
 
     public Vehicle() {
     }
 
-    public Vehicle(String vehicle_ID, String vehicle_type, String vehicle_number, int vehicle_cost) {
+    public Vehicle(String vehicle_ID, String vehicle_type, String vehicle_number, int vehicle_cost, String Date) {
         this.vehicle_ID = vehicle_ID;
         this.vehicle_type = vehicle_type;
         this.vehicle_number = vehicle_number;
         this.vehicle_cost = vehicle_cost;
+        this.Date = Date;
     }
 
-    public Vehicle(String vehicle_ID, String vehicle_type, String vehicle_number, int vehicle_cost, LeasedVehicle leasedVehicle) {
+    public Vehicle(String vehicle_ID, String vehicle_type, String vehicle_number, int vehicle_cost, LeasedVehicle leasedVehicle, String Date) {
         this.vehicle_ID = vehicle_ID;
         this.vehicle_type = vehicle_type;
         this.vehicle_number = vehicle_number;
         this.vehicle_cost = vehicle_cost;
         this.leasedVehicle = leasedVehicle;
+        this.Date = Date;
     }
-    
-    
+
+   
 
     public String getVehicle_ID() {
         return vehicle_ID;
@@ -76,5 +79,13 @@ public class Vehicle {
     public void setLeasedVehicle(LeasedVehicle leasedVehicle) {
         this.leasedVehicle = leasedVehicle;
     }
-    
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String Date) {
+        this.Date = Date;
+    }
+
 }

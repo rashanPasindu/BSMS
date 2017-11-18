@@ -14,7 +14,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.JTextComponent;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -27,9 +26,7 @@ public class Attendance extends javax.swing.JFrame {
     PreparedStatement pst =null;
     ResultSet rs=null;
     private Object model;
-    /**
-     * Creates new form Attendance
-     */
+    
     public Attendance() {
         initComponents();
        
@@ -126,26 +123,27 @@ public class Attendance extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         t3 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 768));
         setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 435, -1, -1));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(70, 530, 80, 30);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Date");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 388, -1, -1));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(70, 460, 32, 30);
 
         t2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,17 +163,21 @@ public class Attendance extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(t2);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 127, -1, 195));
-        getContentPane().add(idno, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 335, 155, -1));
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(640, 125, 452, 195);
+        getContentPane().add(idno);
+        idno.setBounds(150, 400, 155, 30);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("ID");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 337, -1, -1));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(70, 397, 30, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Employee Attendance");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 35, -1, -1));
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(100, 40, 230, 30);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton3.setText("Back");
@@ -184,7 +186,8 @@ public class Attendance extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1183, 48, 102, -1));
+        getContentPane().add(jButton3);
+        jButton3.setBounds(1185, 48, 110, 40);
 
         t1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,18 +207,22 @@ public class Attendance extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(t1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 127, 428, 195));
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 155, 428, 190);
 
         datebox.setDateFormatString("yyyy-MM-dd");
-        getContentPane().add(datebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 388, 155, -1));
+        getContentPane().add(datebox);
+        datebox.setBounds(150, 462, 155, 30);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Absent days");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 97, -1, -1));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(640, 80, 120, 30);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Employee details");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 97, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setText("Employee Details");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(20, 110, 170, 30);
 
         t3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -230,16 +237,21 @@ public class Attendance extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(t3);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, 385, 224));
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(650, 410, 440, 224);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("Day Counter");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 400, -1, -1));
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(650, 370, 110, 30);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bill/backgrnd1.png"))); // NOI18N
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        jLabel7.setPreferredSize(new java.awt.Dimension(1366, 768));
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, 4, 1370, 760);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -247,34 +259,39 @@ public class Attendance extends javax.swing.JFrame {
         //add records
         
         String date;
-        date = ((JTextComponent)datebox.getDateEditor().getUiComponent()).getText();
+        date = ((JTextField)datebox.getDateEditor().getUiComponent()).getText();
         
         String Id=idno.getText();
         
-        
-        try
+        if(!(((JTextField)datebox.getDateEditor().getUiComponent()).getText().isEmpty()))
         {
-        String q="insert into attendance(Emp_ID,Ab_Dates) values('"+Id+"','"+date+"')";
-        pst=con.prepareStatement(q);
-        pst.execute();
-        
+            
+             attendanceclass at=new  attendanceclass();
+             at.setDate(date);
+             at.setId(Id);
+             
+             at.insert();
+       
         clearfield();
         tableload2();
         count();
         }
-        catch(Exception ex)
+        else
         {
+            JOptionPane.showMessageDialog(this, "Please fill the required field","Error",JOptionPane.ERROR_MESSAGE); 
+            clearfield();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void t2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t2MouseClicked
         // mouse click
+        /*
         try{
         int r=t2.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel)t2.getModel();
         
         String id=t2.getValueAt(r, 0).toString();
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(r, 1).toString());
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(r, 1).toString());
        
         idno.setText(id);
         datebox.setDate(date);
@@ -283,7 +300,7 @@ public class Attendance extends javax.swing.JFrame {
         catch(Exception e)
         {}
       
-        
+       */ 
     }//GEN-LAST:event_t2MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -302,6 +319,7 @@ public class Attendance extends javax.swing.JFrame {
         String id=t1.getValueAt(r, 0).toString();
        
         idno.setText(id);
+        datebox.setDate(null);
        
         }
         catch(Exception e)
@@ -335,6 +353,7 @@ public class Attendance extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Attendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -351,12 +370,12 @@ public class Attendance extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

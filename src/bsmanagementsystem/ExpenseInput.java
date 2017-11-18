@@ -702,13 +702,9 @@ public class ExpenseInput extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
        AdministrationExp n = new  AdministrationExp();
-       validations val = new validations();
+       
        boolean a;
        
-           
-      //String eid = getIdAdmin();
-       
-      
        jButton1.addActionListener((ActionEvent e) -> {
            String cat = getSelectCombo1Admin();
            String method = getSelectCombo2Admin();

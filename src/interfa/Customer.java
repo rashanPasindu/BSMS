@@ -59,41 +59,59 @@ public class Customer extends javax.swing.JFrame {
         customerSearchCombo = new javax.swing.JComboBox<>();
         customerSerachText = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1366, 768));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Customer");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 140, 50));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(706, 19, 87, 22);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("Customer ID");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 191, -1, -1));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(40, 210, 110, 20);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setText("Customer Name");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 242, -1, -1));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(40, 260, 140, 20);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Address");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 296, -1, -1));
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(40, 320, 80, 20);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Telephone number");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 404, -1, -1));
-        getContentPane().add(custidText, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 191, 166, -1));
-        getContentPane().add(custnameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 241, 166, -1));
-        getContentPane().add(telnumText, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 402, 166, -1));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(40, 430, 153, 20);
+
+        custidText.setEditable(false);
+        custidText.setBackground(new java.awt.Color(102, 153, 255));
+        custidText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(custidText);
+        custidText.setBounds(210, 200, 190, 30);
+
+        custnameText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(custnameText);
+        custnameText.setBounds(210, 250, 190, 30);
+
+        telnumText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(telnumText);
+        telnumText.setBounds(210, 430, 220, 30);
 
         custsddText.setColumns(20);
+        custsddText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         custsddText.setRows(5);
         jScrollPane1.setViewportView(custsddText);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 287, -1, -1));
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(210, 310, 230, 91);
 
         custaddBut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         custaddBut.setText("Add");
@@ -102,7 +120,8 @@ public class Customer extends javax.swing.JFrame {
                 custaddButActionPerformed(evt);
             }
         });
-        getContentPane().add(custaddBut, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, 100, -1));
+        getContentPane().add(custaddBut);
+        custaddBut.setBounds(80, 520, 120, 40);
 
         cfcuttormr.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cfcuttormr.setText("Clearfields");
@@ -111,7 +130,8 @@ public class Customer extends javax.swing.JFrame {
                 cfcuttormrActionPerformed(evt);
             }
         });
-        getContentPane().add(cfcuttormr, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 530, -1, -1));
+        getContentPane().add(cfcuttormr);
+        cfcuttormr.setBounds(440, 520, 110, 40);
 
         custUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         custUpdate.setText("Update");
@@ -120,7 +140,8 @@ public class Customer extends javax.swing.JFrame {
                 custUpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(custUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 530, -1, -1));
+        getContentPane().add(custUpdate);
+        custUpdate.setBounds(220, 520, 90, 40);
 
         custDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         custDelete.setText("Delete");
@@ -129,7 +150,8 @@ public class Customer extends javax.swing.JFrame {
                 custDeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(custDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 530, -1, -1));
+        getContentPane().add(custDelete);
+        custDelete.setBounds(330, 520, 90, 40);
 
         custtt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,22 +179,25 @@ public class Customer extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(custtt);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 191, 790, 296));
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(481, 191, 790, 296);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("Search");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 109, -1, -1));
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(142, 109, 70, 20);
 
-        customerSearchCombo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        customerSearchCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer ID", "Customer Name" }));
+        customerSearchCombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        customerSearchCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telephone Number", "Customer Name" }));
         customerSearchCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerSearchComboActionPerformed(evt);
             }
         });
-        getContentPane().add(customerSearchCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 108, 134, -1));
+        getContentPane().add(customerSearchCombo);
+        customerSearchCombo.setBounds(220, 100, 186, 26);
 
-        customerSerachText.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        customerSerachText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         customerSerachText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerSerachTextActionPerformed(evt);
@@ -183,31 +208,32 @@ public class Customer extends javax.swing.JFrame {
                 customerSerachTextKeyTyped(evt);
             }
         });
-        getContentPane().add(customerSerachText, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 110, 194, -1));
+        getContentPane().add(customerSerachText);
+        customerSerachText.setBounds(430, 100, 250, 30);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 60, 120, 40));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(1220, 30, 100, 40);
 
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jLabel26.setText("jLabel25");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(0, 0, 1366, 768);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void custaddButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custaddButActionPerformed
-        String id = custidText.getText();
+
         String name = custnameText.getText();
         String address = custsddText.getText();
-        Integer tel_no = new Integer(telnumText.getText());
-        model.Customer customer = new model.Customer(id, name, address, tel_no);
+        String tel_no = telnumText.getText();
+        model.Customer customer = new model.Customer(name, address, tel_no);
 
         try {
             int result = CustomerController.addCustomer(customer);
@@ -235,7 +261,7 @@ public class Customer extends javax.swing.JFrame {
     private void custDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custDeleteActionPerformed
         int x = JOptionPane.showConfirmDialog(null, "Do you want to DELETE this record?");
         if (x == 0) {
-            String id = custidText.getText();
+            Integer id = new Integer(custidText.getText());
 
             model.Customer customer = new model.Customer();
             customer.setCustomer_ID(id);
@@ -256,10 +282,10 @@ public class Customer extends javax.swing.JFrame {
     }//GEN-LAST:event_custDeleteActionPerformed
 
     private void custUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custUpdateActionPerformed
-        String id = custidText.getText();
+        int id = new Integer(custidText.getText());
         String name = custnameText.getText();
         String address = custsddText.getText();
-        Integer tel_no = new Integer(telnumText.getText());
+        String tel_no = telnumText.getText();
         model.Customer customer = new model.Customer(id, name, address, tel_no);
 
         try {
@@ -294,23 +320,25 @@ public class Customer extends javax.swing.JFrame {
     }//GEN-LAST:event_customerSerachTextActionPerformed
 
     private void customerSerachTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerSerachTextKeyTyped
-        
-        if(customerSearchCombo.getSelectedItem().toString().equalsIgnoreCase("customer id")){
+
+        if (customerSearchCombo.getSelectedItem().toString().equalsIgnoreCase("telephone number")) {
             try {
-                custtt.setModel(DbUtils.resultSetToTableModel(CustomerController.searchCustomerByID(customerSerachText.getText())));
+                if (!customerSerachText.getText().isEmpty()) {
+                    custtt.setModel(DbUtils.resultSetToTableModel(CustomerController.searchCustomerByTele(customerSerachText.getText())));
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-        }else{
+            } 
+
+        } else {
             try {
                 custtt.setModel(DbUtils.resultSetToTableModel(CustomerController.searchCustomerByName(customerSerachText.getText())));
             } catch (SQLException ex) {
                 Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_customerSerachTextKeyTyped
 
     private void customerSearchComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerSearchComboActionPerformed
@@ -366,6 +394,7 @@ public class Customer extends javax.swing.JFrame {
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -388,8 +417,8 @@ public class Customer extends javax.swing.JFrame {
     private javax.swing.JTable custtt;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

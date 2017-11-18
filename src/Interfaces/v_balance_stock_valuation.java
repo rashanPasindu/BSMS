@@ -48,7 +48,7 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
     public void tableload()
     {
         try {
-        String sql="SELECT ProductID,ProductName,ProductType,Manufacture,Quantity,CostPerUnit FROM products ";
+        String sql="SELECT ProductID,ProductName,ProductType,Manufacture,Quantity,MRP FROM products ";
         
         pst = con.prepareStatement(sql);
         rs =pst.executeQuery();
@@ -114,9 +114,25 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 660, 120, 46));
 
         ptypebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Product Type", "Adhesives", "Glue", "Tape", "Adhesive Applicators", "Adhesive Removers", "All-Purpose Glue", "Super Glue", "Construction Glue", "Contact Cements", "Duct & Cloth Tape", "Epoxy Adhesives", "Floor & Tile Adhesives", "Glass & Mirror Adhesives", "Masking Paper", "Masking Tape", "Plastic Tapes", "Repair Adhesives", "Velcro", "Vinyl / Pool Adhesives", "Wood Glue", "Acrylic Sheeting", "Ceiling Material", "Concrete / Blacktop / Sand", "Deck & Roofing Fasteners", "Fastener Kits", "Insulation", "Polyethelene Sheeting", "Metal Goods", "Sandpaper & Steel Wool", "Wood Dowels", "Wood Products", "Wood Repair", "Wood Shims / Specialty Products", "Ventilation", "Hardware Cloth", "Decorator Brick / Accessories", "Rails & Accessories", "Hobby Materials", "Synthetic Filament Rope", "Rope", "Chain & Cable Fittings", "Clothesline", "Sashes, Blinds & Drapery Cord", "Straps, Clamps & Tightener", "Twine & String", "Carbon Monoxide Detectors", "Smoke Detectors", "Child Safety", "Door Locks & Handles", "Specialty Safety & Security Items", "Safety Test Kits", "Fire Extinguishers", "Home Security System", "Safes", "Security Bars", "Paint", "Primers", "Wood Stains, Sealers & Clear Topcoats", "Concrete & Masonry Products", "Aerosols", "Faux Finishing", "Paint & Coatings Calculator", "Deck Stains & Supplies", "Siding Stains", "Aerosols", "Concrete & Masonry Products", "Paint & Coatings Calculator", "Brushes", "Roller Covers, Frames & Accessories", "Tape & Masking", "Sandpaper & Abrasives", "Drop Cloths & Plastic Sheeting", "Caulks, Sealants & Caulking Tools", "Patching & Repair", "Painter's Tools", "Cleaning Supplies", "Safety Equipment", "Solvents & Removers", "Wallpaper Tools & Paste", "Drywall Compounds & Tools", "Painter's Wear", "Ladders, Scaffolds & Climbing Equipment", "Spray Equipment", "PVC DWV Pipe", "Brass Pipe", "CPVC Pipe", "Copper Pipe", "Galvanized Pipe", "PEX Pipe", "Polyethylene Pipe", "Sewer & Drain", "Specialty Pipe", "Vinyl Pipe & Tubing", "PVC Fittings", "CPVC Fittings", "Brass Fittings", "Copper Fittings", "Galvanized Fittings", "Black Iron Fittings", "Cast Iron Fittings", "PEX Fittings", "Polyethylene Fittings", "Specialty Fittings", "ABS DWV Fittings", " " }));
+        ptypebox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ptypeboxMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ptypeboxMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ptypeboxMousePressed(evt);
+            }
+        });
         ptypebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ptypeboxActionPerformed(evt);
+            }
+        });
+        ptypebox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ptypeboxKeyPressed(evt);
             }
         });
         getContentPane().add(ptypebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 59, 227, 33));
@@ -148,7 +164,7 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Product cost");
+        jLabel2.setText("Product MRP");
 
         qtybox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         qtybox.setText("Please Select a Product");
@@ -251,7 +267,7 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 57, 130, 36));
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 130, 36));
 
         jButton10.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton10.setText("Calculate Cost");
@@ -269,7 +285,7 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 57, 130, 36));
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 130, 36));
 
         jTable1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -288,8 +304,7 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
         jLabel15.setName(""); // NOI18N
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
-        setSize(new java.awt.Dimension(1366, 768));
-        setLocationRelativeTo(null);
+        setBounds(0, 0, 1366, 768);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -327,7 +342,7 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
         
         String pt = ptypebox.getSelectedItem().toString();
         
-        String sql="SELECT ProductID,ProductName,ProductType,Manufacture,Quantity,CostPerUnit FROM products WHERE "
+        String sql="SELECT ProductID,ProductName,ProductType,Manufacture,Quantity,MRP FROM products WHERE "
                 + "productType LIKE '"+pt+"' ";
          
         
@@ -356,8 +371,8 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
        // String sql="SELECT ProductType,Manufacture,(Quantity*CostPerUnit)as Total_Cost FROM products WHERE "
          //+ "productType LIKE '%"+pt+"%'";
          
-         String sql="SELECT ProductType,sum(Quantity)as Total_Remaining_Quantity,sum(Quantity*CostPerUnit)as Total_sum FROM products WHERE "
-         + "ProductType LIKE '%"+pt+"%'";
+         String sql="SELECT ProductType,sum(Quantity)as Total_Remaining_Quantity,sum(Quantity*MRP)as Total_sum FROM products WHERE "
+         + "productType LIKE '"+pt+"'";
         
         pst = con.prepareStatement(sql);
         rs =pst.executeQuery();
@@ -414,6 +429,22 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_xyzMouseClicked
 
+    private void ptypeboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ptypeboxMouseClicked
+        
+    }//GEN-LAST:event_ptypeboxMouseClicked
+
+    private void ptypeboxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ptypeboxMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ptypeboxMouseEntered
+
+    private void ptypeboxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ptypeboxMousePressed
+       
+    }//GEN-LAST:event_ptypeboxMousePressed
+
+    private void ptypeboxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ptypeboxKeyPressed
+        
+    }//GEN-LAST:event_ptypeboxKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -439,6 +470,7 @@ public class v_balance_stock_valuation extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(v_balance_stock_valuation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

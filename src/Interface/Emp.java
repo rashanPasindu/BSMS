@@ -5,7 +5,7 @@
  */
 package Interface;
 
-//hello
+
 import DBConnect.DBconnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +13,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -90,13 +98,10 @@ public class Emp extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         employee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,23 +121,28 @@ public class Emp extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(employee);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 239, 954, 287));
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(346, 203, 954, 287);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Name");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 281, -1, -1));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(40, 250, 40, 17);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Age");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 321, -1, -1));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(40, 290, 27, 17);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Mobile");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 361, -1, -1));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(40, 330, 44, 17);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Emp ID");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 241, -1, -1));
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(40, 210, 52, 17);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Add Record");
@@ -144,7 +154,8 @@ public class Emp extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(706, 594, -1, -1));
+        getContentPane().add(jButton2);
+        jButton2.setBounds(706, 528, 130, 36);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Update Record");
@@ -156,7 +167,8 @@ public class Emp extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 594, 140, -1));
+        getContentPane().add(jButton3);
+        jButton3.setBounds(854, 528, 140, 36);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Delete Record ");
@@ -168,7 +180,8 @@ public class Emp extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1027, 594, 145, -1));
+        getContentPane().add(jButton4);
+        jButton4.setBounds(1027, 528, 145, 36);
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton6.setText("Back");
@@ -180,17 +193,42 @@ public class Emp extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 43, -1, 45));
-        getContentPane().add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 239, 177, -1));
+        getContentPane().add(jButton6);
+        jButton6.setBounds(1210, 598, 130, 36);
+        getContentPane().add(Id);
+        Id.setBounds(130, 210, 177, 22);
 
         Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NameActionPerformed(evt);
             }
         });
-        getContentPane().add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 279, 177, -1));
-        getContentPane().add(Age, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 319, 177, -1));
-        getContentPane().add(Mobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 359, 177, -1));
+        Name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                NameKeyReleased(evt);
+            }
+        });
+        getContentPane().add(Name);
+        Name.setBounds(130, 250, 177, 22);
+
+        Age.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AgeKeyReleased(evt);
+            }
+        });
+        getContentPane().add(Age);
+        Age.setBounds(130, 290, 177, 22);
+
+        Mobile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                MobileKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                MobileKeyTyped(evt);
+            }
+        });
+        getContentPane().add(Mobile);
+        Mobile.setBounds(130, 330, 177, 22);
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton7.setText("Search By Name");
@@ -202,18 +240,35 @@ public class Emp extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 144, 158, -1));
-        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(583, 145, 195, 36));
-        getContentPane().add(Address, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 399, 177, -1));
+        getContentPane().add(jButton7);
+        jButton7.setBounds(346, 121, 158, 36);
+
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchKeyReleased(evt);
+            }
+        });
+        getContentPane().add(search);
+        search.setBounds(522, 122, 195, 36);
+
+        Address.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AddressKeyReleased(evt);
+            }
+        });
+        getContentPane().add(Address);
+        Address.setBounds(130, 370, 177, 22);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Address");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 401, -1, -1));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(40, 370, 56, 17);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Employeee Details");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 43, -1, -1));
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(262, 30, 165, 22);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Clear Fields");
@@ -225,10 +280,12 @@ public class Emp extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 594, 145, -1));
+        getContentPane().add(jButton5);
+        jButton5.setBounds(543, 528, 145, 36);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bill/backgrnd1.png"))); // NOI18N
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, 0, 1370, 770);
 
         pack();
         setLocationRelativeTo(null);
@@ -236,25 +293,16 @@ public class Emp extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //Delete records
-          int x=JOptionPane.showConfirmDialog(null,"Do you want to delete?");
-       if(x==0)
-       {
-           String id=Id.getText();
-           
-         
-           try{
-           String sql="delete from employee where Emp_ID='"+id+"' ";
-           pst=con.prepareStatement(sql);
-           pst.execute();
-           
-           tableload();
-           clearfields();
-                   
-           }
-        catch(Exception e)
-        {
-        }
-       }
+      
+        String a=Id.getText(); 
+        Empclass x=new Empclass();
+        x.setEmpid(a);
+        
+        x.delete();
+        
+        tableload();
+        clearfields();
+       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -267,50 +315,38 @@ public class Emp extends javax.swing.JFrame {
         String d=Address.getText();
         String e=Mobile.getText();
         
+        if(!(Id.getText().isEmpty()) && !( Name.getText().isEmpty()) && !(Age.getText().isEmpty()) && 
+                !(Address.getText().isEmpty()) && !( Mobile.getText().isEmpty()))
+        {
+     
+            
+        Empclass x=new Empclass();
         
-      try
-      {  
-        String q="insert into employee(Emp_ID,Emp_Name,Age,Address,Tel_number) values('"+a+"','"+b+"','"+c+"','"+d+"','"+e+"')";
-         pst=con.prepareStatement(q);
-         pst.execute();
-       
-          
-        String k="insert into salary_level(Emp_ID) values('"+a+"')";
-         pst=con.prepareStatement(k);
-         pst.execute();
-         
-        String t="insert into salary(Emp_ID) values('"+a+"')";
-         pst=con.prepareStatement(t);
-         pst.execute();
-         
-        String g="insert into loans(Emp_ID) values('"+a+"')";
-         pst=con.prepareStatement(g);
-         pst.execute();
-         
-        String h="insert into salary_reduction(Emp_ID) values('"+a+"')";
-         pst=con.prepareStatement(h);
-         pst.execute();
-         
-        String i="insert into attendance(Emp_ID) values('"+a+"')";
-         pst=con.prepareStatement(i);
-         pst.execute();
-         
-          
-         
-        int result=pst.executeUpdate();
-        tableload();
-        if(result == 1){
-            JOptionPane.showMessageDialog(this,"Succusfully added");
-            clearfields();
-        }
-        }
-      catch(Exception ex)
-      {
-      }
-         //load table
+        x.setEmpid(a);
+        x.setName(b);
+        x.setAge(Integer.parseInt(Age.getText()));
+        x.setAddress(d);
+        x.setMobile(Integer.parseInt(Mobile.getText()));
+        
+   
+        if(e.length()==10)
+        {
+          x.insert();
+        //load table
         tableload();
         clearfields();
-       
+        }
+        
+        else
+        {
+           JOptionPane.showMessageDialog(null, "Enter a valid 10 digit number for mobile");
+            Mobile.setText("");   
+        }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Please enter all the required fields","Error",JOptionPane.ERROR_MESSAGE); 
+            clearfields();
+        }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -320,32 +356,35 @@ public class Emp extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // Update records
+        String a=Id.getText();       
+        String b=Name.getText();
+        String c=Age.getText();
+        String d=Address.getText();
+        String e=Mobile.getText();
         
-        int x=JOptionPane.showConfirmDialog(null,"Do you want to Update?");
-       if(x==0)
-       {
-           String id=Id.getText();
-           String name=Name.getText();
-           String age=Age.getText();
-           String mobile=Mobile.getText();
-           String address=Address.getText();
-         
-          String sql="update employee set Emp_ID='"+id+"', Emp_Name='"+name+"', Age='"+age+"', Tel_number='"+mobile+"' ,Address='"+address+"' where Emp_ID='"+id+"' ";
-       try{
-        pst=con.prepareStatement(sql);
+        Empclass x=new Empclass();
+        
+        x.setEmpid(a);
+        x.setName(b);
+        x.setAge(Integer.parseInt(Age.getText()));
+        x.setAddress(d);
+        x.setMobile(Integer.parseInt(Mobile.getText()));
        
-        int result=pst.executeUpdate();
+         if(e.length()==10)
+        {
+        x.update();
         tableload();
-        if(result == 1){
-            JOptionPane.showMessageDialog(this,"Succusfully updated");
-            clearfields();
+        clearfields();
         }
+    else
+        {
+           JOptionPane.showMessageDialog(null, "Enter a valid 10 digit number for mobile");
+            Age.setText("");   
         }
-        catch(Exception e)
-        {}
-        
+       
     }//GEN-LAST:event_jButton3ActionPerformed
-    }
+    
+    
     
    
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -397,6 +436,107 @@ public class Emp extends javax.swing.JFrame {
          clearfields();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void AgeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AgeKeyReleased
+        //Age
+        String a=Age.getText();
+        int b=0;
+        
+       
+        for(int i=0;i<a.length();i++)
+        {
+            if(!Character.isDigit(a.charAt(i)))
+                b=1;    
+        }
+        
+        if(b==1)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid Integer");
+            Age.setText("");
+        }
+        
+    }//GEN-LAST:event_AgeKeyReleased
+
+    private void NameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NameKeyReleased
+        //Name
+         String a=Name.getText();
+        int b=0;
+        
+       
+        for(int i=0;i<a.length();i++)
+        {
+            if(!Character.isLetter(a.charAt(i)))
+                b=1;    
+        }
+        
+        if(b==1)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid String");
+            Name.setText("");
+        }
+    }//GEN-LAST:event_NameKeyReleased
+
+    private void MobileKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MobileKeyReleased
+        //Mobile
+           String a=Mobile.getText();
+        int b=0;
+        
+       
+        for(int i=0;i<a.length();i++)
+        {
+            if(!Character.isDigit(a.charAt(i)))
+                b=1;    
+        }
+        
+        if(b==1)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid Integer");
+            Mobile.setText("");
+        }
+        
+    }//GEN-LAST:event_MobileKeyReleased
+
+    private void AddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddressKeyReleased
+        // Address
+           String a=Address.getText();
+        int b=0;
+        
+       
+        for(int i=0;i<a.length();i++)
+        {
+            if(!Character.isLetter(a.charAt(i)))
+                b=1;    
+        }
+        
+        if(b==1)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid String");
+            Address.setText("");
+        }
+    }//GEN-LAST:event_AddressKeyReleased
+
+    private void MobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MobileKeyTyped
+      
+    }//GEN-LAST:event_MobileKeyTyped
+
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+        // search validation
+              String a=search.getText();
+        int b=0;
+        
+       
+        for(int i=0;i<a.length();i++)
+        {
+            if(!Character.isLetter(a.charAt(i)))
+                b=1;    
+        }
+        
+        if(b==1)
+        {
+            JOptionPane.showMessageDialog(null, "Enter a valid String");
+            search.setText("");
+        }
+    }//GEN-LAST:event_searchKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -424,6 +564,8 @@ public class Emp extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -449,12 +591,12 @@ public class Emp extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField search;
     // End of variables declaration//GEN-END:variables

@@ -42,7 +42,7 @@ public class VehicleRepairsController {
 
     public static int updateVehicleRepairs(VehicleRepair vehiclerepair) throws SQLException {
         int result = 0;
-        String q = "UPDATE repairs  SET cost='" + vehiclerepair.getCost()+ "',Date='" + vehiclerepair.getDate()+ "',Description=" + vehiclerepair.getDescription()+ ", where vehicle_ID='" + vehiclerepair.getVehicle_ID()+ "' ";
+        String q = "UPDATE repairs  SET cost=" + vehiclerepair.getCost()+ ",Date='" + vehiclerepair.getDate()+ "',Description='" + vehiclerepair.getDescription()+ "' where vehicle_ID='" + vehiclerepair.getVehicle_ID()+ "' ";
 
         PreparedStatement pst = con.prepareStatement(q);
         result = pst.executeUpdate();
@@ -53,6 +53,15 @@ public class VehicleRepairsController {
     
     public static ResultSet getAllRepairsAsResultSet() throws SQLException{
         String sql="select vehicle_ID,Description,Date,cost from repairs";
+        
+        PreparedStatement pst= con.prepareStatement(sql);
+        ResultSet rs=pst.executeQuery();
+        
+        return rs;
+    }
+    
+     public static ResultSet searchVehrepID(String vehid) throws SQLException{
+        String sql="select vehicle_ID,Description,Date,cost from repairs WHERE vehicle_ID LIKE '"+vehid+"%' ";
         
         PreparedStatement pst= con.prepareStatement(sql);
         ResultSet rs=pst.executeQuery();

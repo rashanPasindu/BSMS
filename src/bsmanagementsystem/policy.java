@@ -8,12 +8,15 @@ package bsmanagementsystem;
 import DBConnect.DBconnect;
 import classes.policyClass;
 import java.awt.HeadlessException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -30,8 +33,8 @@ Connection con = null;
 PreparedStatement pst=null;
 ResultSet rs = null;
 
-float Percentage;
-float Rate;
+float Percentage = 0.00f;
+float Rate = 0.00f;
 String newCat = null;
 
     public policy() {
@@ -447,9 +450,10 @@ String newCat = null;
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int row=jTable1.getSelectedRow();
+        
         String Id=jTable1.getValueAt(row,0).toString();
         String cat=jTable1.getValueAt(row,1).toString();
-        //String rate=jTable1.getValueAt(row,2).toString();
+        String date=jTable1.getValueAt(row,2).toString();
         String rate=jTable1.getValueAt(row,3).toString();
         String percentage=jTable1.getValueAt(row,4).toString();
         String des=jTable1.getValueAt(row,5).toString();
@@ -611,13 +615,13 @@ String newCat = null;
     }
     private void showCorrect(String r,String p){
         
-        int p1 = Integer.parseInt(p);
+        float p1 = Float.parseFloat(p);
         float r1 = Float.parseFloat(r);
            
-        if (r1 == 0){
+        if (r1 == 0.00f){
             jTextField1.setText(p);
         }
-        else if(p1 == 0){
+        else if(p1 == 0.00f){
             jTextField1.setText(r);
         }
         else{
@@ -629,7 +633,7 @@ String newCat = null;
     }
     private void setCorrect(String r,String p){
         
-        int p1 = Integer.parseInt(p);
+        float p1 = Float.parseFloat(p);
         float r1 = Float.parseFloat(r);
         
         if (r1 == 0){

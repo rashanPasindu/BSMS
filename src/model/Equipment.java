@@ -16,16 +16,18 @@ public class Equipment {
   private String Brand;	
   private String Serial;	
   private Float Value;
+  private String Date;
 
     public Equipment() {
     }
 
-    public Equipment(String equipmnt_ID, String equip_Name, String Brand, String Serial, Float Value) {
+    public Equipment(String equipmnt_ID, String equip_Name, String Brand, String Serial, Float Value, String Date) {
         this.equipmnt_ID = equipmnt_ID;
         this.equip_Name = equip_Name;
         this.Brand = Brand;
         this.Serial = Serial;
         this.Value = Value;
+        this.Date = Date;
     }
 
     public String getEquipmnt_ID() {
@@ -67,5 +69,14 @@ public class Equipment {
     public void setValue(Float Value) {
         this.Value = Value;
     }
-      
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String Date) {
+        this.Date = Date;
+    }
+
+    
 }
