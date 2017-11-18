@@ -6,6 +6,7 @@
 package supplier_management_system;
 
 import DBConnect.DBconnect;
+import bsmanagementsystem.MainPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -135,6 +136,7 @@ public class suppliersx extends javax.swing.JFrame {
         bsck_to_home1 = new javax.swing.JButton();
         update_sname1 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1366, 751));
@@ -388,6 +390,10 @@ public class suppliersx extends javax.swing.JFrame {
         jLabel21.setText("(select  row)");
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1_1.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 720));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -408,9 +414,7 @@ public class suppliersx extends javax.swing.JFrame {
     }//GEN-LAST:event_suppliernicActionPerformed
 
     private void re_order_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_re_order_tableActionPerformed
-        reports re=new reports();
-        re.setVisible(true);
-        this.dispose();
+      
 
     }//GEN-LAST:event_re_order_tableActionPerformed
 
@@ -482,7 +486,9 @@ public class suppliersx extends javax.swing.JFrame {
     }//GEN-LAST:event_re_order_table1ActionPerformed
 
     private void bsck_to_home1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsck_to_home1ActionPerformed
-        // TODO add your handling code here:
+        MainPage mp = new MainPage();
+       mp.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_bsck_to_home1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -633,6 +639,7 @@ public class suppliersx extends javax.swing.JFrame {
     private javax.swing.JTextField companycontact_int;
     private javax.swing.JTextField companyname;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

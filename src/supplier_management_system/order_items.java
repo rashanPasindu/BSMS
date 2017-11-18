@@ -6,6 +6,7 @@
 package supplier_management_system;
 
 import DBConnect.DBconnect;
+import bsmanagementsystem.MainPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -282,6 +283,9 @@ public class order_items extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         my_mail_password = new javax.swing.JPasswordField();
         myemaillable = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        discount = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ORDERS");
@@ -367,7 +371,7 @@ public class order_items extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel12.setText("BILL NUMBER:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, -1, -1));
 
         search_oID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,11 +426,11 @@ public class order_items extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel18.setText("PAYMENT:");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 560, -1, -1));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel19.setText("PAYMENT TYPE:");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 600, -1, -1));
+        jLabel19.setText("DISCOUNT:");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 610, -1, -1));
 
         label_email1.setText("df");
         getContentPane().add(label_email1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 230, 20));
@@ -441,7 +445,7 @@ public class order_items extends javax.swing.JFrame {
                 paymentKeyReleased(evt);
             }
         });
-        getContentPane().add(payment, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 550, 160, 30));
+        getContentPane().add(payment, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 530, 160, 30));
 
         billnumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -453,11 +457,11 @@ public class order_items extends javax.swing.JFrame {
                 billnumberKeyReleased(evt);
             }
         });
-        getContentPane().add(billnumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, 160, 30));
+        getContentPane().add(billnumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 490, 160, 30));
 
         jScrollPane4.setViewportView(remarks);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 160, 30));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 160, 30));
 
         conform_order_button.setText("CONFORM PENDING ORDER");
         conform_order_button.addActionListener(new java.awt.event.ActionListener() {
@@ -534,11 +538,11 @@ public class order_items extends javax.swing.JFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 30, 230, -1));
 
         combox_paymenttype.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cash", "Check" }));
-        getContentPane().add(combox_paymenttype, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 590, 160, 30));
+        getContentPane().add(combox_paymenttype, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 570, 160, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setText("RE-MARKS:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, -1, -1));
 
         supplier_lable.setText("aa");
         getContentPane().add(supplier_lable, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 180, 20));
@@ -582,6 +586,20 @@ public class order_items extends javax.swing.JFrame {
         myemaillable.setText("dulmi2ndacc@gmail.com");
         getContentPane().add(myemaillable, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, 140, 20));
 
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel27.setText("PAYMENT TYPE:");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, -1, -1));
+
+        discount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discountActionPerformed(evt);
+            }
+        });
+        getContentPane().add(discount, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 610, 160, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1_1.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 750));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -609,10 +627,11 @@ public class order_items extends javax.swing.JFrame {
         String upay=payment.getText();
         String upaytype=combox_paymenttype.getSelectedItem().toString();
         String uitems=items_label.getText();
+        String discountlbl=discount.getText();
         
-        
+        //SELECT `POrderID`, `suplier`, `rdate`, `Discription`, `rmarks`, `billnum`, `payment`, `disReceived`, `payType`, `Item` FROM `rorders`
         try {
-       String q3="INSERT INTO rorders (POrderID, suplier, rdate, Discription, rmarks, billnum, payment, payType, Item) values ('"+uorderid+"', '"+usullpier+"', '"+urdate+"', '"+udiscription+"', '"+uremarks+"', '"+ubillnum+"', '"+upay+"', '"+upaytype+"', '"+uitems+"')";
+       String q3="INSERT INTO rorders (POrderID, suplier, rdate, Discription, rmarks, billnum, payment, disReceived, payType, Item) values ('"+uorderid+"', '"+usullpier+"', '"+urdate+"', '"+udiscription+"', '"+uremarks+"', '"+ubillnum+"', '"+upay+"', '"+discountlbl+"', '"+upaytype+"', '"+uitems+"')";
             System.out.println(q3);
        pts = con.prepareStatement(q3);
        pts.execute();
@@ -664,9 +683,7 @@ public class order_items extends javax.swing.JFrame {
     }//GEN-LAST:event_conform_order_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        reports re=new reports();
-        re.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void re_orderlevel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_re_orderlevel_buttonActionPerformed
@@ -680,7 +697,9 @@ public class order_items extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       MainPage mp = new MainPage();
+       mp.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void add_suppliers_moveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_suppliers_moveActionPerformed
@@ -833,6 +852,10 @@ public class order_items extends javax.swing.JFrame {
         setEmail();
     }//GEN-LAST:event_combox_supplierMouseReleased
 
+    private void discountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_discountActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -877,12 +900,14 @@ public class order_items extends javax.swing.JFrame {
     private javax.swing.JComboBox combox_paymenttype;
     private javax.swing.JComboBox combox_supplier;
     private javax.swing.JButton conform_order_button;
+    private javax.swing.JTextField discount;
     private javax.swing.JTextPane discription;
     private javax.swing.JLabel discription_label;
     private javax.swing.JLabel items_label;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -899,6 +924,7 @@ public class order_items extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
