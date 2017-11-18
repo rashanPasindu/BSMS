@@ -5,19 +5,80 @@
  */
 package supplier_management_system;
 
+import DBConnect.DBconnect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author DUL
  */
 public class reports extends javax.swing.JFrame {
 
+        PreparedStatement pts=null;
+        ResultSet rs=null;
+        Connection con=null;
+        
     /**
      * Creates new form reports
      */
     public reports() {
         initComponents();
+        
+        con= DBconnect.connect();
+        
+        tableload5();
+        
     }
 
+         public void tableload5()
+    {
+        try {
+            
+         String sqlr_item="SELECT POrderID, suplier, rdate, Discription, rmarks, billnum, payment, payType, Item FROM rorders";
+         pts = con.prepareStatement(sqlr_item);
+         rs=pts.executeQuery(); 
+         //tableload5();
+         table_roder_reports.setModel(DbUtils.resultSetToTableModel(rs));   
+        } 
+        catch (Exception e) {
+        }
+    
+    }
+         
+         
+         public  void searchOrder1(){
+    String search=reports_search.getText();
+
+        try
+        {
+
+            String sql_serch="SELECT POrderID, Suplier, Item, Description FROM pending_orde where POrderID like '%"+search+"%'";
+            System.out.println(sql_serch);
+            pts=con.prepareStatement(sql_serch);
+
+            rs=pts.executeQuery();
+            table_roder_reports.setModel(DbUtils.resultSetToTableModel(rs));
+            System.out.println("ddddd");
+
+        }
+
+        catch (Exception e) {
+        }
+
+    }
+    
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,8 +95,10 @@ public class reports extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_roder_reports = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        reports_search = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -54,18 +117,33 @@ public class reports extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 190, -1));
 
         jButton2.setText("ORDER ITEMS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 190, -1));
 
         jButton3.setText("BACK TO HOME");
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 120, 190, -1));
 
         jButton4.setText("REPORTS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 190, -1));
 
         jButton5.setText("BACK TO MENU");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 190, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_roder_reports.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -76,19 +154,68 @@ public class reports extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_roder_reports);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 1230, 470));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 1230, 430));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/supplier_management_system/subbbbbb.jpeg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 1370, 790));
+        jLabel1.setText("SUPPLIER ID:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 90, 20));
+        getContentPane().add(reports_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 60, 30));
+
+        jButton6.setText("Search");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        suppliersx c1 = new suppliersx();
+        c1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       order_reports c2 = new order_reports();
+        c2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+        searchOrder1();
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        order_items b1 = new order_items();
+        b1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+           try
+        {
+        JasperDesign jd=JRXmlLoader.load("C:\\Users\\DUL\\Desktop\\BSManagementSystem_1\\dul_reports\\report1.jrxml");
+        // String report="C:\\Users\\user\\Documents\\NetBeansProjects\\itp_2\\Employee_rep.jrxml";
+       
+        String sql="select * from supplier";
+        JRDesignQuery q=new JRDesignQuery();
+        q.setText(sql);
+        jd.setQuery(q);
+        
+        JasperReport jr=JasperCompileManager.compileReport(jd);
+        JasperPrint jp=JasperFillManager.fillReport(jr,null,con);
+        JasperViewer.viewReport(jp);
+        }
+      catch(Exception e)
+        {}
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,6 +244,8 @@ public class reports extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -132,9 +261,11 @@ public class reports extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField reports_search;
+    private javax.swing.JTable table_roder_reports;
     // End of variables declaration//GEN-END:variables
 }

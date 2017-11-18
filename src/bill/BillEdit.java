@@ -68,7 +68,7 @@ public class BillEdit extends javax.swing.JFrame {
         Connection con = null;
          try {
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/buisnessmanagementsystem","root","");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hardware2","root","");
              return con;
         } catch (Exception e) {
             System.out.println(e);
@@ -78,16 +78,16 @@ public class BillEdit extends javax.swing.JFrame {
           
     }
     
-   /* public ArrayList<billInsert> getUserList()
+    public ArrayList<billInsert> getUserList()
     {
         ArrayList<billInsert> UserList=new ArrayList<billInsert>();
-        Connection connect=getConnection();
+        Connection connection=getConnection();
         String qry ="SELECT * FROM  `bill` ";
         ResultSet rs ;
         Statement st;
         
         try{
-            st=connect.createStatement();
+            st=connection.createStatement();
             rs=st.executeQuery(qry);
             billInsert bill1;
             
@@ -103,12 +103,10 @@ public class BillEdit extends javax.swing.JFrame {
                     }
         return UserList;
     }
-     
-     */
     
     //display data in Jtable
     
-    /*public void show_value_in_Jtable()
+    public void show_value_in_Jtable()
     {
         ArrayList<billInsert> list=getUserList();
         DefaultTableModel model=(DefaultTableModel)jTable2.getModel();
@@ -152,7 +150,6 @@ public class BillEdit extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
-     */
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -190,13 +187,9 @@ public class BillEdit extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -211,43 +204,31 @@ public class BillEdit extends javax.swing.JFrame {
                 jTextField1KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 134, 30));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 134, 30));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 134, 30));
-
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField4KeyPressed(evt);
-            }
-        });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 134, 30));
-
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField5KeyPressed(evt);
-            }
-        });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 134, 30));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 134, 30));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 134, 30));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 134, 30));
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 134, 30));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 134, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Item code");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Item Name");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Quantity");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Discount");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Price");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Delete");
@@ -281,23 +262,16 @@ public class BillEdit extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 600, 130, 30));
 
-        jTextField6.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTextField6InputMethodTextChanged(evt);
-            }
-        });
         jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField6KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 134, 30));
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 134, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("MRP");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
 
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,23 +283,23 @@ public class BillEdit extends javax.swing.JFrame {
                 jTextField7KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 510, 134, 30));
+        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 134, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Date");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, -1, -1));
 
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 580, 134, 30));
+        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 530, 134, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Discounts Allowed");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 650, -1, -1));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 134, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 600, -1, -1));
+        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 600, 134, 30));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -364,18 +338,18 @@ public class BillEdit extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("InvoiceNo");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("PayedId");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 134, 30));
+        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 134, 30));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Back");
@@ -386,10 +360,10 @@ public class BillEdit extends javax.swing.JFrame {
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 40, 120, 30));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/check/backgrnd1.png"))); // NOI18N
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1410, 750));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1420, 760));
 
         pack();
         setLocationRelativeTo(null);
@@ -458,7 +432,7 @@ public class BillEdit extends javax.swing.JFrame {
         
   
            try{
-         String sql="select Bill_ID,InvoiceId,item_Code,Item_Name,QTY,bill_Date,MRP,DiscountsP,Discounts_Allowed,Net_Amount  from bill where InvoiceId='"+ jTextField1.getText() +"'";//search name   
+         String sql="select BillId,InvoiceId,item_Code,Item_Name,QTY,bill_Date,MRP,DiscountsP,Discounts_Allowed,Net_Amount  from bill where InvoiceId='"+ jTextField1.getText() +"'";//search name   
           pst=con.prepareStatement(sql);
            
             ResultSet rs = pst.executeQuery();
@@ -597,7 +571,7 @@ public class BillEdit extends javax.swing.JFrame {
         */
         
         
-           int r= jTable2.getSelectedRow();
+         int r= jTable2.getSelectedRow();
         //String creditId= jTable2.getValueAt(r,0).toString();
         String PayId= jTable2.getValueAt(r,0).toString();
         String invoiceId= jTable2.getValueAt(r,1).toString();       
@@ -623,7 +597,6 @@ public class BillEdit extends javax.swing.JFrame {
        jTextField8.setText(date);
        jTextField9.setText(discountAllowed);
      
-     
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
@@ -637,26 +610,6 @@ public class BillEdit extends javax.swing.JFrame {
 
     private void jTextField6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyPressed
         // TODO add your handling code here:
-        
-        
-                int f=0;   
-    String s1=jTextField6.getText();
-    String s2=null;
-    for(int i=0;i<s1.length();i++)
-    {
-      char a=s1.charAt(i);  
-       
-      if(Character.isLetter(a))
-      {
-           f=1;
-        s1=s1.substring(0, i);   
-      }
-    }
-    if(f==1)
-    {
-        JOptionPane.showMessageDialog(null,"character not allowed");
-        jTextField6.setText(null);
-    }
         Float saleAmount1;
         Float quty1;
         Float discount1;
@@ -713,55 +666,6 @@ public class BillEdit extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jTextField6InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField6InputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6InputMethodTextChanged
-
-    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
-        // TODO add your handling code here:
-               int f=0;   
-    String s1=jTextField4.getText();
-    String s2=null;
-    for(int i=0;i<s1.length();i++)
-    {
-      char a=s1.charAt(i);  
-       
-      if(Character.isLetter(a))
-      {
-           f=1;
-        s1=s1.substring(0, i);   
-      }
-    }
-    if(f==1)
-    {
-        JOptionPane.showMessageDialog(null,"character not allowed");
-        jTextField4.setText(null);
-    }  
-        
-    }//GEN-LAST:event_jTextField4KeyPressed
-
-    private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
-        // TODO add your handling code here:
-                int f=0;   
-    String s1=jTextField5.getText();
-    String s2=null;
-    for(int i=0;i<s1.length();i++)
-    {
-      char a=s1.charAt(i);  
-       
-      if(Character.isLetter(a))
-      {
-           f=1;
-        s1=s1.substring(0, i);   
-      }
-    }
-    if(f==1)
-    {
-        JOptionPane.showMessageDialog(null,"character not allowed");
-        jTextField5.setText(null);
-    }
-    }//GEN-LAST:event_jTextField5KeyPressed
-
     /**
      * @param args the command line arguments
      */
@@ -804,7 +708,7 @@ public class BillEdit extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

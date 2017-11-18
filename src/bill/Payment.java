@@ -1,10 +1,7 @@
 package bill;
 
 import DBConnect.DBconnect;
-import Interface.retun_damage_items;
-import bsmanagementsystem.MainPage;
 import static com.oracle.util.Checksums.update;
-import interfa.Delivery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -24,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import net.proteanit.sql.DbUtils;
 
 
@@ -38,12 +36,19 @@ import net.proteanit.sql.DbUtils;
  */
 public class Payment extends javax.swing.JFrame {
 
-    private DefaultTableModel model;
+    //private DefaultTableModel model;
     Connection con = null;
     PreparedStatement pst = null;
+    PreparedStatement pst1 = null;
+    PreparedStatement pst2=null;
+    PreparedStatement pst3=null;
+    PreparedStatement pst4=null;
+    PreparedStatement pst5=null;
+    PreparedStatement pst6=null;
+    PreparedStatement pst7=null;
     ResultSet rs = null;
     Statement st = null;
-
+    DefaultTableModel cd;
     int i_no = 0;
 
     /**
@@ -55,18 +60,41 @@ public class Payment extends javax.swing.JFrame {
         con = DBconnect.connect();
         showDate();
         showTime();
+        createColoumn();
+        tableload();
         
     }
+    
+    
+    
+    public void createColoumn()
+    {
+       cd =(DefaultTableModel)jTable2.getModel();
+       cd.addColumn("InvoiceId ");
+       cd.addColumn("ItemCode ");
+       cd.addColumn("ItemName "); 
+       cd.addColumn("QTY"); 
+       cd.addColumn("MRP "); 
+       cd.addColumn("DiscountPrecentage ");
+       cd.addColumn("DiscountPrice ");
+       cd.addColumn("NetAmount "); 
+    }
+  
+   private void Populate(String InvoiceId,String ItemCode,String ItemName,String QTY, String MRP,String DiscountPrecentage,String DiscountPrice,String NetAmount )
+    {
+        String[] rowData={InvoiceId,ItemCode,ItemName,QTY, MRP,DiscountPrecentage,DiscountPrice,NetAmount};
+        cd.addRow(rowData);
+    }       
 
    
       public void tableload()
      {
      try
      {
-     String sql= "SELECT Item_Code,Item_Name,QTY,DiscountsP,Net_Amount FROM bill";
+     String sql= "SELECT count,InvoiceId,Item_code,Item_Name,QTY,MRP,DiscountP,DiscountAllowed,NetAmount FROM bill";
      pst = con.prepareStatement(sql);
      rs = pst.executeQuery();
-          mod=new DefaultTableModel();  
+    // mod=new DefaultTableModel();  
      jTable1.setModel(DbUtils.resultSetToTableModel(rs));
      }
         
@@ -74,12 +102,57 @@ public class Payment extends javax.swing.JFrame {
      {
         
      }
+     
+     
+    
+     }
+      
+     public void tableload1()
+     {
+     try
+     {
+     String sql= "SELECT InvoiceID,Item_Code,Item_Name,QTY,DiscountsP,Discounts_Allowed,Net_Amount,MRP FROM bill";
+     pst = con.prepareStatement(sql);
+     rs = pst.executeQuery();
+          mod=new DefaultTableModel();  
+     jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+     }
+        
+     catch(Exception e)
+     {
+        
+     }
+     
+     
     
      }
      
+     
+     public void tableload2()
+     {
+     try
+     {
+     String sql= "SELECT Invoice_ID,Item_ID,Item_Name,QTY,DiscountsP,Net_Amount,DiscountsP,Discounts_Allowed FROM creditsales";
+     pst = con.prepareStatement(sql);
+     rs = pst.executeQuery();
+          mod=new DefaultTableModel();  
+     jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+     }
+        
+     catch(Exception e)
+     {
+        
+     }
+     
+     
+    
+     }
+        
+      
+     
     void showDate() {
         Date d = new Date();
-        SimpleDateFormat s = new SimpleDateFormat("dd-MM-YYYY");
+        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
         jLabel4.setText(s.format(d));
 
     }
@@ -87,10 +160,10 @@ public class Payment extends javax.swing.JFrame {
     void showTime() {
        new Timer(0, new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+           @Override
+           public void actionPerformed(ActionEvent e) {
                 Date d = new Date();
-                SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss");
+                SimpleDateFormat s = new SimpleDateFormat("HH:mm:ss");
                 jLabel11.setText(s.format(d));
             }
 
@@ -98,7 +171,18 @@ public class Payment extends javax.swing.JFrame {
         ).start();
     }
     
-    
+    public void dropdown()
+    {
+        try{
+            String product="SELECT *FROM products";
+            pst=con.prepareStatement(product);
+            pst.execute();
+        }
+        catch(Exception e)
+        {
+            
+        }
+    }
    
 
     /**
@@ -112,18 +196,13 @@ public class Payment extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -132,7 +211,6 @@ public class Payment extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
@@ -140,34 +218,58 @@ public class Payment extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        Change = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton12 = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jLabel30 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1366, 768));
         setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1366, 768));
         jPanel1.setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -184,152 +286,124 @@ public class Payment extends javax.swing.JFrame {
                 jTextField1KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 39, 134, 30));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField2KeyPressed(evt);
-            }
-        });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 39, 134, 30));
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(688, 39, 134, 30));
-
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField5KeyPressed(evt);
-            }
-        });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 134, 30));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 136, 36));
 
         jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField6KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 94, 134, 30));
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 136, 36));
 
-        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Invoice No");
+        jLabel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField7KeyPressed(evt);
+                jLabel1KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 39, 134, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, 30));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Invoice No");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 99, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("MRP");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 44, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Item Name");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 44, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Date");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 80, 92, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 30, 143, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Quntity");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 99, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Discount");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 99, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Net Price");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(868, 44, -1, -1));
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("View invoice");
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButton2.setText("Create Invoice");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 130, 36));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 680, 170, 30));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton3.setText("Credit");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1155, 238, 130, 36));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 350, 140, 30));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton4.setText("Reset");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, 130, 36));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 680, 140, 30));
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton7.setText("Delete");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 610, 130, 36));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 680, 136, 30));
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton8.setText("Done");
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton8.setText("Add");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1155, 169, 130, 36));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 220, 140, 30));
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton9.setText("Cheque");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1155, 309, 130, 36));
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 410, 140, 30));
 
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
         jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField8KeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
+            }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(688, 94, 134, 30));
+        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 136, 36));
 
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
         jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField9KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 570, 134, 30));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Balance");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 620, -1, -1));
+        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 660, 134, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -349,37 +423,36 @@ public class Payment extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 1109, 356));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 550, 400));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Date");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 80, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 30, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Time");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 110, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 60, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Time");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 110, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 60, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel13.setText("Total");
         jLabel13.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jLabel13KeyPressed(evt);
             }
         });
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 530, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 620, 60, 30));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setText("Discount Allowed");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(868, 99, -1, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 94, 134, 30));
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setText("Discount Price");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 152, -1, 40));
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel15.setText("Item Code");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 44, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,52 +464,199 @@ public class Payment extends javax.swing.JFrame {
                 jTextField10KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 620, 130, 30));
+        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 700, 134, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jTextField11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField11.setText("0.00");
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 517, 134, 30));
-
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
-            }
-        });
-        jTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
+        jLabel12.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField12KeyPressed(evt);
+                jLabel12KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 134, 30));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 80, 30));
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setText("BillId");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 140, -1, -1));
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 120, 36));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Back");
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButton1.setText("Net Price");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 20, 110, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 140, 30));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bill/backgrnd1.png"))); // NOI18N
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 700));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 110, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 740));
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 110, 40));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel19.setText("0.00");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 620, 130, 30));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel20.setText("Cash");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(1274, 657, 50, 30));
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButton5.setText("Next Invoice");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 680, 136, 30));
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton6.setText("Delivery");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 480, 140, 30));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 40, 136, 20));
+
+        Change.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        Change.setText("Balance");
+        Change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Change, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 700, -1, 30));
+
+        jButton10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButton10.setText("Search");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, 100, -1));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel22.setText("Enter the Invoice Id here");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 130, -1, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 90, 136, 36));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jTable2.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jTable2ComponentAdded(evt);
+            }
+        });
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 590, 400));
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "cash/Cheque Edit Item Search", "Cash/ChequeReceipt Edit Search", "Credit Edit Item", "Credit Receipt Edit" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 290, 30));
+
+        jButton12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton12.setText("Edit Invoice");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 280, 140, 30));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel24.setText("Billing");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 100, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 60, 60, 10));
+
+        jRadioButton1.setText("Credit ");
+        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 170, -1, -1));
+
+        jRadioButton2.setText("Cash");
+        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1390, 170, -1, -1));
+
+        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton3.setText("Calculate Price");
+        jPanel1.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, -1, -1));
+
+        jRadioButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton4.setText("Edit Price");
+        jPanel1.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel30.setText("/");
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, 20, -1));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.white, null, null));
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel26.setText("Cash Lefft Item No");
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel25.setText("Credit Left Item No");
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel28.setText("Receipt No");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel25)
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 22, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1430, 20, 160, -1));
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
 
         jMenu1.setText("File");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -466,6 +686,9 @@ public class Payment extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItem4.setText("Return");
+        jMenu2.add(jMenuItem4);
+
         jMenuItem3.setText("Sale Report");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -474,27 +697,27 @@ public class Payment extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem4.setText("Return");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
-
         jMenuItem5.setText("Delivery");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(1366, 768));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1648, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -505,16 +728,54 @@ public class Payment extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
+         String itemCode=jTextField1.getText();
+        
+        try{
+         String sql="select CostPerUnit ,ProductName from products where ProductID='"+itemCode+"'";
+         PreparedStatement st =con.prepareStatement("sql");
+         
+         pst=con.prepareStatement(sql);
+         //st.setString("ProductID");  
+         ResultSet rs = pst.executeQuery();
+           
+            if (!rs.next() ) {
+                    JOptionPane.showMessageDialog(null,"No Product Item");
+            } 
+            else {
+
+                 do {
+                    String prod=rs.getString("CostPerUnit");//get value
+                    jLabel17.setText(prod);
+                    String prod1=rs.getString("ProductName");//get value
+                    jLabel21.setText(prod1);
+
+
+            } while (rs.next());
+            }
+        }
+         
+         
+         
+         
+           /* if(rs.next())
+             
+            {
+                
+                 String prod=rs.getString("CostPerUnit");//get value
+                jLabel17.setText(prod);
+                String prod1=rs.getString("ProductName");//get value
+                jLabel21.setText(prod1);
+            }
+        }
+        
+        */
+        
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         
   
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -527,20 +788,21 @@ public class Payment extends javax.swing.JFrame {
         if(x==0){
         //String billId=jTextField1.getText();    
         //String invoiceid=jTextField1.getText();
-        String billId=jTextField12.getText();
+       
         String itemCode=jTextField1.getText();
-        String itemName=jTextField3.getText();
+        String itemName=jLabel21.getText();
         String quty=jTextField6.getText(); 
         String discount=jTextField8.getText();
-        String netPrice=jTextField7.getText();
-        String mrp=jTextField2.getText();
+        String netPrice=jLabel7.getText();
+        String mrp=jLabel17.getText();
+       
        // String date=jTextField8.getText();
-       String discountAllowed=jTextField4.getText();
+       String discountAllowed=jLabel18.getText();
       
         
         
          
-           String sql ="DELETE from bill where BillId = "+itemCode+" ";
+           String sql ="DELETE from bill where Net_Amount = "+netPrice+" ";
           
             try
             {
@@ -548,6 +810,7 @@ public class Payment extends javax.swing.JFrame {
             pst=con.prepareStatement(sql);
             pst.execute(); 
             JOptionPane.showMessageDialog(null, "Deleted");
+            tableload();
                //tableload();
                }
             catch(Exception e)
@@ -566,29 +829,50 @@ public class Payment extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ViewInvoice p=new ViewInvoice ();
-        p.setVisible(true);
-        this.dispose();
+        int invoiceId=Integer.parseInt(jLabel12.getText());
+        Float cash = Float.parseFloat(jTextField9.getText());
+        Float Total = Float.parseFloat(jLabel19.getText());
+        Float changeA = Float.parseFloat(jTextField10.getText());
+        String date = jLabel4.getText();
+        try{
+        String qry1=("insert into receipt(InvoiceId,cash,Total,changeA,datetime)value("+invoiceId+"," +cash+","+Total+","+changeA+",'"+date+"')");
+       pst = con.prepareStatement(qry1);
+                    //Statement pst=conn.createStatement();
+            // tableload();
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Added");
+        
+        }
+        
+        
+        catch(Exception e)
+        {
+          JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
+            e.printStackTrace();  
+        }   
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-
+       if(jRadioButton2.isSelected()){
         //int r = jTable1.getSelectedRow();
+       int invoiceId=Integer.parseInt(jLabel12.getText());
         String code = jTextField1.getText();
-        int invoiceId = Integer.parseInt(jTextField5.getText());
-        Float saleAmount = Float.parseFloat(jTextField2.getText());
+        //int invoiceId = Integer.parseInt(jLabel12.getText());
+        Float saleAmount = Float.parseFloat(jLabel17.getText());
         Float quty = Float.parseFloat(jTextField6.getText());
         Float discount = Float.parseFloat(jTextField8.getText());
-        Float netamt = Float.parseFloat(jTextField7.getText());
-        String itemName = jTextField3.getText();
+        Float netamt = Float.parseFloat(jLabel7.getText());
+        String itemName = jLabel21.getText();
         String date = jLabel4.getText();
-        Float DisctAllowed=Float.parseFloat(jTextField4.getText());
-
+        Float DisctAllowed=Float.parseFloat(jLabel18.getText());
+        String time=jLabel11.getText();
+        
         try {
 
-            String qry = ("INSERT INTO bill (InvoiceId,item_Code,Item_Name,QTY,bill_Date,MRP,DiscountsP,Discounts_Allowed,Net_Amount)VALUES(" + invoiceId + ",'" + code + "','" + itemName + "'," + quty + ",'"+date+"'," + saleAmount + "," + discount + "," + DisctAllowed + "," + netamt + ")");
+            String qry = ("INSERT INTO bill (InvoiceId,item_Code,Item_Name,QTY,bill_Date,MRP,DiscountsP,Discounts_Allowed,Net_Amount,Time)VALUES("+invoiceId+",'" + code + "','" + itemName + "'," + quty + ",'"+date+"'," + saleAmount + "," + discount + "," + DisctAllowed + "," + netamt + ",'"+time+"')");
              pst = con.prepareStatement(qry);
                     //Statement pst=conn.createStatement();
             // tableload();
@@ -606,77 +890,29 @@ public class Payment extends javax.swing.JFrame {
             System.out.println(e);
             e.printStackTrace();
         }
+        
+        String code1 = jTextField1.getText();
+        String itemName1 = jLabel21.getText();
+        String quty1 = jTextField6.getText();
+        String Discount1 = jTextField8.getText();
+        String netamt1 = jLabel7.getText();
        
-        /* {
-            Object[] colomns = {"Item_Code", "Item_Name", "QTY", "DiscountsP", "Net_Amount"};
-            model = new DefaultTableModel();
-            model.setColumnIdentifiers(colomns);
-            jTable1.setModel(model);
-
-            Object[] row = new Object[5];
-
-            row[0] = jTextField1.getText();
-            row[1] = jTextField3.getText();
-            row[2] = jTextField6.getText();
-            row[3] = jTextField8.getText();
-            row[4] = jTextField7.getText();
-            model.addRow(row);
-
-        } catch (Exception e) {
-
-            //JOptionPane.showMessageDialog(null, e);
-            System.out.println(e);
-            e.printStackTrace();
-            
-                
-        try{
-            Object[] row = new Object[5];
-
-            row[0] = jTextField1.getText();
-            row[1] = jTextField3.getText();
-            row[2] = jTextField6.getText();
-            row[3] = jTextField8.getText();
-            row[4] = jTextField7.getText();
-            model.addRow(row);
-        }   
-        catch(Exception e1)
-        {
-            e1.printStackTrace();
-        }
-         tableload();
+       String st []={code1,itemName1,quty1,Discount1,netamt1};
+        mod.addRow(st);
         
-       // DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
-        //model.addRow(new Object[]{jTextField1.getText(),jTextField3.getText(),jTextField6.getText(),jTextField8.getText(),jTextField7.getText()});
-    
+        String mrp=jLabel17.getText();
+        String disAllowed=jLabel17.getText();
+        String invoiceNo=jLabel12.getText();
+        
+        
+       
         double tot=0;
-        for(int i=0;i<jTable1.getRowCount();i++)
+        for(int i=0;i<jTable2.getRowCount();i++)
         {
-            float amount=Float.parseFloat((String)jTable1.getValueAt(i,4));
+            Double amount=Double.parseDouble((String)jTable2.getValueAt(i,4));
             tot+=amount;
         }
-        jLabel12.setText(String.valueOf(tot));
-        
-        try{
-            String update="";
-        }
-        catch(Exception e2)
-        {
-            e.printStackTrace();
-        }
-        }
-       */ 
-        
-        
-         //DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
-        //model.addRow(new Object[]{jTextField1.getText(),jTextField3.getText(),jTextField6.getText(),jTextField8.getText(),jTextField7.getText()});
-    
-        double tot=0;
-        for(int i=0;i<jTable1.getRowCount();i++)
-        {
-            Double amount=Double.parseDouble((String)jTable1.getValueAt(i,4));
-            tot+=amount;
-        }
-        jTextField11.setText(String.valueOf(tot));
+        jLabel19.setText(String.valueOf(tot));
         
         try{
             String update="";
@@ -687,14 +923,14 @@ public class Payment extends javax.swing.JFrame {
         }
         
         jTextField1.setText(null);
-        jTextField2.setText(null);
-        jTextField3.setText(null);
-        jTextField4.setText(null);
+        jLabel17.setText(null);
+        jLabel21.setText(null);
+        jLabel18.setText(null);
         
         jTextField6.setText(null);
-        jTextField7.setText(null);
+       jLabel7.setText(null);
         jTextField8.setText(null);
-        
+       }
         try {
             //String update=
             //ResultSet rs = pst.executeQuery();
@@ -717,36 +953,96 @@ public class Payment extends javax.swing.JFrame {
            // Float updatedOne=quantity-update;
         }
         
+        if(jRadioButton1.isSelected())
+        {
+        String code = jTextField1.getText();
+        int invoiceId = Integer.parseInt(jLabel12.getText());
+        Float saleAmount = Float.parseFloat(jLabel17.getText().trim());
+        Float quty = Float.parseFloat(jTextField6.getText().trim());
+        Float discount = Float.parseFloat(jTextField8.getText().trim());
+        Float netamt = Float.parseFloat(jLabel7.getText());
+        String itemName = jLabel21.getText();
+        String date = jLabel4.getText();
+        Float DisctAllowed=Float.parseFloat(jLabel18.getText());
+        String time=jLabel11.getText();
+        try {
+
+            String qry = ("INSERT INTO creditsales (Item_ID,Item_Name,QTY,MRP,DiscountsP,Discounts_Allowed,Date,Net_Amount,Invoice_ID)VALUES('" + code+ "','" + itemName + "'," + quty + "," +saleAmount+ "," + discount + "," +DisctAllowed+ ",'" + date+ "'," + netamt + ","+invoiceId+")");
+            PreparedStatement pst = con.prepareStatement(qry);
+            
+            String qry1 = ("INSERT INTO bill (InvoiceId,item_Code,Item_Name,QTY,bill_Date,MRP,DiscountsP,Discounts_Allowed,Net_Amount,Time)VALUES("+invoiceId+",'" + code + "','" + itemName + "'," + quty + ",'"+date+"'," + saleAmount + "," + discount + "," + DisctAllowed + "," + netamt + ",'"+time+"')");
+            PreparedStatement pst1 = con.prepareStatement(qry1);
+                //Statement pst=conn.createStatement();
+            //tableload();
+            pst.executeUpdate();
+            pst1.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Added");
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
+
+        }
         
+        
+         double tot=0;
+        for(int i=0;i<jTable2.getRowCount();i++)
+        {
+            Double amount=Double.parseDouble((String)jTable2.getValueAt(i,4));
+            tot+=amount;
+        }
+        jLabel19.setText(String.valueOf(tot));
+        
+        try{
+            String update="";
+        }
+        catch(Exception e2)
+        {
+            e2.printStackTrace();
+        }
+        
+        jTextField1.setText(null);
+        jLabel17.setText(null);
+        jLabel21.setText(null);
+       jLabel18.setText(null);
+        
+        jTextField6.setText(null);
+        jLabel7.setText(null);
+        jTextField8.setText(null);
+        
+        
+        
+        
+        }
         
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         jTextField1.setText(null);
-        jTextField2.setText(null);
-        jTextField3.setText(null);
+        jLabel17.setText(null);
+        jLabel21.setText(null);
         
         jTextField6.setText(null);
-        jTextField7.setText(null);
+        jLabel7.setText(null);
         jTextField8.setText(null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String code = jTextField1.getText();
-        int invoiceId = Integer.parseInt(jTextField5.getText());
-        Float saleAmount = Float.parseFloat(jTextField2.getText().trim());
+        int invoiceId = Integer.parseInt(jLabel12.getText());
+        Float saleAmount = Float.parseFloat(jLabel17.getText().trim());
         Float quty = Float.parseFloat(jTextField6.getText().trim());
         Float discount = Float.parseFloat(jTextField8.getText().trim());
-        Float netamt = Float.parseFloat(jTextField7.getText());
-        String itemName = jTextField3.getText();
+        Float netamt = Float.parseFloat(jLabel7.getText());
+        String itemName = jLabel21.getText();
         String date = jLabel4.getText();
-        Float DisctAllowed=Float.parseFloat(jTextField4.getText());
+        Float DisctAllowed=Float.parseFloat(jLabel18.getText());
 
         try {
 
-            String qry = ("INSERT INTO creditsales (Item_ID,Item_Name,QTY,MRP,DiscountsP,Discounts_Allowed,Date,Net_Amount,Invoice_ID)VALUES('" + code+ "','" + itemName + "'," + quty + "," +saleAmount+ "," + discount + "," +DisctAllowed+ "," + date+ "," + netamt + ","+invoiceId+")");
+            String qry = ("INSERT INTO creditsales (Item_ID,Item_Name,QTY,MRP,DiscountsP,Discounts_Allowed,Date,Net_Amount,Invoice_ID)VALUES('" + code+ "','" + itemName + "'," + quty + "," +saleAmount+ "," + discount + "," +DisctAllowed+ ",'" + date+ "'," + netamt + ","+invoiceId+")");
             PreparedStatement pst = con.prepareStatement(qry);
                 //Statement pst=conn.createStatement();
             //tableload();
@@ -766,7 +1062,7 @@ public class Payment extends javax.swing.JFrame {
             Double amount=Double.parseDouble((String)jTable1.getValueAt(i,4));
             tot+=amount;
         }
-        jTextField11.setText(String.valueOf(tot));
+        jLabel19.setText(String.valueOf(tot));
         
         try{
             String update="";
@@ -777,12 +1073,12 @@ public class Payment extends javax.swing.JFrame {
         }
         
         jTextField1.setText(null);
-        jTextField2.setText(null);
-        jTextField3.setText(null);
-        jTextField4.setText(null);
+        jLabel17.setText(null);
+        jLabel21.setText(null);
+       jLabel18.setText(null);
         
         jTextField6.setText(null);
-        jTextField7.setText(null);
+        jLabel7.setText(null);
         jTextField8.setText(null);
         
         
@@ -795,16 +1091,16 @@ public class Payment extends javax.swing.JFrame {
         // TODO add your handling code here:
 
          String code = jTextField1.getText();
-        int invoiceId = Integer.parseInt(jTextField5.getText());
-        Float saleAmount = Float.parseFloat(jTextField2.getText().trim());
+        int invoiceId = Integer.parseInt(jLabel12.getText());
+        Float saleAmount = Float.parseFloat(jLabel17.getText().trim());
         Float quty = Float.parseFloat(jTextField6.getText().trim());
         Float discount = Float.parseFloat(jTextField8.getText().trim());
-        Float netamt = Float.parseFloat(jTextField7.getText());
-        String itemName = jTextField3.getText();
+        Float netamt = Float.parseFloat(jLabel7.getText());
+        String itemName = jLabel21.getText();
         String date = jLabel4.getText();
-        Float DisctAllowed=Float.parseFloat(jTextField4.getText());
+        Float DisctAllowed=Float.parseFloat(jLabel18.getText());
 
-
+/*
         try {
 
             String qry = ("INSERT INTO chequepayment (Invoice_ID,Item_Code,Item_Name,netPrice,Date,QTY,MRP,DiscountsP,Discounts_Allowed)VALUES(" + invoiceId + ",'" + code + "','" + itemName+ "'," + netamt + ",'" + date + "'," + quty + "," +saleAmount + "," + discount+ ","+DisctAllowed+")");
@@ -818,14 +1114,43 @@ public class Payment extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
             System.out.println(e);
 
+        
+        
         }
+        */
+        
+        
+       
+        
+        try {
+
+            String qry = ("INSERT INTO bill (InvoiceId,item_Code,Item_Name,QTY,bill_Date,MRP,DiscountsP,Discounts_Allowed,Net_Amount)VALUES("+invoiceId+",'" + code + "','" + itemName + "'," + quty + ",'"+date+"'," + saleAmount + "," + discount + "," + DisctAllowed + "," + netamt + ")");
+             pst = con.prepareStatement(qry);
+                    //Statement pst=conn.createStatement();
+            // tableload();
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Added");
+
+           
+            
+             
+                    //Payment_2 p=new Payment_2();
+           
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
+            e.printStackTrace();
+        }
+       
+       
          double tot=0;
         for(int i=0;i<jTable1.getRowCount();i++)
         {
             Double amount=Double.parseDouble((String)jTable1.getValueAt(i,4));
             tot+=amount;
         }
-        jTextField11.setText(String.valueOf(tot));
+        jLabel19.setText(String.valueOf(tot));
         
         try{
             String update="";
@@ -836,12 +1161,12 @@ public class Payment extends javax.swing.JFrame {
         }
         
         jTextField1.setText(null);
-        jTextField2.setText(null);
-        jTextField3.setText(null);
-        jTextField4.setText(null);
+        jLabel17.setText(null);
+        jLabel21.setText(null);
+        jLabel18.setText(null);
         
         jTextField6.setText(null);
-        jTextField7.setText(null);
+        jLabel7.setText(null);
         jTextField8.setText(null);
         
         
@@ -874,107 +1199,61 @@ public class Payment extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        int r = jTable1.getSelectedRow();
-        TableModel model=jTable1.getModel();
+       if(jComboBox1.getSelectedItem().toString().equals("cash/Cheque Edit Item Search"))  
+       {    
+       int r = jTable1.getSelectedRow();
+       TableModel model=jTable1.getModel();
         //assign data to variables
-        String ItemCode = jTable1.getValueAt(r, 0).toString();
-        String ItemName = jTable1.getValueAt(r, 1).toString();
-        String Quantity = jTable1.getValueAt(r, 2).toString();
-        String discount = jTable1.getValueAt(r, 3).toString();
-        String price = jTable1.getValueAt(r, 4).toString();
+        String count=jTable1.getValueAt(r, 0).toString();
+        String InvoiceId=jTable1.getValueAt(r, 1).toString();
+        String ItemCode = jTable1.getValueAt(r, 2).toString();
+        String ItemName = jTable1.getValueAt(r, 3).toString();
+        String Quantity = jTable1.getValueAt(r, 4).toString();
+        String MRP = jTable1.getValueAt(r, 5).toString();
+        String discountp = jTable1.getValueAt(r, 6).toString();
+        String DiscountAllowed= jTable1.getValueAt(r, 7).toString();
+        String netAmount= jTable1.getValueAt(r, 8).toString();
+        
+        //String price = jTable1.getValueAt(r, 4).toString();
         //assigning data to textfields and combo box
+        jLabel12.setText(InvoiceId); 
         jTextField1.setText(ItemCode);
-        jTextField3.setText(ItemName);
+        jLabel21.setText(ItemName);
         jTextField6.setText(Quantity);
-        jTextField8.setText(discount);
-        jTextField7.setText(price);
+        jLabel17.setText(MRP);
+        jTextField8.setText(discountp);
+        jLabel18.setText(DiscountAllowed);
+        jLabel7.setText(netAmount);
+        jLabel8.setText(count);
+       }
+       else if(jComboBox1.getSelectedItem().toString().equals("Credit Edit Item")) 
+       {
+         int b = jTable1.getSelectedRow();
+         TableModel model=jTable1.getModel();
+        //assign data to variables
+        String creditID=jTable1.getValueAt(b, 0).toString();
+        String InvoiceId=jTable1.getValueAt(b, 1).toString();
+        String ItemCode = jTable1.getValueAt(b, 2).toString();
+        String ItemName = jTable1.getValueAt(b, 3).toString();
+        String Quantity = jTable1.getValueAt(b, 4).toString();
+        String MRP = jTable1.getValueAt(b, 5).toString();
+        String discountp = jTable1.getValueAt(b, 6).toString();
+        String DiscountAllowed= jTable1.getValueAt(b, 7).toString();
+        String netAmount= jTable1.getValueAt(b, 8).toString();
+        
+        jLabel27.setText(creditID); 
+        jLabel12.setText(InvoiceId); 
+        jTextField1.setText(ItemCode);
+        jLabel21.setText(ItemName);
+        jTextField6.setText(Quantity);
+        jLabel17.setText(MRP);
+        jTextField8.setText(discountp);
+        jLabel18.setText(DiscountAllowed);
+        jLabel7.setText(netAmount);
+        
+       }
+       
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
-        // TODO add your handling code here:
-            int f=0;   
-    String s1=jTextField2.getText();
-    String s2=null;
-    for(int i=0;i<s1.length();i++)
-    {
-      char a=s1.charAt(i);  
-       
-      if(Character.isLetter(a))
-      {
-           f=1;
-        s1=s1.substring(0, i);   
-      }
-    }
-    if(f==1)
-    {
-        JOptionPane.showMessageDialog(null,"character not allowed");
-        jTextField2.setText(null);
-    }
-    }//GEN-LAST:event_jTextField2KeyPressed
-
-    private void jTextField7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyPressed
-        // TODO add your handling code here:
-        Float saleAmount1;
-        Float quty1;
-        Float discount1;
-        Float discunt;
-       //Float Sum=0f;
-
-        //saleAmount1=Float.parseFloat(jTextField2.getText());
-        //quty1=Float.parseFloat(jTextField6.getText());
-        //discount1=Float.parseFloat(jTextField8.getText());
-        
-        Pay1 p = new Pay1();
-        p.setSaleAmount1(Float.parseFloat(jTextField2.getText()));
-        p.setDiscount1(Float.parseFloat(jTextField8.getText()));
-        p.setQuty1(Float.parseFloat(jTextField6.getText()));
-/*
-        Double total = p.cal();
-        jTextField7.setText(String.valueOf(total));
-        
-        double discount2=p.cal2();
-        jTextField4.setText(String.valueOf(discount2));
-       */ 
-        //jTextField7.setText(total);
-        //jTextField4.set
-        
-         double total=p.cal();
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        float total1;
-        total1 = Float.valueOf(decimalFormat.format(total));
-        jTextField7.setText(String.valueOf(total1));
-        double discount=p.cal2();
-        DecimalFormat decimalFormat1 = new DecimalFormat("#.##");
-        float discount2;
-        discount2 = Float.valueOf(decimalFormat.format(discount));
-        jTextField4.setText(String.valueOf(discount2));
-        
-        
-        
-        String code = jTextField1.getText();
-        String itemName = jTextField3.getText();
-        String quty = jTextField6.getText();
-        String Discount = jTextField8.getText();
-        String netamt = jTextField7.getText();
-        
-        String st []={code,itemName,quty,Discount,netamt};
-        mod.addRow(st);
-        
-        String mrp=jTextField2.getText();
-        String disAllowed=jTextField2.getText();
-        String invoiceNo=jTextField5.getText();
-        
-      /*  jTextField1.setText(null);
-        jTextField2.setText(null);
-        jTextField3.setText(null);
-        jTextField4.setText(null);
-        
-        jTextField6.setText(null);
-        jTextField7.setText(null);
-        jTextField8.setText(null);
-        */
-       
-    }//GEN-LAST:event_jTextField7KeyPressed
 
     private void jLabel13KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel13KeyPressed
         // TODO add your handling code here:
@@ -995,27 +1274,25 @@ public class Payment extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jLabel13KeyPressed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
         DefaultTableModel mod;
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         mod=new DefaultTableModel();
-        jTable1.setModel(mod);
+        jTable2.setModel(mod);
+        
         mod.addColumn("Item Code");
         mod.addColumn("Item Name");
         mod.addColumn("Quantity");
         mod.addColumn("Discount");
         mod.addColumn("Net Amount");
-        mod.addColumn("BillId");
+       
     }//GEN-LAST:event_formWindowOpened
 
     private void jTextField8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyPressed
         // TODO add your handling code here:
         
-        int f=0;   
+        
+              int f=0;   
     String s1=jTextField8.getText();
     String s2=null;
     for(int i=0;i<s1.length();i++)
@@ -1031,7 +1308,70 @@ public class Payment extends javax.swing.JFrame {
     if(f==1)
     {
         JOptionPane.showMessageDialog(null,"character not allowed");
+        jLabel18.setText(null);
+        
+        
+        
+        
+          Float saleAmount1;
+        Float quty1;
+        Float discount1;
+        Float discunt;
+       //Float Sum=0f;
+
+        //saleAmount1=Float.parseFloat(jTextField2.getText());
+        //quty1=Float.parseFloat(jTextField6.getText());
+        //discount1=Float.parseFloat(jTextField8.getText());
+        
+        Pay1 p = new Pay1();
+        p.setSaleAmount1(Float.parseFloat(jLabel17.getText()));
+        p.setDiscount1(Float.parseFloat(jTextField8.getText()));
+        p.setQuty1(Float.parseFloat(jTextField6.getText()));
+        /*
+        Double total = p.cal();
+        jTextField7.setText(String.valueOf(total));
+        
+        double discount2=p.cal2();
+        jTextField4.setText(String.valueOf(discount2));
+        
+        */
+                //jTextField7.setText(total);
+        //jTextField4.set
+        double total=p.cal();
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        float total1;
+        total1 = Float.valueOf(decimalFormat.format(total));
+        jLabel7.setText(String.valueOf(total1));
+        double discount=p.cal2();
+        DecimalFormat decimalFormat1 = new DecimalFormat("#.##");
+        float discount2;
+        discount2 = Float.valueOf(decimalFormat.format(discount));
+        jLabel18.setText(String.valueOf(discount2));
+        
+        
+        String code = jTextField1.getText();
+        String itemName = jLabel21.getText();
+        String quty = jTextField6.getText();
+        String Discount = jTextField8.getText();
+        String netamt = jLabel7.getText();
+        
+        String st []={code,itemName,quty,Discount,netamt};
+        mod.addRow(st);
+        
+        String mrp=jLabel17.getText();
+        String disAllowed=jLabel17.getText();
+        String invoiceNo=jLabel12.getText();
+        
+      /*  jTextField1.setText(null);
+        jTextField2.setText(null);
+        jTextField3.setText(null);
         jTextField4.setText(null);
+        
+        jTextField6.setText(null);
+        jTextField7.setText(null);
+        jTextField8.setText(null);
+        */
+        
     }
     }//GEN-LAST:event_jTextField8KeyPressed
 
@@ -1057,48 +1397,153 @@ public class Payment extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jTextField6KeyPressed
 
-    private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
-        // TODO add your handling code here:
-            int f=0;   
-    String s1=jTextField5.getText();
-    String s2=null;
-    for(int i=0;i<s1.length();i++)
-    {
-      char a=s1.charAt(i);  
-       
-      if(Character.isLetter(a))
-      {
-           f=1;
-        s1=s1.substring(0, i);   
-      }
-    }
-    if(f==1)
-    {
-        JOptionPane.showMessageDialog(null,"character not allowed");
-        jTextField5.setText(null);
-    }
-    }//GEN-LAST:event_jTextField5KeyPressed
-
     private void jTextField9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyPressed
       
        //Float total;
        //Float mony;
        
-       Pay1 p2=new Pay1();
-       p2.setTotal(Float.parseFloat(jTextField11.getText()));
-        p2.setMony(Float.parseFloat(jTextField9.getText()));
-      
-        double getBalance=p2.getBalance();
-       //String pass=getText(balance); 
-       DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        float total4;
-        total4 = Float.valueOf(decimalFormat.format(getBalance));
-       jTextField10.setText(String.valueOf(total4));
+       
     }//GEN-LAST:event_jTextField9KeyPressed
 
     private void jTextField10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyPressed
         // TODO add your handling code here:
        // String total=
+        
+        
+       
+    }//GEN-LAST:event_jTextField10KeyPressed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+       
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jTextField8KeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+     if (jRadioButton3.isSelected())  
+     {
+        Float saleAmount1;
+        Float quty1;
+        Float discount1;
+        Float discunt;
+       //Float Sum=0f;
+
+        //saleAmount1=Float.parseFloat(jTextField2.getText());
+        //quty1=Float.parseFloat(jTextField6.getText());
+        //discount1=Float.parseFloat(jTextField8.getText());
+        
+        Pay1 p = new Pay1();
+        p.setSaleAmount1(Float.parseFloat(jLabel17.getText()));
+        p.setDiscount1(Float.parseFloat(jTextField8.getText()));
+        p.setQuty1(Float.parseFloat(jTextField6.getText()));
+        /*
+        Double total = p.cal();
+        jTextField7.setText(String.valueOf(total));
+        
+        double discount2=p.cal2();
+        jTextField4.setText(String.valueOf(discount2));
+        
+        */
+                //jTextField7.setText(total);
+        //jTextField4.set
+        double total=p.cal();
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        float total1;
+        total1 = Float.valueOf(decimalFormat.format(total));
+        jLabel7.setText(String.valueOf(total1));
+        double discount=p.cal2();
+        DecimalFormat decimalFormat1 = new DecimalFormat("#.##");
+        float discount2;
+        discount2 = Float.valueOf(decimalFormat.format(discount));
+        jLabel18.setText(String.valueOf(discount2));
+        
+        /*
+        String code = jTextField1.getText();
+        String itemName = jLabel21.getText();
+        String quty = jTextField6.getText();
+        String Discount = jTextField8.getText();
+        String netamt = jLabel7.getText();
+        
+        String st []={code,itemName,quty,Discount,netamt};
+        mod.addRow(st);
+        
+        String mrp=jLabel17.getText();
+        String disAllowed=jLabel17.getText();
+        String invoiceNo=jLabel12.getText();
+        
+      /*  jTextField1.setText(null);
+        jTextField2.setText(null);
+        jTextField3.setText(null);
+        jTextField4.setText(null);
+        
+        jTextField6.setText(null);
+        jTextField7.setText(null);
+        jTextField8.setText(null);
+        */
+     }
+     
+     
+     else if(jRadioButton4.isSelected()) 
+     {
+        Float saleAmount1;
+        Float quty1;
+        Float discount1;
+        Float discunt;
+        
+        Pay1 p = new Pay1();
+        p.setSaleAmount1(Float.parseFloat(jLabel17.getText()));
+        p.setDiscount1(Float.parseFloat(jTextField8.getText()));
+        p.setQuty1(Float.parseFloat(jTextField6.getText()));
+        
+        double total=p.cal();
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        float total1;
+        total1 = Float.valueOf(decimalFormat.format(total));
+        jLabel7.setText(String.valueOf(total1));
+        double discount=p.cal2();
+        DecimalFormat decimalFormat1 = new DecimalFormat("#.##");
+        float discount2;
+        discount2 = Float.valueOf(decimalFormat.format(discount));
+        jLabel18.setText(String.valueOf(discount2));
+        
+        
+       float tot=0;
+        
+            Double amount=Double.parseDouble(jLabel7.getText());
+            tot+=amount;
+        
+        jLabel19.setText(String.valueOf(tot));
+        
+        try{
+            String update="";
+        }
+        catch(Exception e2)
+        {
+            e2.printStackTrace();
+        }
+        
+     }
+        
+    
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel12KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel12KeyPressed
+        // TODO add your handling code here:
          String b_code="select max(InvoiceId) from bill";
         try {
             pst = con.prepareStatement(b_code);
@@ -1109,12 +1554,12 @@ public class Payment extends javax.swing.JFrame {
             if(a==0)
             {
                 a++;
-                jTextField5.setText(""+a);
+                jLabel12.setText(""+a);
             }
 
             else{
                 a++;
-                jTextField5.setText(""+a);
+                jLabel12.setText(""+a);
             }
             //jTextField5.setText(""+a);
             //System.out.println(String.format("max(Book_code) is %d", a));
@@ -1125,147 +1570,548 @@ public class Payment extends javax.swing.JFrame {
         
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
-    }//GEN-LAST:event_jTextField10KeyPressed
+    }//GEN-LAST:event_jLabel12KeyPressed
 
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+    private void jLabel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel1KeyPressed
         // TODO add your handling code here:
-        String itemCode=jTextField1.getText();
-        
-        try{
-            String sql="select CostPerUnit ,ProductName from products where ProductID='"+itemCode+"'";
-         pst=con.prepareStatement(sql);
-           
-            ResultSet rs = pst.executeQuery();
-            if(rs.next())
+        String b_code="select max(InvoiceId) from bill";
+        try {
+            pst = con.prepareStatement(b_code);
+            rs = pst.executeQuery();
+            rs.next();
+            int a=0;
+            a = rs.getInt(1);
+            if(a==0)
             {
-                String prod=rs.getString("CostPerUnit");//get value
-                jTextField2.setText(prod);
-                String prod1=rs.getString("ProductName");//get value
-                jTextField3.setText(prod1);
-                
+                a++;
+                jLabel12.setText(""+a);
             }
+
+            else{
+                a++;
+                jLabel12.setText(""+a);
+            }
+            //jTextField5.setText(""+a);
+            //System.out.println(String.format("max(Book_code) is %d", a));
         }
-        
-        catch(Exception e)
-        {
+        catch(Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jTextField1KeyPressed
-
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
-
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
-
-    private void jTextField12KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyPressed
-        // TODO add your handling code here:
         
-        /*String BillId=jTextField12.getText();
-        
-         try{
-            String sql="select BillId,InvoiceId,item_Code,Item_Name,QTY,bill_Date,MRP,DiscountsP,Discounts_Allowed,Net_Amount from bill where BillId='"+BillId+"'";
-         pst=con.prepareStatement(sql);
-           
-            ResultSet rs = pst.executeQuery();
-            if(rs.next())
-            {
-                String InvoiceId=rs.getString("InvoiceId");//get value
-                jTextField5.setText(InvoiceId);
-                String item_Code=rs.getString("item_Code");//get value
-                jTextField1.setText(item_Code);
-                String Item_Name=rs.getString("Item_Name");//get value
-                jTextField3.setText(Item_Name);
-                String QTY=rs.getString("QTY");//get value
-                jTextField6.setText(QTY);
-                String bill_Date=rs.getString("bill_Date");//get value
-                jLabel9.setText(bill_Date);
-                String MRP=rs.getString("MRP");//get value
-                jTextField2.setText(MRP);
-                String DiscountsP=rs.getString("DiscountsP");//get value
-                jTextField8.setText(DiscountsP);
-                String Discounts_Allowed=rs.getString("Discounts_Allowed");//get value
-                jTextField4.setText(DiscountsP);
-                String Net_Amount=rs.getString("Net_Amount");//get value
-                jTextField7.setText(Net_Amount);
-                
-              
-                
-                
-            }
-        }
-        
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-         
-         
-         String sql ="DELETE from bill where BillId = "+BillId+" ";
-          
-            try
-            {
-                
-            pst=con.prepareStatement(sql);
-            pst.execute(); 
-            JOptionPane.showMessageDialog(null, "Deleted");
-               //tableload();
-               }
-            catch(Exception e)
-            {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-            }
-         
-         */
-        
-    }//GEN-LAST:event_jTextField12KeyPressed
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+    }//GEN-LAST:event_jLabel1KeyPressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        String BillId=jTextField12.getText();
-         String sql ="DELETE from bill where BillId = "+BillId+" ";
-          
-            try
-            {
+       //String b_code="select max(InvoiceId) from bill ";
+         //"select max(b.InvoiceId),max(c.Invoice_ID) from bill b INNER JOIN creditsales c on b.InvoiceId=c.Invoice_ID ";   
+       String b_code1="select max(InvoiceId) from bill  ";
+       //String b_code2="select max(Invoice_ID) from creditsales  ";
+            try {
                 
-            pst=con.prepareStatement(sql);
-            pst.execute(); 
-            JOptionPane.showMessageDialog(null, "Deleted");
-               //tableload();
-               }
-            catch(Exception e)
+            // String b_code="select max(InvoiceId) from bill ";
+            pst = con.prepareStatement(b_code1);
+            //pst1 = con.prepareStatement(b_code2);
+            rs = pst.executeQuery();
+            //rs = pst1.executeQuery();
+            rs.next();
+            int a=0;
+            a = rs.getInt(1);
+            if(a==0)
             {
-            JOptionPane.showMessageDialog(null, e);
+            a++;
+            jLabel12.setText(""+a);
+            }
+
+            else{
+            a++;
+            jLabel12.setText(""+a);
+            }
+            //jTextField5.setText(""+a);
+            //System.out.println(String.format("max(Book_code) is %d", a));
+            }
+            catch(Exception e) {
             e.printStackTrace();
             }
-         
+            
+            //DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+           // dtm.setRowCount(0);
+            
+            jLabel19.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            
         
+          
+            
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        Delivery del = new Delivery();
-        del.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        // TODO add your handling code here:
+          
+       Pay1 p2=new Pay1();
+       p2.setTotal(Float.parseFloat(jLabel19.getText()));
+       p2.setMony(Float.parseFloat(jTextField9.getText()));
+       //p2.setMony(Float.parseFloat(jTextField9.getText()));
+      
+       double getBalance=p2.getBalance();
+       //String pass=getText(balance); 
+       DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        float total4;
+        total4 = Float.valueOf(decimalFormat.format(getBalance));
+       jTextField10.setText(String.valueOf(total4));
+    }//GEN-LAST:event_jTextField9ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        retun_damage_items ret= new retun_damage_items();
-        ret.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void ChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeActionPerformed
+        // TODO add your handling code here:
+       Pay1 p2=new Pay1();
+       p2.setTotal(Float.parseFloat(jLabel19.getText()));
+       p2.setMony(Float.parseFloat(jTextField9.getText()));
+       //p2.setMony(Float.parseFloat(jTextField9.getText()));
+      
+       double getBalance=p2.getBalance();
+       //String pass=getText(balance); 
+       DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        float total4;
+        total4 = Float.valueOf(decimalFormat.format(getBalance));
+       jTextField10.setText(String.valueOf(total4));
+    }//GEN-LAST:event_ChangeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new MainPage().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        if (jComboBox1.getSelectedItem().toString().equals("Cash/ChequeReceipt Edit Search")){
+           try{
+               
+               
+             
+            String sql="select b.count,b.InvoiceId, b.item_code,b.Item_Name,b.QTY,b.MRP,b.DiscountsP,b.Discounts_Allowed,b.Net_Amount,r.Total,r.cash,r.changeA from bill b  INNER JOIN receipt r on b.InvoiceId=r.InvoiceId where b.InvoiceId="+jTextField2.getText()+"";
+            pst=con.prepareStatement(sql);          
+            ResultSet rs = pst.executeQuery();
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            /*
+            String sql1="SELECT InvoiceId,item_code,Item_Name,QTY,MRP,DiscountsP,Discounts_Allowed,Net_Amount from bill where InvoiceId="+jTextField2.getText()+"";
+            pst=con.prepareStatement(sql1);
+            ResultSet rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));       
+             */      
+            
+            if(rs.next())
+            {             
+                                          
+                String total=rs.getString("Total");//get value
+                jLabel19.setText(total);//set v//alue
+                String cash=rs.getString("cash");
+                jTextField9.setText(cash);
+                String balance=rs.getString("ChangeA");
+                jTextField10.setText(balance);
+              //  String InvoiceId1=rs.getString("InvoiceId");
+                //jLabel12.setText(InvoiceId1);
+               
+               //jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+               
+              //jComboBox1.addItem(rs.getInt(1));  
+                
+            }
+        }
+        
+         catch(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+        e.printStackTrace();
+        }
+        }
+           
+        else if(jComboBox1.getSelectedItem().toString().equals("cash/Cheque Edit Item Search")) 
+                {
+                    try{
+                   String sql="SELECT count,InvoiceId,item_code,Item_Name,QTY,MRP,DiscountsP,Discounts_Allowed,Net_Amount from bill where InvoiceId="+jTextField2.getText()+"";
+                   pst=con.prepareStatement(sql); 
+                    
+                   ResultSet rs = pst.executeQuery();
+                   jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            if(rs.next())
+            {
+                String ItemName=rs.getString("Item_Name");//get value
+                jLabel21.setText(ItemName);//set v//alue
+                String ItemCode=rs.getString("item_code");
+                jTextField1.setText(ItemCode);
+                String QTY=rs.getString("QTY");
+                jTextField6.setText(QTY);
+                String MRP=rs.getString("MRP");
+                jLabel17.setText(MRP);
+                String DiscountsP=rs.getString("DiscountsP");
+                jTextField8.setText(DiscountsP);
+                String Discounts_Allowed=rs.getString("Discounts_Allowed");
+                jLabel18.setText(Discounts_Allowed); 
+                String Net_Amount=rs.getString("Net_Amount");
+                jLabel7.setText(Net_Amount);
+                String leftItem=rs.getString("count");
+                jLabel8.setText(leftItem);
+                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            }
+        //jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+                    }
+         catch(Exception e){
+        JOptionPane.showMessageDialog(null, "There's no Invoice Id");
+        e.printStackTrace();
+        }
+                    
+        } 
+        
+        else if(jComboBox1.getSelectedItem().toString().equals("Credit Receipt Edit")) 
+        {
+        try{
+               
+            String sql="SELECT c.Invoice_ID,c.Item_ID,c.Item_Name,c.QTY,c.MRP,c.DiscountsP,c.Discounts_Allowed,c.Net_Amount,r.Total,r.cash,r.changeA from creditsales c  INNER JOIN receipt r on c.Invoice_ID=r.InvoiceId where c.Invoice_ID='"+jLabel12.getText()+"'";
+            pst=con.prepareStatement(sql);
+           
+            ResultSet rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            if(rs.next())
+            {
+                 String total=rs.getString("Total");//get value
+                jLabel19.setText(total);//set v//alue
+                String cash=rs.getString("cash");
+                jTextField9.setText(cash);
+                String balance=rs.getString("ChangeA");
+                jTextField10.setText(balance);
+                jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            }
+        }
+        
+         catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+            e.printStackTrace();
+        }
+            
+        }
+       
+        
+        else if(jComboBox1.getSelectedItem().toString().equals("Credit Edit Item")) 
+                {
+                    try{
+                   String sql="SELECT creditSale_ID,Invoice_ID,Item_ID,Item_Name,QTY,MRP,DiscountsP,Discounts_Allowed,Net_Amount from creditsales where Invoice_ID="+jTextField2.getText()+"";
+                   pst=con.prepareStatement(sql);                     
+                   ResultSet rs = pst.executeQuery();
+                   jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            if(rs.next())
+            {
+                String ItemName=rs.getString("Item_Name");//get value
+                jLabel21.setText(ItemName);//set v//alue
+                String ItemCode=rs.getString("Item_ID");
+                jTextField1.setText(ItemCode);
+                String QTY=rs.getString("QTY");
+                jTextField6.setText(QTY);
+                String MRP=rs.getString("MRP");
+                jLabel17.setText(MRP);
+                String DiscountsP=rs.getString("DiscountsP");
+                jTextField8.setText(DiscountsP);
+                String Discounts_Allowed=rs.getString("Discounts_Allowed");
+                jLabel18.setText(Discounts_Allowed); 
+                String Net_Amount=rs.getString("Net_Amount");
+                jLabel7.setText(Net_Amount); 
+                
+                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                
+                
+            }
+        //jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+                    }
+         catch(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+        e.printStackTrace();
+        }
+                    
+        } 
+        
+    }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        
+        if(jComboBox1.getSelectedItem().toString().equals("Cash/ChequeReceipt Edit Search")) 
+        {    
+        int r = jTable2.getSelectedRow();
+        TableModel model=jTable2.getModel();
+        //assign data to variables
+        String receipt=jTable2.getValueAt(r, 0).toString();
+        //String count=jTable2.getValueAt(r, 0).toString();
+        String InvliceId = jTable2.getValueAt(r, 1).toString();
+        String ItemCode = jTable2.getValueAt(r, 2).toString();
+        String ItemName = jTable2.getValueAt(r, 3).toString();
+        String Quantity = jTable2.getValueAt(r, 4).toString();
+        String MRP = jTable2.getValueAt(r, 5).toString();
+        String discountp = jTable2.getValueAt(r, 6).toString();
+        String DiscountAllowed= jTable2.getValueAt(r, 7).toString();
+        String netAmount= jTable2.getValueAt(r, 8).toString();
+        String total= jTable2.getValueAt(r, 9).toString(); 
+        String cash= jTable2.getValueAt(r, 10).toString(); 
+        String balance= jTable2.getValueAt(r, 11).toString();
+        
+        //String price = jTable2.getValueAt(r, 4).toString();
+        //assigning data to textfields and combo box
+        jLabel29.setText(receipt);
+        jLabel12.setText(InvliceId);
+        jTextField1.setText(ItemCode);
+        jLabel21.setText(ItemName);
+        jTextField6.setText(Quantity);
+        jLabel17.setText(MRP);
+        jTextField8.setText(discountp);
+        jLabel18.setText(DiscountAllowed);
+        jLabel7.setText(netAmount);
+        jLabel19.setText(total);
+        jTextField9.setText(cash);
+        jTextField10.setText(balance);
+        
+        }
+        
+        
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTable2ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jTable2ComponentAdded
+        // TODO add your handling code here:
+        Populate(jLabel12.getText(),jTextField1.getText(),jLabel21.getText(),jTextField6.getText(),
+                jLabel17.getText(),jTextField8.getText(),jLabel18.getText(),jLabel7.getText());
+       jTextField1.setText(null);
+        jLabel17.setText(null);
+        jLabel21.setText(null);
+        
+        jTextField6.setText(null);
+        jLabel7.setText(null);
+        jTextField8.setText(null);
+        
+    }//GEN-LAST:event_jTable2ComponentAdded
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    
+        /*
+        
+       // int count=Integer.parseInt(jLabel23.getText());      
+        int invoiceId=Integer.parseInt(jLabel12.getText());
+        String code=jTextField1.getText();
+       //int ReceiptId = Integer.parseInt(jTextField3.getText());
+        Float saleAmount = Float.parseFloat(jLabel17.getText());
+        Float quty = Float.parseFloat(jTextField6.getText());
+        Float discount = Float.parseFloat(jTextField8.getText());
+        Float netamt = Float.parseFloat(jLabel7.getText());
+        String itemName = jLabel21.getText();
+        String date = jLabel4.getText();
+        Float DisctAllowed=Float.parseFloat(jLabel18.getText());
+        String time=jLabel11.getText();
+        //Float cash = Float.parseFloat(jTextField9.getText());
+        //Float Total = Float.parseFloat(jLabel19.getText());
+        //Float changeA = Float.parseFloat(jTextField10.getText()); 
+         */   
+        /*   
+        String sql2="UPDATE bill SET  item_Code='"+code+"',Item_Name='"+itemName+"',QTY="+quty+",bill_Date='"+date+"',MRP="+saleAmount+",DiscountsP="+ discount+",Discounts_Allowed="+DisctAllowed+",Net_Amount="+netamt+"  where count='"+jLabel23+"' ";
+        //String sql3="UPDATE receipte cash='"+cash+"',Total ='"+Total +"',changeA ='"+changeA+"' where ReceiptId='"+jTextField3+"'";
+             try
+            {
+            pst=con.prepareStatement(sql2);
+            //pst2=con.prepareStatement(sql3);
+            pst.execute();
+           //pst2.execute();
+            
+            JOptionPane.showMessageDialog(null, "Updated");
+            //tableload();
+            
+            //JOptionPane.showMessageDialog(null, "Updated"); 
+            //load table
+            
+            
+            }
+            catch(Exception e)
+            {
+            JOptionPane.showMessageDialog(null, e);    
+            e.printStackTrace();
+            }
+             
+             //tableload();
+            
+        */
+          int Y = JOptionPane.showConfirmDialog(null, "Do You Want Update?");
+          if(Y==0)
+          {
+        
+         if ((jComboBox1.getSelectedItem().toString().equals("cash/Cheque Edit Item Search")&&(jRadioButton4.isSelected() )))
+                {
+                        Float saleAmount1;
+                        Float quty1;
+                        Float discount1;
+                        Float discunt;
+                        
+                        Pay1 p = new Pay1();
+                        p.setSaleAmount1(Float.parseFloat(jLabel17.getText()));
+                        p.setDiscount1(Float.parseFloat(jTextField8.getText()));
+                        p.setQuty1(Float.parseFloat(jTextField6.getText()));
+                        
+                        double total=p.cal();
+                        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                        float total1;
+                        total1 = Float.valueOf(decimalFormat.format(total));
+                        jLabel7.setText(String.valueOf(total1));
+                        double discount=p.cal2();
+                        DecimalFormat decimalFormat1 = new DecimalFormat("#.##");
+                        float discount2;
+                        discount2 = Float.valueOf(decimalFormat.format(discount));
+                        jLabel18.setText(String.valueOf(discount2));
+                        
+                        
+                        
+                    
+                    Float saleAmount = Float.parseFloat(jLabel17.getText());
+                    Float quty = Float.parseFloat(jTextField6.getText());
+                    Float discount3 = Float.parseFloat(jTextField8.getText());
+                    Float netamt = Float.parseFloat(jLabel7.getText());
+                    String itemName = jLabel21.getText();
+                    String date = jLabel4.getText();
+                    Float DisctAllowed=Float.parseFloat(jLabel18.getText());
+                    String time=jLabel11.getText();
+                    int invoiceId=Integer.parseInt(jLabel12.getText());
+                    String code=jTextField1.getText();
+                    String count=jLabel8.getText();
+                    
+                    String sql2="UPDATE bill SET  InvoiceId='"+invoiceId+"',item_Code='"+code+"',Item_Name='"+itemName+"',QTY="+quty+",bill_Date='"+date+"',MRP="+saleAmount+",DiscountsP="+ discount3+",Discounts_Allowed="+DisctAllowed+",Net_Amount="+netamt+"  where count='"+count+"' ";
+                    
+                      try
+                {   
+                    pst=con.prepareStatement(sql2);            
+                    pst.execute();                                         
+                    tableload1();
+                    //JOptionPane.showMessageDialog(null, "Updated"); 
+                }
+                    catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, e);    
+                    e.printStackTrace();
+                }
+                   DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                   model.setRowCount(0);   
+                      
+                }
+        
+         else if(jComboBox1.getSelectedItem().toString().equals("Credit Edit Item")&&(jRadioButton4.isSelected() ) )
+                {
+                    Float saleAmount = Float.parseFloat(jLabel17.getText());
+                    Float quty = Float.parseFloat(jTextField6.getText());
+                    Float discount = Float.parseFloat(jTextField8.getText());
+                    Float netamt = Float.parseFloat(jLabel7.getText());
+                    String itemName = jLabel21.getText();
+                    String date = jLabel4.getText();
+                    Float DisctAllowed=Float.parseFloat(jLabel18.getText());
+                    String time=jLabel11.getText();
+                    int invoiceId=Integer.parseInt(jLabel12.getText());
+                    String code=jTextField1.getText(); 
+                    
+                    
+                   String sql2="UPDATE creditsales SET Item_ID='"+code+"',Item_Name='"+itemName+"',QTY="+quty+",MRP="+saleAmount+",DiscountsP="+ discount+",Discounts_Allowed="+DisctAllowed+",Date='"+date+"',Net_Amount="+netamt+" ,Invoice_ID="+invoiceId+" where creditSale_ID='"+jLabel27+"' "; 
+                   try
+                {   
+                    pst2=con.prepareStatement(sql2);            
+                    pst2.execute();
+                    tableload2();
+                    JOptionPane.showMessageDialog(null, "Updated");                                                       
+                }
+                    catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, e);    
+                    e.printStackTrace();
+                }
+                   
+                   DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                   model.setRowCount(0);
+                }
+          
+          
+        else if(jComboBox1.getSelectedItem().toString().equals("Cash/ChequeReceipt Edit Search")&&(jRadioButton4.isSelected() ) )
+                {
+                    
+                    
+                    Float saleAmount = Float.parseFloat(jLabel17.getText());
+                    Float quty = Float.parseFloat(jTextField6.getText());
+                    Float discount = Float.parseFloat(jTextField8.getText());
+                    Float netamt = Float.parseFloat(jLabel7.getText());
+                    String itemName = jLabel21.getText();
+                    String date = jLabel4.getText();
+                    Float DisctAllowed=Float.parseFloat(jLabel18.getText());
+                    String time=jLabel11.getText();
+                    int invoiceId=Integer.parseInt(jLabel12.getText());
+                    String code=jTextField1.getText(); 
+                    Float cash = Float.parseFloat(jTextField9.getText());
+                    Float Total = Float.parseFloat(jLabel19.getText());
+                    Float changeA = Float.parseFloat(jTextField10.getText()); 
+                    
+                    String sql2="UPDATE bill SET  item_Code='"+code+"',Item_Name='"+itemName+"',QTY="+quty+",bill_Date='"+date+"',MRP="+saleAmount+",DiscountsP="+ discount+",Discounts_Allowed="+DisctAllowed+",Net_Amount="+netamt+"  where count='"+jLabel23+"' ";                  
+                    String sql3="UPDATE receipte cash='"+cash+"',Total ='"+Total +"',changeA ='"+changeA+"' where ReceiptId='"+jLabel29+"'";
+                    
+                       try
+                {   
+                    pst3=con.prepareStatement(sql2);            
+                    pst3.execute(); 
+                    pst4=con.prepareStatement(sql3);            
+                    pst4.execute();
+                    JOptionPane.showMessageDialog(null, "Updated");                                                       
+                }
+                    catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, e);    
+                    e.printStackTrace();
+                }
+                }
+         
+        else if(jComboBox1.getSelectedItem().toString().equals("Credit Receipt Edit")&&(jRadioButton4.isSelected()) )
+                {
+                    
+                    
+                    Float saleAmount = Float.parseFloat(jLabel17.getText());
+                    Float quty = Float.parseFloat(jTextField6.getText());
+                    Float discount = Float.parseFloat(jTextField8.getText());
+                    Float netamt = Float.parseFloat(jLabel7.getText());
+                    String itemName = jLabel21.getText();
+                    String date = jLabel4.getText();
+                    Float DisctAllowed=Float.parseFloat(jLabel18.getText());
+                    String time=jLabel11.getText();
+                    int invoiceId=Integer.parseInt(jLabel12.getText());
+                    String code=jTextField1.getText(); 
+                    Float cash = Float.parseFloat(jTextField9.getText());
+                    Float Total = Float.parseFloat(jLabel19.getText());
+                    Float changeA = Float.parseFloat(jTextField10.getText()); 
+                    
+                    String sql2="UPDATE creditsalse SET item_ID='"+code+"',Item_Name='"+itemName+"',QTY="+quty+",Date='"+date+"',MRP="+saleAmount+",DiscountsP="+ discount+",Discounts_Allowed="+DisctAllowed+",Net_Amount="+netamt+"  where creditSale_ID='"+jLabel23+"' ";
+                    //String sql3="UPDATE receipte cash='"+cash+"',Total ='"+Total +"',changeA ='"+changeA+"' where ReceiptId='"+jTextField3+"'";
+                           try
+                {   
+                    pst5=con.prepareStatement(sql2);            
+                    pst5.execute(); 
+                    pst6=con.prepareStatement(sql2);            
+                    pst6.execute();
+                    JOptionPane.showMessageDialog(null, "Updated");                                                       
+                }
+                    catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, e);    
+                    e.printStackTrace();
+                }
+                } 
+          }
+    }//GEN-LAST:event_jButton12ActionPerformed
+    private void filter(String query)
+    {
+        TableRowSorter<DefaultTableModel> tr=new TableRowSorter<DefaultTableModel> (cd);
+        jTable2.setRowSorter(tr);
+    }
     /**
      * @param args the command line arguments
      */
@@ -1302,14 +2148,19 @@ public class Payment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Change;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1318,8 +2169,23 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1335,18 +2201,19 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables

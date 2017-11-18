@@ -122,7 +122,7 @@ private boolean sendtoDB(int qtr,float goodwill,float trademark,float other,floa
       con = DBconnect.connect();
        
        try{
-           String sql = "INSERT INTO `sofpvaluesassests` (`quater`,`Goodwill`,`Trademark`,`Other`,`Cash`,`Inventory`,`Debtors`,`Land_&_Bilding`,`Motor_Vehicles`,`Equipment`,`Year`,`Date`)VALUES ('"+qtr+"','"+goodwill+"','"+trademark+"','"+other+"','"+cash+"','"+inventory+"','"+debtors+"','"+landANDBuild+"','"+motorV+"','"+equip+"','"+year+"','"+date+"');";
+           String sql = "INSERT INTO `sofpvaluesassests` (`quater`,`Goodwill`,`Trademark`,`Other`,`Cash`,`Inventory`,`Debtors`,`Land_n_Bilding`,`Motor_Vehicles`,`Equipment`,`Year`,`Date`)VALUES ('"+qtr+"','"+goodwill+"','"+trademark+"','"+other+"','"+cash+"','"+inventory+"','"+debtors+"','"+landANDBuild+"','"+motorV+"','"+equip+"','"+year+"','"+date+"');";
            pst = con.prepareStatement(sql);
            pst.execute();
            System.out.println("Successful");

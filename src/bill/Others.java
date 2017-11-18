@@ -2,13 +2,16 @@ package bill;
 
 
 import DBConnect.DBconnect;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -26,33 +29,25 @@ public class Others extends javax.swing.JFrame {
  PreparedStatement pst = null;
  ResultSet rs = null;
  Statement st=null;
+ 
+ java.util.Date date1;
+ java.sql.Date sqldate1;
+ java.util.Date date2;
+ java.sql.Date sqldate2;
+ java.util.Date date3;
+ java.sql.Date sqldate3;
     /**
      * Creates new form Others
      */
     public Others() {
         initComponents();
         con = DBconnect.connect();
-        tableload();
-        showDate() ;
+        
+        showDate();
     }
     
     
-     public void tableload()
-    {
-        try
-        {
-         String sql= "select   creditSale_ID,Item_ID,Item_Name,QTY,MRP,DiscountsP,Discounts_Allowed,Date,Net_Amount,Invoice_ID from creditsales";
-         pst = con.prepareStatement(sql);
-         rs = pst.executeQuery();
-         
-         jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-        }
-        
-        catch(Exception e)
-        {
-        
-        }
-    }
+    
       public void tableload1()
     {
         try
@@ -86,31 +81,29 @@ public class Others extends javax.swing.JFrame {
         
         }
     } 
+/*
+      private String getEndDateFormat(){
+     
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+       SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
+    // String date1 = sdf.format(this.jDateChooser1.getDate());
+    // String date2 = sdf2.format(this.jDateChooser2.getDate());
+    // String date3 = sdf3.format(this.jDateChooser3.getDate());
+     System.out.println(date1);
+      
+     return date1;
+ }
+      
+      */
       
       
-       void showDate() {
+      void showDate() {
         Date d = new Date();
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-YYYY");
         jTextField5.setText(s.format(d));
 
     }
-      
-      
-      
-      
-
-      private String getEndDateFormat(){
-     
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
-     String date1 = sdf.format(this.jDateChooser1.getDate());
-     String date2 = sdf2.format(this.jDateChooser2.getDate());
-     String date3 = sdf3.format(this.jDateChooser3.getDate());
-     System.out.println(date1);
-      
-     return date1;
- }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -137,37 +130,7 @@ public class Others extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jLabel32 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -189,54 +152,46 @@ public class Others extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jButton10 = new javax.swing.JButton();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/check/backgrnd1.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setMaximumSize(new java.awt.Dimension(1366, 768));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1366, 768));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Gate Pass");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 12, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Item Code");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 233, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Item Name");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 309, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Quantity");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 386, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Date");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 476, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 142, 134, 30));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 228, 134, 30));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 304, 134, 30));
 
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField4KeyPressed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 381, 134, 30));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 471, 134, 30));
+
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField5KeyPressed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Add");
@@ -245,7 +200,6 @@ public class Others extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 186, 130, 36));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Edit");
@@ -254,7 +208,6 @@ public class Others extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 333, 130, 36));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -274,226 +227,146 @@ public class Others extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 533, 430, 350));
-
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel29.setText("InvoicId");
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 147, -1, -1));
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -110, 430, 990));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel29)
+                        .addGap(29, 29, 29)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel3)
+                        .addGap(14, 14, 14)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel4)
+                        .addGap(10, 10, 10)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel5)
+                        .addGap(28, 28, 28)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel6)
+                        .addGap(56, 56, 56)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(jLabel1)
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel29))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel3))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel4))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel5))
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel6))
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 888));
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Credit");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 12, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Item Code");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 133, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("Item Name");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 200, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("MRP");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 260, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Quantity");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 322, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("Discount");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 382, -1, -1));
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("Edit");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 223, 130, 36));
-
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setText("Bill");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 344, 130, 36));
-
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField6KeyPressed(evt);
-            }
-        });
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 68, 134, 30));
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 135, 134, 30));
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 195, 134, 30));
-        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 255, 134, 30));
-        jPanel2.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 317, 134, 30));
-        jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 377, 134, 30));
-
-        jTextField12.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField12KeyPressed(evt);
-            }
-        });
-        jPanel2.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 431, 134, 30));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "CreditId", "ItemCode", "ItemName", "QTY", "MRP", "Discount", "DiscountAllowed", "DiscoDate", "NetAmount", "InvoiceID"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
-            }
-        });
-        jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable2KeyPressed(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable2);
-
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 537, 573, 350));
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel23.setText("Net Price");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 436, -1, -1));
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel25.setText("Date");
-        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 73, -1, -1));
-        jPanel2.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 66, 134, 34));
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel26.setText("CreditId");
-        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 73, -1, -1));
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel27.setText("DiscountAllowed");
-        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 494, -1, -1));
-
-        jTextField24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField24ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 489, 134, 30));
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel28.setText("InvoiceId");
-        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 140, -1, -1));
-        jPanel2.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 133, 134, 34));
-
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setText("Reset");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, 130, 36));
-
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -110, 570, 990));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 11, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 480, 888));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("Cheque Id");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 143, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Invoice Id");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 197, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Cheque No");
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 251, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Issue Date");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 305, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("Recieved Date");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 361, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("Issuer Bank");
-        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 417, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("Valid Period");
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 471, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Expiration Date");
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 526, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setText("Amount");
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 582, -1, -1));
 
         jTextField13.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField13KeyPressed(evt);
             }
         });
-        jPanel3.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 138, 134, 30));
 
         jTextField14.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField14KeyPressed(evt);
             }
         });
-        jPanel3.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 192, 134, 30));
 
         jTextField15.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField15KeyPressed(evt);
             }
         });
-        jPanel3.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 246, 134, 30));
-        jPanel3.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 412, 134, 30));
-        jPanel3.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 466, 134, 30));
 
         jTextField21.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField21KeyPressed(evt);
             }
         });
-        jPanel3.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 577, 134, 30));
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton7.setText("Cheque");
@@ -502,7 +375,6 @@ public class Others extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 643, 130, 36));
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton8.setText("Edit");
@@ -511,16 +383,12 @@ public class Others extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 643, 130, 36));
 
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton9.setText("Report");
-        jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 685, 130, 36));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Cheque");
-        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 55, -1, -1));
 
         jButton11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton11.setText("Back");
@@ -529,113 +397,187 @@ public class Others extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 14, 130, 36));
-        jPanel3.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 305, 134, -1));
-        jPanel3.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 358, 134, -1));
-        jPanel3.add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 523, 134, -1));
 
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jPanel3.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 320, 770));
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
 
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backgrnd1.png"))); // NOI18N
-        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 120));
+        jDateChooser2.setDateFormatString("yyyy-MM-dd");
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 11, 320, 888));
-        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -360, 2090, 1260));
+        jButton10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton10.setText("Cheque Id");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jDateChooser3.setDateFormatString("yyyy-MM-dd");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel24))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel15))
+                        .addGap(91, 91, 91)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField15)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField19)
+                                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton10)))
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel24)
+                .addGap(58, 58, 58)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton10)
+                        .addGap(35, 35, 35)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel18)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel19)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel20)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel21))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(49, 49, 49)
+                                        .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(24, 24, 24)
+                                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47))
+                            .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(214, 214, 214))
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 490, 888));
+        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -350, 2140, 1480));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int Y = JOptionPane.showConfirmDialog(null, "Do You Want Update?");
-        if(Y==0){
-            String id=jTextField6.getText();
-            String itemcode=jTextField7.getText();
-            String name =jTextField8.getText();
-            String quantity = jTextField10.getText();
-            String date=jTextField23.getText();       
-            int invoiceid=Integer.parseInt(jTextField25.getText());
-            
-           String sql2="Update creditsales set  Item_Code='"+itemcode+"',Item_Name='"+name+"',QTY='"+quantity+"',Invoice_ID="+invoiceid+",date='"+date+"',Invoice_ID="+invoiceid+" where tokenId="+id+"";
-             try
-            {
-           pst=con.prepareStatement(sql2);
-            pst.execute(); 
-            
-            //load table
-            tableload2();
-            
-
-            }
-            catch(Exception e)
-            {
-             e.printStackTrace();
-            }
-            
-        } 
+        
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-         int Y = JOptionPane.showConfirmDialog(null, "Do You Want Update?");
-        if(Y==0){
-            String id=jTextField6.getText();
-            String itemcode=jTextField7.getText();
-            String name =jTextField8.getText();
-            String quantity = jTextField10.getText();
-            String discount=jTextField11.getText();
-            String salePrice=jTextField9.getText();
-            String netPrice=jTextField12.getText();
-            String date=jTextField23.getText();
-            String discountAllowed=jTextField24.getText();
-            int invoiceid=Integer.parseInt(jTextField25.getText());
-            
-           String sql2="Update creditsales set  Item_ID='"+itemcode+"',Item_Name='"+name+"',QTY='"+quantity+"',MRP='"+salePrice+"',DiscountsP="+ discount+",Discounts_Allowed="+discountAllowed+",Date='"+date+"',Net_Amount="+netPrice+",Invoice_ID="+invoiceid+" where creditSale_ID="+id+"";
-             try
-            {
-           pst=con.prepareStatement(sql2);
-            pst.execute(); 
-            
-            //load table
-            tableload();
-             JOptionPane.showMessageDialog(null, "Updated");
-
-            }
-            catch(Exception e)
-            {
-             e.printStackTrace();
-            }
-            
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         String ChequeId=jTextField13.getText();
         int invoiceId=Integer.parseInt(jTextField14.getText());
         String chequeNo=jTextField15.getText();
-        
-        //DateFormat df=new SimpleDateFormat("yyy-MM-dd");
-       //jDateChooser1.setText(df.format()) 
-        //String issueDate=jTextField16.getText();
-        //String recievedDate=jTextField17.getText();
         String issuerBank=jTextField18.getText();
         String validPeriod=jTextField19.getText();
-        //String expirationDate=jTextField20.getText();
         double amount=Float.parseFloat(jTextField21.getText());
-         String s1 =  getEndDateFormat();
-         String s2 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser2.getDate() );
-         String s3 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser3.getDate() );
+        DateFormat df=new SimpleDateFormat("yyy-MM-dd");
+        //jDateChooser1.setText(df.format());
+        //String issueDate=jTextField16.getText();
+        //String recievedDate=jTextField17.getText();
         
+        //String expirationDate=jTextField20.getText();
+       
+        // String s1 =  getEndDateFormat();
+        // String s1 =  jDateChooser1.getDateEditor().getDateFormatString();
+        String s1 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser1.getDate() );
+        String s2 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser2.getDate() );
+        String s3 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser3.getDate() );
+        
+        
+        //String s2 =  jDateChooser2.getDateEditor().getDateFormatString();
+        
+        //date1=jDateChooser1.getDate();
+       // sqldate1=new java.sql.Date(date1.getText());
+        //date2=jDateChooser2.getDate();
+        //sqldate2=new java.sql.Date(date2.getDate());
+        //date3=jDateChooser3.getDate();
+        //sqldate3=new java.sql.Date(date2.getDate());
         
           try{
-          String qry=("INSERT INTO chequedetails( InvoiceId, cheque_Number, recieved_Date, issued_Date, issuer_Bank, expiration_Date, valid_Period,amount)VALUES("+invoiceId+",'"+chequeNo+"','"+s1+"','"+s2+"','"+issuerBank+"','"+s3+"','"+validPeriod+"',"+amount+")");
-          //PreparedStatement pst=con.prepareStatement(qry);
-          pst = con.prepareStatement(qry);
-           pst.executeUpdate();
+         String qry=("INSERT INTO chequedetails( InvoiceId, cheque_Number, recieved_Date, issued_Date, issuer_Bank, expiration_Date, valid_Period,amount)VALUES("+invoiceId+",'"+chequeNo+"','"+s1+"','"+s2+"','"+issuerBank+"','"+s3+"','"+validPeriod+"',"+amount+")");
+         PreparedStatement pst=con.prepareStatement(qry);
+         pst = con.prepareStatement(qry);
+          pst.executeUpdate();
+         /*
+           pst.setString(1,jTextField14.getText());
+           pst.setString(2,jTextField15.getText());
+           pst.setString(3,((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+           pst.setString(4,((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+           pst.setString(5,jTextField18.getText());
+           pst.setString(6,jTextField19.getText());
+           pst.setString(7,((JTextField)jDateChooser3.getDateEditor().getUiComponent()).getText());
+           pst.setString(8,jTextField21.getText());
+          */
            JOptionPane.showMessageDialog(null, "Added");
+         
         }
         
         catch(Exception e){
@@ -664,10 +606,10 @@ public class Others extends javax.swing.JFrame {
         String invoiceId=jTextField1.getText();
         
          try{
-          String qry= ("INSERT INTO gatepass ( Item_Code, Item_Name, QTY, Invoice_ID,date)VALUES('"+code+"','"+name+"',"+quty+",'"+invoiceId+"','"+date+"')");
-          PreparedStatement pst=con.prepareStatement(qry);
-            //Statement pst=conn.createStatement();
-           //tableload();
+                String qry= ("INSERT INTO gatepass ( Item_Code, Item_Name, QTY, Invoice_ID,date)VALUES('"+code+"','"+name+"',"+quty+",'"+invoiceId+"','"+date+"')");
+                PreparedStatement pst=con.prepareStatement(qry);
+                //Statement pst=conn.createStatement();
+                //tableload();
            pst.executeUpdate();
            JOptionPane.showMessageDialog(null, "Added");
             tableload1();
@@ -683,33 +625,6 @@ public class Others extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-            String id=jTextField6.getText();
-            String itemcode=jTextField7.getText();
-            String name =jTextField8.getText();
-            String quantity = jTextField9.getText();
-            String discount=jTextField10.getText();
-            String salePrice=jTextField11.getText();
-            String netPrice=jTextField12.getText();
-            String date=jTextField23.getText();
-            String Discounts_Allowed=jTextField24.getText();
-         try{
-          String qry = ("INSERT INTO bill (InvoiceId,item_Code,Item_Name,QTY,bill_Date,MRP,DiscountsP,Discounts_Allowed,Net_Amount)VALUES('" + id + "','" + itemcode + "','" + name + "'," + quantity + ",'"+date+"'," + salePrice + "," + discount + "," +Discounts_Allowed + "," + netPrice + ")");
-          PreparedStatement pst=con.prepareStatement(qry);
-          //Statement pst=conn.createStatement();
-           //tableload();
-           pst.executeUpdate();
-           JOptionPane.showMessageDialog(null, "Added");
-        }
-        
-        catch(Exception e){
-        
-        JOptionPane.showMessageDialog(null, e);
-        System.out.println(e);
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         
@@ -724,17 +639,18 @@ public class Others extends javax.swing.JFrame {
         String validPeriod=jTextField19.getText();
         //String expirationDate=jTextField20.getText();
         Float amount=Float.parseFloat(jTextField21.getText());
-        //String s1 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser1.getDate() );
+       // String s1 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser1.getDate() );
         //String s2 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser2.getDate() );
-        //String s3 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser3.getDate() );
+       // String s3 = new SimpleDateFormat("yyyy/MM/dd").format( jDateChooser3.getDate() );
         
           //issued_Date='"+s2+"',  expiration_Date='"+s3+"',recieved_Date='"+s1+"'
           // String sql2="Update chequedetails set  invoice_Id='"+invoiceId+"',cheque_Number='"+chequeNo+"',recieved_Date='"+s1+"',issued_Date='"+s2+"',issuer_Bank='"+issuerBank+"',expiration_Date='"+s3+"',valid_Period='"+validPeriod+"',amount="+amount+" where Cheque_ID="+ChequeId+"";
              try
             {
+                //String sql2="Update chequedetails set  invoice_Id='"+invoiceId+"',cheque_Number='"+chequeNo+"',recieved_Date='"+s1+"',issued_Date='"+s2+"',issuer_Bank='"+issuerBank+"',expiration_Date='"+s3+"',valid_Period='"+validPeriod+"',amount="+amount+" where Cheque_ID="+ChequeId+"";
                 String sql2="UPDATE chequedetails SET  InvoiceId="+invoiceId+",cheque_Number='"+chequeNo+"',issuer_Bank='"+issuerBank+"',valid_Period='"+validPeriod+"',amount="+amount+" where Cheque_ID="+ChequeId+"";
-           pst=con.prepareStatement(sql2);
-            pst.executeUpdate(); 
+                pst=con.prepareStatement(sql2);
+                pst.executeUpdate(); 
             
            
            ;
@@ -783,88 +699,27 @@ public class Others extends javax.swing.JFrame {
         */
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        // TODO add your handling code here:
-        int r= jTable2.getSelectedRow();
-        //String creditId= jTable2.getValueAt(r,0).toString();
-        String ItemCode= jTable2.getValueAt(r,0).toString();
-        String ItemName= jTable2.getValueAt(r,1).toString();
-        String quantity= jTable2.getValueAt(r,2).toString();
-        String MRP= jTable2.getValueAt(r,3).toString();
-        String discount= jTable2.getValueAt(r,4).toString();
-        String discountAllowed= jTable2.getValueAt(r,5).toString();
-        String date= jTable2.getValueAt(r,6).toString(); 
-        String netprice= jTable2.getValueAt(r,7).toString();
-        String invoiceId= jTable2.getValueAt(r,8).toString();
-        
-       //jTextField6.setText(creditId);
-       jTextField7.setText(ItemCode);
-       jTextField8.setText(ItemName);
-       jTextField9.setText( MRP);
-       jTextField10.setText(quantity);
-       jTextField11.setText(discount);
-       jTextField12.setText(netprice);
-       jTextField23.setText(date);
-       jTextField24.setText(discountAllowed);
-       jTextField25.setText(invoiceId);
-       
-       
-         
-       
-    }//GEN-LAST:event_jTable2MouseClicked
-
-    private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable2KeyPressed
-        // TODO add your handling code here:
-         
-    }//GEN-LAST:event_jTable2KeyPressed
-
-    private void jTextField6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyPressed
-        // TODO add your handling code here:
-        
-        try{
-            String sql="select  Item_ID,Item_Name,QTY,MRP,DiscountsP,Discounts_Allowed,Date,Net_Amount,Invoice_ID from creditsales where CreditSale_Id='"+jTextField6.getText()+"'";//search name
-            pst=con.prepareStatement(sql);
-           
-            ResultSet rs = pst.executeQuery();
-             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-            
-            if(rs.next())
-            {
-                 
-                 String code=rs.getString("Item_ID");
-                 jTextField7.setText(code);
-                 String name=rs.getString("Item_Name");
-                 jTextField8.setText(name);
-                 String quty=rs.getString("QTY");
-                 jTextField10.setText(quty);
-                 String mrp=rs.getString("MRP");
-                 jTextField9.setText(mrp);
-                 String discount=rs.getString("DiscountsP");
-                 jTextField11.setText(discount);
-                 String discountAllowed=rs.getString("Discounts_Allowed");
-                 jTextField24.setText(discountAllowed);
-                 String date=rs.getString("Date");
-                 jTextField23.setText(date);
-                 String netPrice=rs.getString("Net_Amount");
-                 jTextField12.setText(netPrice);
-                 String invoiceId=rs.getString("Invoice_ID");
-                 jTextField23.setText(invoiceId);
-            }
-        }
-        
-         catch(Exception e){
-        JOptionPane.showMessageDialog(null, "Credit Id is not valide");
-        }
-                                           
-
-    }//GEN-LAST:event_jTextField6KeyPressed
-
-    private void jTextField24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField24ActionPerformed
-
     private void jTextField13KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField13KeyPressed
         // TODO add your handling code here:
+        
+                 int f=0;   
+    String s1=jTextField13.getText();
+    String s2=null;
+    for(int i=0;i<s1.length();i++)
+    {
+      char a=s1.charAt(i);  
+       
+      if(Character.isLetter(a))
+      {
+           f=1;
+        s1=s1.substring(0, i);   
+      }
+    }
+    if(f==1)
+    {
+        JOptionPane.showMessageDialog(null,"character not allowed");
+        jTextField13.setText(null);
+    }
           
          
          try{
@@ -883,19 +738,19 @@ public class Others extends javax.swing.JFrame {
                 jTextField14.setText(invoiceId);
                 String chequeNo=rs.getString("cheque_Number");
                 jTextField15.setText(chequeNo);
-                //String issueDate;
+                String issueDate;
                 //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
      
                 //issueDate = sdf.format(rs.getString("issued_Date"));
                 //jDateChooser1.setDateFormatString(issueDate));
-               // String recievedDate;
+                //String recievedDate;
                 //SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                 //jTextField17.setText(recievedDate);
                 String issuerBank=rs.getString("issuer_Bank");
                 jTextField18.setText(issuerBank);
                 String validPeriod=rs.getString("valid_Period");
                 jTextField19.setText(validPeriod);
-               // String ExpirationDate;
+                String ExpirationDate;
                 //SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
                 //jTextField20.setText(ExpirationDate);
                 String amount=rs.getString("amount");
@@ -913,24 +768,7 @@ public class Others extends javax.swing.JFrame {
 
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         // TODO add your handling code here:
-            int f=0;   
-    String s1=jTextField8.getText();
-    String s2=null;
-    for(int i=0;i<s1.length();i++)
-    {
-      char a=s1.charAt(i);  
-       
-      if(Character.isLetter(a))
-      {
-           f=1;
-        s1=s1.substring(0, i);   
-      }
-    }
-    if(f==1)
-    {
-        JOptionPane.showMessageDialog(null,"character not allowed");
-        jTextField4.setText(null);
-    }
+    
     }//GEN-LAST:event_jTextField4KeyPressed
 
     private void jTextField21KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField21KeyPressed
@@ -957,14 +795,14 @@ public class Others extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        int r= jTable2.getSelectedRow();
-        TableModel model=jTable2.getModel();
-        String tokenID=jTable2.getValueAt(r,0).toString();
-        String Item_Code= jTable2.getValueAt(r,1).toString();
-        String Item_Name= jTable2.getValueAt(r,2).toString();
-        String QTY= jTable2.getValueAt(r,3).toString();
-        String Invoice_ID= jTable2.getValueAt(r,4).toString();
-        String date= jTable2.getValueAt(r,5).toString();
+        int r= jTable1.getSelectedRow();
+        TableModel model=jTable1.getModel();
+        String tokenID=jTable1.getValueAt(r,0).toString();
+        String Item_Code= jTable1.getValueAt(r,1).toString();
+        String Item_Name= jTable1.getValueAt(r,2).toString();
+        String QTY= jTable1.getValueAt(r,3).toString();
+        String Invoice_ID= jTable1.getValueAt(r,4).toString();
+        String date= jTable1.getValueAt(r,5).toString();
         
         
        
@@ -973,43 +811,14 @@ public class Others extends javax.swing.JFrame {
         jTextField3.setText(Item_Name);
         jTextField4.setText(QTY);
         jTextField5.setText(Invoice_ID);
-        jTextField6.setText(date);
+        //jTextField6.setText(date);
         
       
         
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jTextField12KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyPressed
-        // TODO add your handling code here:
-        Pay1 p = new Pay1();
-        p.setSaleAmount1(Float.parseFloat(jTextField9.getText()));
-        p.setDiscount1(Float.parseFloat(jTextField11.getText()));
-        p.setQuty1(Float.parseFloat(jTextField10.getText()));
-
-        Double total = p.cal();
-        jTextField12.setText(String.valueOf(total));
-        double discount=p.cal2();
-        jTextField24.setText(String.valueOf(discount));
-    }//GEN-LAST:event_jTextField12KeyPressed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        
-        jTextField6.setText("");
-         jTextField7.setText("");
-          jTextField8.setText("");
-           jTextField9.setText("");
-            jTextField10.setText("");
-             jTextField11.setText("");
-              jTextField12.setText("");
-               jTextField23.setText("");
-                jTextField24.setText("");
-                 jTextField25.setText(""); 
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jTextField14KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField14KeyPressed
         // TODO add your handling code here:
-            // TODO add your handling code here:
                 int f=0;   
     String s1=jTextField14.getText();
     String s2=null;
@@ -1032,7 +841,6 @@ public class Others extends javax.swing.JFrame {
 
     private void jTextField15KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField15KeyPressed
         // TODO add your handling code here:
-            // TODO add your handling code here:
                 int f=0;   
     String s1=jTextField15.getText();
     String s2=null;
@@ -1052,6 +860,21 @@ public class Others extends javax.swing.JFrame {
        jTextField15.setText(null);
     } 
     }//GEN-LAST:event_jTextField15KeyPressed
+
+    private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField5KeyPressed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        String ChequeId=jTextField13.getText();
+        int invoiceId=Integer.parseInt(jTextField14.getText());
+        String chequeNo=jTextField15.getText();
+        String issuerBank=jTextField18.getText();
+        String validPeriod=jTextField19.getText();
+        double amount=Float.parseFloat(jTextField21.getText());
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1090,11 +913,9 @@ public class Others extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -1102,10 +923,6 @@ public class Others extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1115,36 +932,18 @@ public class Others extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
@@ -1152,15 +951,8 @@ public class Others extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

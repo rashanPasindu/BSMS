@@ -76,7 +76,7 @@ public class Pay1 {
     
     public double getBalance()
     {
-        return mony-total;
+        return (mony-total);
     }
 
   
