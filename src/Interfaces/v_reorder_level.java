@@ -40,7 +40,8 @@ public class v_reorder_level extends javax.swing.JFrame {
         try
         {
 //     String sql="select p.ProductID,p.ProductType,p.Quantity,o.policy_Type,o.rate,(o.rate-p.Quantity)as remaining from policy_update o,products p where p.ProductType=o.policy_Type";  
-        String sql="select p.ProductID,p.ProductType,p.Quantity,o.policy_Type,o.rate,(o.rate-p.Quantity)as remaining from policy_update o,products p where p.ProductType=o.policy_Type AND (o.rate-p.Quantity) >= 0";
+        //String sql="select p.ProductID,p.ProductType,p.Quantity,o.policy_Type,o.rate,(o.rate-p.Quantity)as remaining from policy_update o,products p where p.ProductType=o.policy_Type AND (o.rate-p.Quantity) >= 0";
+        String sql="select p.ProductID,p.ProductType,p.Quantity,o.policyType,o.rate,(o.rate-p.Quantity)as reorder_level from policy_update o,products p where p.ProductType=o.policyType AND (o.rate-p.Quantity) >= 0";
         pst = con.prepareStatement(sql);
         rs =pst.executeQuery();
         
