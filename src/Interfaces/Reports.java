@@ -64,6 +64,7 @@ public class Reports extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -137,7 +138,16 @@ public class Reports extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 490, -1, -1));
 
-        pack();
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton2.setText("BACK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 430, 120, 46));
+
+        setSize(new java.awt.Dimension(1384, 815));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -320,6 +330,15 @@ public class Reports extends javax.swing.JFrame {
         }
         ); */
     }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        v_AddProducts a1 =new v_AddProducts();
+        a1.setVisible(true);
+        this.dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
       
     /**
      * @param args the command line arguments
@@ -364,6 +383,7 @@ public class Reports extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton8;
     // End of variables declaration//GEN-END:variables
 }
