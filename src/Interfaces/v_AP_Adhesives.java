@@ -673,14 +673,19 @@ public class v_AP_Adhesives extends javax.swing.JFrame {
 
     private void spsiboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spsiboxKeyReleased
         //validate
+        //float quantity=Float.parseFloat(spsibox.getText());
          String quantity = spsibox.getText();
+          //int supplieID=Integer.parseInt(supplierid_update1.getText());
+          
            int ck = 0;
            
         
         for(int i =0 ; i<quantity.length(); i++)
                 {   //Validating qty
                   if(!Character.isDigit(quantity.charAt(i)))
+                  {
                       ck =11;
+                  }
                 }
         if(ck==11)
         {
